@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: Financial Blueprint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #182719; 
+            color: #F5f2e8; 
+            padding-bottom: 80px;
+        }
+        h1, h2, h3, h4, .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-fixed-full {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center; z-index: -2;
+        }
+        .content-container {
+            background: rgba(24, 39, 25, 0.85);
+            backdrop-filter: blur(8px);
+            position: relative; z-index: 1;
+        }
+        .text-accent { color: #Bca86d; }
+        .card-style {
+            background: rgba(245, 242, 232, 0.05); 
+            border: 1px solid #333e2d; 
+        }
+        .nav-button {
+            background-color: rgba(188, 168, 109, 0.1);
+            border: 1px solid #Bca86d;
+            color: #Bca86d;
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button:hover {
+            background-color: #Bca86d;
+            color: #182719;
+        }
+        #menu-dropdown {
+            transform-origin: bottom center;
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-button.active {
+            color: #Bca86d;
+            border-bottom-color: #Bca86d;
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .collapsible-trigger .icon {
+            transition: transform 0.3s ease;
+        }
+        .collapsible-trigger.open .icon {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="bg-fixed-full" style="background: linear-gradient(135deg, #1a2b1a 0%, #182719 50%, #1e311e 100%);"></div>
+    
+    <!-- Password Protection Check -->
+    <div id="password-redirect" class="fixed inset-0 bg-gray-900 bg-opacity-95 flex items-center justify-center z-50">
+        <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 max-w-md w-full mx-4 text-center">
+            <h2 class="text-2xl font-bold playfair mb-4 text-accent">Access Required</h2>
+            <p class="text-gray-300 mb-6">Please access through the main presentation page.</p>
+            <a href="001iguessthisisfirst.html" class="inline-block bg-accent text-gray-900 px-6 py-3 rounded font-semibold hover:bg-yellow-600 transition-colors">Go to Main Page</a>
+        </div>
+    </div>
+    
+    <div class="content-container min-h-screen">
+        <header class="text-center py-16 px-6">
+            <a href="the_makers_stay_presentation.html" class="text-accent hover:text-F5f2e8 font-medium underline underline-offset-4 transition-colors mb-8 inline-block">&larr; Back to Presentation Overview</a>
+            <h1 class="text-5xl md:text-6xl font-bold playfair">Financial Blueprint</h1>
+        </header>
+
+        <main class="container mx-auto px-6 pb-24">
+            <section class="max-w-4xl mx-auto text-lg leading-relaxed space-y-6 text-center">
+                <p>Our financial strategy is built on a logical, phased approach that minimizes risk and maximizes the value of invested capital. We are seeking an initial <strong class="text-accent">$3.4 million</strong> from investors to fund Phase 1, which secures the land and core infrastructure. This foundational investment creates the collateral for a traditional construction loan to fund Phases 2 and 3.</p>
+            </section>
+            
+            <div class="mt-24 max-w-7xl mx-auto space-y-16">
+                <!-- Phase 1 -->
+                <section class="card-style p-8 md:p-12 rounded-xl">
+                    <div class="text-center mb-8">
+                        <h3 class="text-sm uppercase tracking-widest text-gray-400">Phase 1: Foundation</h3>
+                        <p class="text-4xl md:text-5xl font-bold playfair text-accent mt-2">$3,400,000</p>
+                        <p class="mt-4 max-w-2xl mx-auto text-gray-300">Investor capital is deployed to acquire all land and build the essential infrastructure. This phase de-risks the entire project by creating a tangible, high-value asset base, paving the way for conventional financing.</p>
+                    </div>
+                    <div class="border-t border-gray-700 pt-8 grid md:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-4">
+                            <!-- Land Acquisition -->
+                            <div class="collapsible-item py-2">
+                                <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                    <div>
+                                        <p class="font-bold text-xl playfair group-hover:text-accent transition-colors">Land Acquisition</p>
+                                        <p class="text-2xl text-accent font-semibold">$1,900,000</p>
+                                    </div>
+                                    <div class="icon text-accent text-3xl font-light">+</div>
+                                </div>
+                                <div class="collapsible-content">
+                                    <div class="pt-3 mt-3 border-t border-gray-700/50 text-sm text-gray-400">
+                                        <p>Securing 212 acres, including the negotiated purchase price, closing costs, due diligence, legal fees, and initial survey work.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Core Infrastructure -->
+                            <div class="collapsible-item py-2">
+                                <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                    <div>
+                                        <p class="font-bold text-xl playfair group-hover:text-accent transition-colors">Core Infrastructure</p>
+                                        <p class="text-2xl text-accent font-semibold">$1,150,000</p>
+                                    </div>
+                                    <div class="icon text-accent text-3xl font-light">+</div>
+                                </div>
+                                <div class="collapsible-content">
+                                    <ul class="pt-3 mt-3 border-t border-gray-700/50 text-sm space-y-2 text-gray-300">
+                                        <li class="flex justify-between"><span>Roads & Pathways</span> <span class="font-medium">$350,000</span></li>
+                                        <li class="flex justify-between"><span>Decentralized Renewable Energy</span> <span class="font-medium">$450,000</span></li>
+                                        <li class="flex justify-between"><span>Water & Septic Systems</span> <span class="font-medium">$350,000</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- House Retrofit -->
+                             <div class="collapsible-item py-2">
+                                <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                    <div>
+                                        <p class="font-bold text-xl playfair group-hover:text-accent transition-colors">Existing House Retrofit</p>
+                                        <p class="text-2xl text-accent font-semibold">$350,000</p>
+                                    </div>
+                                    <div class="icon text-accent text-3xl font-light">+</div>
+                                </div>
+                                <div class="collapsible-content">
+                                    <ul class="pt-3 mt-3 border-t border-gray-700/50 text-sm space-y-2 text-gray-300">
+                                        <li class="flex justify-between"><span>Architectural & Design Fees</span> <span class="font-medium">$25,000</span></li>
+                                        <li class="flex justify-between"><span>Structural & Systems Upgrades</span> <span class="font-medium">$125,000</span></li>
+                                        <li class="flex justify-between"><span>Interior Finishing</span> <span class="font-medium">$150,000</span></li>
+                                        <li class="flex justify-between"><span>Exterior Improvements</span> <span class="font-medium">$50,000</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative h-64 md:h-80">
+                            <canvas id="phase1Chart"></canvas>
+                        </div>
+                    </div>
+                </section>
+                <!-- Phase 2 -->
+                <section class="card-style p-8 md:p-12 rounded-xl">
+                    <div class="text-center mb-8">
+                        <h3 class="text-sm uppercase tracking-widest text-gray-400">Phase 2: Construction</h3>
+                        <p class="text-4xl md:text-5xl font-bold playfair text-accent mt-2">$1,782,350</p>
+                        <p class="mt-4 max-w-2xl mx-auto text-gray-300">Financed via a traditional construction loan, this phase focuses on building the revenue-generating structures and core amenities that define the guest experience.</p>
+                    </div>
+                     <div class="border-t border-gray-700 pt-8 grid md:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-4">
+                            <!-- Primary Structures -->
+                            <div class="collapsible-item py-2">
+                                <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                    <div>
+                                        <p class="font-bold text-xl playfair group-hover:text-accent transition-colors">Primary Structures</p>
+                                        <p class="text-2xl text-accent font-semibold">$1,002,350</p>
+                                    </div>
+                                    <div class="icon text-accent text-3xl font-light">+</div>
+                                </div>
+                                <div class="collapsible-content">
+                                     <ul class="pt-3 mt-3 border-t border-gray-700/50 text-sm space-y-2 text-gray-300">
+                                        <li class="flex justify-between"><span>Wonderful Structures & Pads</span> <span class="font-medium">$578,130</span></li>
+                                        <li class="flex justify-between"><span>Longhouse Construction</span> <span class="font-medium">$424,220</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Initial Amenities -->
+                            <div class="collapsible-item py-2">
+                                <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                    <div>
+                                        <p class="font-bold text-xl playfair group-hover:text-accent transition-colors">Initial Amenities</p>
+                                        <p class="text-2xl text-accent font-semibold">$780,000</p>
+                                    </div>
+                                    <div class="icon text-accent text-3xl font-light">+</div>
+                                </div>
+                                <div class="collapsible-content">
+                                    <ul class="pt-3 mt-3 border-t border-gray-700/50 text-sm space-y-2 text-gray-300">
+                                        <li class="flex justify-between"><span>Fleet Vehicles & Equipment</span> <span class="font-medium">$400,000</span></li>
+                                        <li class="flex justify-between"><span>Grotto Pool & Greenhouse</span> <span class="font-medium">$330,000</span></li>
+                                        <li class="flex justify-between"><span>Indoor/Outdoor Dog Park</span> <span class="font-medium">$50,000</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative h-64 md:h-80">
+                            <canvas id="phase2Chart"></canvas>
+                        </div>
+                    </div>
+                </section>
+                <!-- Phase 3 -->
+                <section class="card-style p-8 md:p-12 rounded-xl">
+                    <div class="text-center mb-8">
+                        <h3 class="text-sm uppercase tracking-widest text-gray-400">Phase 3: Operational Launch</h3>
+                        <p class="text-4xl md:text-5xl font-bold playfair text-accent mt-2">$484,730</p>
+                        <p class="mt-4 max-w-2xl mx-auto text-gray-300">The final stage, also loan-financed, covers the outfitting of all spaces and provides the necessary working capital to ensure a smooth and successful grand opening.</p>
+                    </div>
+                     <div class="border-t border-gray-700 pt-8 grid md:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-4">
+                            <!-- FF&E -->
+                            <div class="collapsible-item py-2">
+                                <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                    <div>
+                                        <p class="font-bold text-xl playfair group-hover:text-accent transition-colors">Furniture, Fixtures & Equipment</p>
+                                        <p class="text-2xl text-accent font-semibold">$250,000</p>
+                                    </div>
+                                    <div class="icon text-accent text-3xl font-light">+</div>
+                                </div>
+                                <div class="collapsible-content">
+                                    <div class="pt-3 mt-3 border-t border-gray-700/50 text-sm text-gray-400">
+                                        <p>Comprehensive outfitting for all guest cabins, bio-homes, the Longhouse community center, and all other common areas.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Working Capital -->
+                            <div class="collapsible-item py-2">
+                                <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                    <div>
+                                        <p class="font-bold text-xl playfair group-hover:text-accent transition-colors">Working Capital</p>
+                                        <p class="text-2xl text-accent font-semibold">$175,000</p>
+                                    </div>
+                                    <div class="icon text-accent text-3xl font-light">+</div>
+                                </div>
+                                 <div class="collapsible-content">
+                                    <div class="pt-3 mt-3 border-t border-gray-700/50 text-sm text-gray-400">
+                                        <p>Covers 3-6 months of operating expenses, including initial payroll, marketing, and unforeseen costs before revenue is fully established.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Specialized Equipment -->
+                            <div class="collapsible-item py-2">
+                                <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                    <div>
+                                        <p class="font-bold text-xl playfair group-hover:text-accent transition-colors">Specialized Equipment</p>
+                                        <p class="text-2xl text-accent font-semibold">$59,730</p>
+                                    </div>
+                                    <div class="icon text-accent text-3xl font-light">+</div>
+                                </div>
+                                 <div class="collapsible-content">
+                                    <ul class="pt-3 mt-3 border-t border-gray-700/50 text-sm space-y-2 text-gray-300">
+                                        <li class="flex justify-between"><span>All Maker Workshops</span> <span class="font-medium">$54,300</span></li>
+                                        <li class="flex justify-between"><span>10% Contingency</span> <span class="font-medium">$5,430</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative h-64 md:h-80">
+                            <canvas id="phase3Chart"></canvas>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sources and Uses -->
+            <section class="mt-24 max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold playfair mb-12 text-center text-accent">Sources & Uses of Funds</h2>
+                 <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                     <div class="card-style p-8 rounded-xl">
+                         <h3 class="text-2xl font-bold playfair mb-6">Sources</h3>
+                         <div class="space-y-6">
+                             <div>
+                                 <p class="font-semibold text-lg">Investor Equity (Phase 1)</p>
+                                 <p class="text-3xl text-accent font-bold">$3,400,000</p>
+                                 <p class="text-gray-400 text-sm">To fund land acquisition and all core infrastructure.</p>
+                             </div>
+                             <div class="border-t border-gray-700 pt-6">
+                                 <p class="font-semibold text-lg">Construction Loan (Phase 2 & 3)</p>
+                                 <p class="text-3xl text-accent font-bold">$2,267,080</p>
+                                 <p class="text-gray-400 text-sm">Secured by Phase 1 assets to fund vertical construction and launch.</p>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="card-style p-8 rounded-xl flex flex-col">
+                         <h3 class="text-2xl font-bold playfair mb-4 text-center">Total Uses: $5,667,080</h3>
+                         <div class="relative flex-grow h-80">
+                             <canvas id="usesChart"></canvas>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="mt-12 text-center">
+                    <a href="budget_detail_page.html" class="inline-block bg-accent text-gray-900 font-bold py-3 px-8 rounded-lg hover:bg-opacity-80 transition-colors">Explore the Full Line-Item Budget &rarr;</a>
+                 </div>
+            </section>
+
+            <!-- Repayment Strategy -->
+            <section class="mt-24 max-w-7xl mx-auto">
+                <h2 class="text-4xl font-bold playfair mb-12 text-center text-accent">Comprehensive Repayment & Exit Strategy</h2>
+                <div class="card-style p-8 md:p-12 rounded-xl">
+                    <div class="mb-8 border-b border-gray-700 flex justify-center space-x-4 md:space-x-8">
+                        <button class="tab-button text-lg md:text-xl playfair py-3 px-2 active" data-tab="equity">Investor Equity</button>
+                        <button class="tab-button text-lg md:text-xl playfair py-3 px-2" data-tab="debt">Senior Debt</button>
+                        <button class="tab-button text-lg md:text-xl playfair py-3 px-2" data-tab="grants">Grant Funding</button>
+                    </div>
+                    <div id="repayment-content">
+                        <!-- Investor Equity Content -->
+                        <div id="equity-content" class="tab-content">
+                             <p class="text-center text-gray-300 max-w-3xl mx-auto mb-10">A multi-pronged approach ensures investors see both near-term cash flow and long-term capital appreciation.</p>
+                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                                 <div class="space-y-3">
+                                     <div class="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto border-2 border-accent">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 10v-1m0 0c-1.657 0-3-.895-3-2s1.343-2 3-2 3-.895 3-2-1.343-2-3-2m0 8c-1.11 0-2.08-.402-2.599-1M12 16a2 2 0 100-4 2 2 0 000 4z" /></svg>
+                                     </div>
+                                     <h4 class="font-bold playfair text-lg">Cash Flow Distributions</h4>
+                                     <p class="text-sm text-gray-400">Starting Year 1, annual profit distributions begin, providing immediate returns.</p>
+                                 </div>
+                                 <div class="space-y-3">
+                                     <div class="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto border-2 border-accent">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5V4H4zm0 11v5h5v-5H4zm11-11v5h5V4h-5zm0 11v5h5v-5h-5z" /></svg>
+                                     </div>
+                                     <h4 class="font-bold playfair text-lg">Recapitalization</h4>
+                                     <p class="text-sm text-gray-400">A planned refinance in Years 5-7 aims to return a significant portion of initial capital.</p>
+                                 </div>
+                                 <div class="space-y-3">
+                                     <div class="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto border-2 border-accent">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                                     </div>
+                                     <h4 class="font-bold playfair text-lg">Long-Term Appreciation</h4>
+                                     <p class="text-sm text-gray-400">Investors retain their equity stake to benefit from the asset's compounding value.</p>
+                                 </div>
+                                 <div class="space-y-3">
+                                     <div class="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto border-2 border-accent">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                     </div>
+                                     <h4 class="font-bold playfair text-lg">Strategic Exit</h4>
+                                     <p class="text-sm text-gray-400">A potential sale after Year 10+ provides a final exit to realize full capital gains.</p>
+                                 </div>
+                             </div>
+                        </div>
+                        <!-- Senior Debt Content -->
+                        <div id="debt-content" class="tab-content hidden">
+                            <p class="text-center text-gray-300 max-w-3xl mx-auto mb-10">The conventional debt is serviced directly from the project's operational revenue, a standard and secure structure.</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                                <div class="space-y-3">
+                                    <div class="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto border-2 border-accent">
+                                       <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                                    </div>
+                                    <h4 class="font-bold playfair text-lg">Repayment Source</h4>
+                                    <p class="text-sm text-gray-400">Debt service is paid from the Net Operating Income (NOI) generated by the property.</p>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto border-2 border-accent">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                    </div>
+                                    <h4 class="font-bold playfair text-lg">Amortization</h4>
+                                    <p class="text-sm text-gray-400">The loan is projected to be fully paid off over a standard 20-year term.</p>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto border-2 border-accent">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                                    </div>
+                                    <h4 class="font-bold playfair text-lg">Security</h4>
+                                    <p class="text-sm text-gray-400">Secured by a first-lien position on all property and assets, ensuring maximum lender protection.</p>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto border-2 border-accent">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5h1.586a1 1 0 01.707.293l2.414 2.414a1 1 0 001.414 0l2.414-2.414a1 1 0 01.707-.293H17v5m-5 0h2" /></svg>
+                                    </div>
+                                    <h4 class="font-bold playfair text-lg">Permanent Financing</h4>
+                                    <p class="text-sm text-gray-400">The construction loan will convert to a permanent mortgage post-stabilization.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Grant Funding Content -->
+                        <div id="grants-content" class="tab-content hidden">
+                            <p class="text-center text-gray-300 max-w-3xl mx-auto mb-10">We will actively pursue non-repayable funds to enhance project value and reduce the overall capital requirement.</p>
+                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                                <div class="space-y-3">
+                                    <div class="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto border-2 border-accent">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                                    </div>
+                                    <h4 class="font-bold playfair text-lg">Non-Dilutive</h4>
+                                    <p class="text-sm text-gray-400">Grants are not loans and do not require repayment or dilute investor equity.</p>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto border-2 border-accent">
+                                       <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h8a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.8 11.945l.242.585a1 1 0 001.914 0l.242-.585M14.2 11.945l.242.585a1 1 0 001.914 0l.242-.585M12 21a9 9 0 000-18h.01a9 9 0 000 18z" /></svg>
+                                    </div>
+                                    <h4 class="font-bold playfair text-lg">Target Areas</h4>
+                                    <p class="text-sm text-gray-400">Focus on renewable energy, sustainable agriculture, community arts, and rural development.</p>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto border-2 border-accent">
+                                       <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 8l3 5m0 0l3-5m-3 5v4m0 0H9m3 0h3m-3-5a2 2 0 100-4 2 2 0 000 4z" /></svg>
+                                    </div>
+                                    <h4 class="font-bold playfair text-lg">Risk Reduction</h4>
+                                    <p class="text-sm text-gray-400">Grant funding reduces the required amount of debt and/or equity capital.</p>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto border-2 border-accent">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg>
+                                    </div>
+                                    <h4 class="font-bold playfair text-lg">Enhanced Returns</h4>
+                                    <p class="text-sm text-gray-400">By reducing the capital base, grants directly increase the IRR for equity investors.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Global Navigation -->
+    <nav id="global-nav" class="fixed bottom-0 left-0 right-0 bg-gray-900 bg-opacity-70 backdrop-blur-md z-50 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a id="prev-link" href="3 strategiclocation.html" class="nav-button py-2 px-4 rounded-md">&larr; Previous</a>
+            
+            <div class="relative">
+                <button id="menu-button" class="nav-button py-2 px-6 rounded-md">Menu</button>
+                <div id="menu-dropdown" class="hidden absolute bottom-full mb-2 w-56 bg-gray-800 border border-gray-700 rounded-md shadow-lg">
+                    <a href="001iguessthisisfirst.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Overview</a>
+                    <a href="2 intro.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Introduction</a>
+                    <a href="3 strategiclocation.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Location</a>
+                    <a href="4 financialblueprint.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Financial Blueprint</a>
+                    <a href="5 financialprojections.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Projections</a>
+                    <a href="6 budgetexplorer.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Budget</a>
+                    <a href="7 crisisproofmodel.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Resilience Model</a>
+                    <a href="8 conclusion.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Conclusion</a>
+                </div>
+            </div>
+            
+            <a id="next-link" href="5 financialprojections.html" class="nav-button py-2 px-4 rounded-md">Next &rarr;</a>
+        </div>
+    </nav>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navigation Menu
+            const menuButton = document.getElementById('menu-button');
+            const menuDropdown = document.getElementById('menu-dropdown');
+            menuButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                menuDropdown.classList.toggle('hidden');
+            });
+            document.addEventListener('click', () => {
+                if (!menuDropdown.classList.contains('hidden')) {
+                    menuDropdown.classList.add('hidden');
+                }
+            });
+
+            // Chart Logic
+            const chartTextColor = '#F5f2e8';
+            Chart.defaults.color = chartTextColor;
+            Chart.defaults.borderColor = 'rgba(245, 242, 232, 0.2)';
+
+            function createPhaseChart(canvasId, labels, data) {
+                const ctx = document.getElementById(canvasId).getContext('2d');
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: { labels: labels, datasets: [{ data: data, backgroundColor: ['#Bca86d', '#82a296', '#515f82', '#7d8352', '#333e2d'], borderWidth: 0, }] },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 20 } }, tooltip: { callbacks: { label: function(context) { let label = context.label || ''; if (label) { label += ': '; } let value = context.parsed; label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(value); return label; } } } } }
+                });
+            }
+            createPhaseChart('phase1Chart', ['Land Acquisition', 'Core Infrastructure', 'House Retrofit'], [1900000, 1150000, 350000]);
+            createPhaseChart('phase2Chart', ['Primary Structures', 'Initial Amenities'], [1002350, 780000]);
+            createPhaseChart('phase3Chart', ['FF&E', 'Working Capital', 'Specialized Equipment'], [250000, 175000, 59730]);
+
+            const usesCtx = document.getElementById('usesChart').getContext('2d');
+            new Chart(usesCtx, {
+                type: 'pie',
+                data: { labels: ['Land & Core Infrastructure', 'Primary Structures', 'Amenities & Launch'], datasets: [{ label: 'Use of Funds', data: [3400000, 1002350, 1264730], backgroundColor: ['#Bca86d', '#82a296', '#515f82'], borderWidth: 0, }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: true, position: 'bottom', labels: { boxWidth: 15 } }, tooltip: { callbacks: { label: function(context) { let label = context.label || ''; if (label) { label += ': '; } let value = context.parsed; label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(value); return label; } } } } }
+            });
+
+            // Repayment Tabs
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tab = button.dataset.tab;
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    tabContents.forEach(content => {
+                        if (content.id === `${tab}-content`) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // Collapsible Sections
+            const collapsibleTriggers = document.querySelectorAll('.collapsible-trigger');
+            collapsibleTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const content = trigger.nextElementSibling;
+                    trigger.classList.toggle('open');
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }
+                });
+            });
+        });
+        
+        // Check authentication
+        if (sessionStorage.getItem('makersstay-access') !== 'granted') {
+            // Show redirect overlay
+        } else {
+            document.getElementById('password-redirect').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+

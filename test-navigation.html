@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Test - The Maker's Stay</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 4px; }
+        .pass { background-color: #d4edda; color: #155724; }
+        .fail { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>The Maker's Stay - Navigation Test</h1>
+    <p>Click "Start Test" to verify all navigation links work correctly:</p>
+    
+    <button onclick="testNavigation()">Start Navigation Test</button>
+    <div id="results"></div>
+
+    <script>
+        function testNavigation() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<h2>Testing Navigation Links...</h2>';
+            
+            const pages = [
+                '001iguessthisisfirst.html',
+                '2 intro.html',
+                '3 strategiclocation.html', 
+                '4 financialblueprint.html',
+                '5 financialprojections.html',
+                '6 budgetexplorer.html',
+                '7 crisisproofmodel.html',
+                '8 conclusion.html'
+            ];
+            
+            pages.forEach((page, index) => {
+                // Test if file exists by trying to access it
+                fetch(page)
+                    .then(response => {
+                        const result = document.createElement('div');
+                        result.className = response.ok ? 'test-result pass' : 'test-result fail';
+                        result.innerHTML = `${index + 1}. ${page} - ${response.ok ? '✅ EXISTS' : '❌ NOT FOUND'}`;
+                        results.appendChild(result);
+                    })
+                    .catch(error => {
+                        const result = document.createElement('div');
+                        result.className = 'test-result fail';
+                        result.innerHTML = `${index + 1}. ${page} - ❌ ERROR: ${error.message}`;
+                        results.appendChild(result);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

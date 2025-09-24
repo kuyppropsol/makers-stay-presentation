@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: Conclusion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #182719; /* Dark Green/Black from list */
+            color: #F5f2e8; /* Cream from list */
+            padding-bottom: 80px;
+        }
+        h1, h2, h3, h4, .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-fixed-full {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center; z-index: -2;
+        }
+        .content-container {
+            /* RGBA version of #182719 */
+            background: rgba(24, 39, 25, 0.85);
+            backdrop-filter: blur(8px);
+            position: relative; z-index: 1;
+        }
+        .text-accent { color: #Bca86d; /* Muted Gold/Tan from list */ }
+        .card-style {
+            background: rgba(245, 242, 232, 0.05); /* Transparent cream */
+            border: 1px solid #333e2d; /* Dark Olive from list */
+        }
+        .contact-card {
+            background: rgba(245, 242, 232, 0.05);
+            border: 1px solid #333e2d;
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: #Bca86d; /* Muted Gold/Tan from list */
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+        }
+        .nav-button {
+            background-color: rgba(188, 168, 109, 0.1);
+            border: 1px solid #Bca86d;
+            color: #Bca86d;
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button:hover {
+            background-color: #Bca86d;
+            color: #182719;
+        }
+        #menu-dropdown {
+            transform-origin: bottom center;
+        }
+        /* Animation for scroll */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="bg-fixed-full" style="background: linear-gradient(315deg, #182719 0%, #1f321f 30%, #Bca86d 100%), linear-gradient(45deg, rgba(188,168,109,0.1) 0%, transparent 70%);"></div>
+    
+    <!-- Password Protection Check -->
+    <div id="password-redirect" class="fixed inset-0 bg-gray-900 bg-opacity-95 flex items-center justify-center z-50">
+        <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 max-w-md w-full mx-4 text-center">
+            <h2 class="text-2xl font-bold playfair mb-4 text-accent">Access Required</h2>
+            <p class="text-gray-300 mb-6">Please access through the main presentation page.</p>
+            <a href="001iguessthisisfirst.html" class="inline-block bg-accent text-gray-900 px-6 py-3 rounded font-semibold hover:bg-yellow-600 transition-colors">Go to Main Page</a>
+        </div>
+    </div>
+    
+    <div class="content-container min-h-screen">
+        <header class="text-center py-16 px-6">
+            <a href="the_makers_stay_presentation.html" class="text-accent hover:text-F5f2e8 font-medium underline underline-offset-4 transition-colors mb-8 inline-block">&larr; Back to Presentation Overview</a>
+            <h1 class="text-5xl md:text-6xl font-bold playfair reveal-on-scroll">An Invitation to Build a Legacy</h1>
+        </header>
+
+        <main class="container mx-auto px-6 pb-24">
+            <section class="max-w-4xl mx-auto text-lg leading-relaxed space-y-6 text-center reveal-on-scroll">
+                <p>We have presented more than a business plan; we have presented a blueprint for a new reality. The Maker's Stay is where prudent financial strategy meets profound purpose. It is a data-driven response to a volatile world, an investment designed not just to weather the storm, but to become the harbor.</p>
+            </section>
+            
+            <section class="mt-24 max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold playfair mb-12 text-center text-accent reveal-on-scroll">A Trifecta of Value</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Foundational Partnership -->
+                    <div class="card-style p-8 rounded-xl text-center reveal-on-scroll">
+                         <div class="bg-accent/10 rounded-full w-24 h-24 flex items-center justify-center mx-auto border-2 border-accent mb-6">
+                            <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5h1.586a1 1 0 01.707.293l2.414 2.414a1 1 0 001.414 0l2.414-2.414a1 1 0 01.707-.293H17v5m-5 0h2"></path></svg>
+                         </div>
+                         <h3 class="font-bold text-xl playfair mb-3">Foundational Partnership</h3>
+                         <p class="text-gray-400">A <strong class="text-white">$3.4M</strong> capital investment secures the foundational assets, de-risking the venture and creating immediate, tangible value.</p>
+                    </div>
+                     <!-- Profitability with Purpose -->
+                    <div class="card-style p-8 rounded-xl text-center reveal-on-scroll" style="transition-delay: 150ms;">
+                         <div class="bg-accent/10 rounded-full w-24 h-24 flex items-center justify-center mx-auto border-2 border-accent mb-6">
+                            <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                         </div>
+                         <h3 class="font-bold text-xl playfair mb-3">Profitability with Purpose</h3>
+                         <p class="text-gray-400">A conservative first-year net income projection of <strong class="text-white">$281,163</strong> demonstrates a robust, diversified model where financial success fuels a regenerative mission.</p>
+                    </div>
+                     <!-- A Legacy Asset -->
+                    <div class="card-style p-8 rounded-xl text-center reveal-on-scroll" style="transition-delay: 300ms;">
+                         <div class="bg-accent/10 rounded-full w-24 h-24 flex items-center justify-center mx-auto border-2 border-accent mb-6">
+                            <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-12v4m-2-2h4m5 6v4m-2-2h4M12 3v18"></path></svg>
+                         </div>
+                         <h3 class="font-bold text-xl playfair mb-3">A Legacy Asset</h3>
+                         <p class="text-gray-400">Invest in a hard asset insulated from market volatility, designed for long-term capital appreciation and profound social and ecological dividends.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="mt-24 max-w-4xl mx-auto text-center reveal-on-scroll">
+                 <h2 class="text-4xl font-bold playfair mb-6 text-accent">The Moment is Now.</h2>
+                 <p class="text-xl text-gray-300 leading-relaxed">The model is proven. The location is primed. The plan is meticulous. We are seeking partners who recognize this rare convergence of opportunity. If you believe in building enduring assets that generate both profit and purpose, then we are ready to build with you.</p>
+            </section>
+
+            <section class="mt-24 max-w-5xl mx-auto reveal-on-scroll">
+                 <h2 class="text-4xl font-bold playfair mb-12 text-center">Begin the Conversation</h2>
+                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                    <a href="mailto:investing@themakersstay.com" class="contact-card flex flex-col justify-center p-8 rounded-lg text-center min-h-[140px]">
+                        <p class="text-sm text-accent mb-1">Email</p>
+                        <p class="font-semibold text-white break-words">investing@themakersstay.com</p>
+                    </a>
+                    <a href="tel:+17172561114" class="contact-card flex flex-col justify-center p-8 rounded-lg text-center min-h-[140px]">
+                        <p class="text-sm text-accent mb-1">Phone</p>
+                        <p class="font-semibold text-white">+1-717-256-1114</p>
+                    </a>
+                    <a href="https://wa.me/17174464734" target="_blank" class="contact-card flex flex-col justify-center p-8 rounded-lg text-center min-h-[140px]">
+                        <p class="text-sm text-accent mb-1">WhatsApp</p>
+                        <p class="font-semibold text-white">+1 (717) 446-4734</p>
+                    </a>
+                 </div>
+            </section>
+
+            <!-- Legal Disclaimer -->
+            <section class="mt-16 max-w-4xl mx-auto">
+                <div class="bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg p-6">
+                    <h3 class="text-lg font-bold playfair mb-4 text-accent">Important Legal Disclaimer</h3>
+                    <div class="text-sm text-gray-400 space-y-3">
+                        <p><strong>Investment Risk:</strong> This presentation is for informational purposes only and does not constitute an offer to sell or solicitation to buy securities. All investments involve substantial risk of loss, including potential total loss of investment. Past performance does not guarantee future results.</p>
+                        <p><strong>Accredited Investors Only:</strong> Any securities offered will be available only to accredited investors as defined by SEC Rule 501. You must have individual income exceeding $200,000 ($300,000 joint) for two consecutive years or net worth exceeding $1,000,000 (excluding primary residence).</p>
+                        <p><strong>Forward-Looking Statements:</strong> All financial projections, forecasts, and pro forma statements contain forward-looking information subject to significant risks, uncertainties, and assumptions. Actual results may vary materially and adversely from projections. No representation is made that any returns will be achieved.</p>
+                        <p><strong>Regulation D Offering:</strong> Any investment opportunity will be offered pursuant to Regulation D under the Securities Act of 1933. Investment will require execution of subscription documents and verification of accredited investor status.</p>
+                        <p><strong>No Investment Advice:</strong> This presentation does not constitute investment, legal, or tax advice. Consult with your financial, legal, and tax advisors before making any investment decisions.</p>
+                        <p><strong>Due Diligence Required:</strong> Prospective investors should conduct their own due diligence and review all offering documents before investing.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Global Navigation -->
+    <nav id="global-nav" class="fixed bottom-0 left-0 right-0 bg-gray-900 bg-opacity-70 backdrop-blur-md z-50 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a id="prev-link" href="7 crisisproofmodel.html" class="nav-button py-2 px-4 rounded-md">&larr; Previous</a>
+            
+            <div class="relative">
+                <button id="menu-button" class="nav-button py-2 px-6 rounded-md">Menu</button>
+                <div id="menu-dropdown" class="hidden absolute bottom-full mb-2 w-56 bg-gray-800 border border-gray-700 rounded-md shadow-lg">
+                    <a href="001iguessthisisfirst.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Overview</a>
+                    <a href="2 intro.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Introduction</a>
+                    <a href="3 strategiclocation.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Location</a>
+                    <a href="4 financialblueprint.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Financial Blueprint</a>
+                    <a href="5 financialprojections.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Projections</a>
+                    <a href="6 budgetexplorer.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Budget</a>
+                    <a href="7 crisisproofmodel.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Resilience Model</a>
+                    <a href="8 conclusion.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Conclusion</a>
+                </div>
+            </div>
+            
+            <a id="next-link" href="001iguessthisisfirst.html" class="nav-button py-2 px-4 rounded-md">Next &rarr;</a>
+        </div>
+        <div class="text-center py-2 text-xs text-gray-500">
+            © 2025 The Maker's Stay. All rights reserved. | Version 1.0 | Updated September 2025
+        </div>
+    </nav>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const menuDropdown = document.getElementById('menu-dropdown');
+
+            menuButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                menuDropdown.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', () => {
+                if (!menuDropdown.classList.contains('hidden')) {
+                    menuDropdown.classList.add('hidden');
+                }
+            });
+
+            // Scroll Animation
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const revealElements = document.querySelectorAll('.reveal-on-scroll');
+            revealElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+        
+        // Check authentication
+        if (sessionStorage.getItem('makersstay-access') !== 'granted') {
+            // Show redirect overlay
+        } else {
+            document.getElementById('password-redirect').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+

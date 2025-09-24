@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: Budget Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #182719;
+            color: #F5f2e8;
+            padding-bottom: 80px;
+        }
+        html {
+            scroll-padding-bottom: 100px;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-fixed-full {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center; z-index: -2;
+        }
+        .content-container {
+            background: rgba(24, 39, 25, 0.85);
+            backdrop-filter: blur(8px);
+            position: relative; z-index: 1;
+        }
+        .text-accent { color: #Bca86d; }
+        .tab-button {
+            transition: all 0.3s ease;
+            color: #9ca3af;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-button.active, .tab-button:hover {
+            color: #Bca86d;
+            border-bottom-color: #Bca86d;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .collapsible-trigger .icon {
+            transition: transform 0.3s ease;
+        }
+        .collapsible-trigger.open .icon {
+            transform: rotate(45deg);
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .line-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(51, 62, 45, 0.5);
+        }
+        .line-item:last-child {
+            border-bottom: none;
+        }
+        .nested-collapsible {
+            background-color: rgba(0,0,0,0.15);
+            border-left: 2px solid #Bca86d;
+        }
+        .double-nested-collapsible {
+            background-color: rgba(0,0,0,0.25);
+        }
+
+        .nav-button {
+            background-color: rgba(188, 168, 109, 0.1);
+            border: 1px solid #Bca86d;
+            color: #Bca86d;
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button:hover {
+            background-color: #Bca86d;
+            color: #182719;
+        }
+        #menu-dropdown {
+            transform-origin: bottom center;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="bg-fixed-full" style="background: linear-gradient(90deg, #1c2f1d 0%, #182719 50%, #1f321f 100%);"></div>
+
+    <!-- Password Protection Check -->
+    <div id="password-redirect" class="fixed inset-0 bg-gray-900 bg-opacity-95 flex items-center justify-center z-50">
+        <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 max-w-md w-full mx-4 text-center">
+            <h2 class="text-2xl font-bold playfair mb-4 text-accent">Access Required</h2>
+            <p class="text-gray-300 mb-6">Please access through the main presentation page.</p>
+            <a href="001iguessthisisfirst.html" class="inline-block bg-accent text-gray-900 px-6 py-3 rounded font-semibold hover:bg-yellow-600 transition-colors">Go to Main Page</a>
+        </div>
+    </div>
+    
+    <div class="content-container min-h-screen">
+        <header class="text-center py-16 px-6">
+            <a href="the_makers_stay_presentation.html" class="text-accent hover:text-F5f2e8 font-medium underline underline-offset-4 transition-colors mb-8 inline-block">&larr; Back to Presentation Overview</a>
+            <h1 class="text-5xl md:text-6xl font-bold playfair">Budget Explorer</h1>
+        </header>
+
+        <main class="container mx-auto px-6 pb-24">
+            <section class="max-w-4xl mx-auto text-lg leading-relaxed space-y-6 text-center">
+                <p>A granular, line-item deep dive into the total project cost of <strong class="text-accent">$5,717,080</strong>. This detailed breakdown ensures complete financial transparency and demonstrates our meticulous planning.</p>
+            </section>
+            
+            <div class="mt-16 max-w-6xl mx-auto">
+                <!-- Tabs -->
+                <div class="border-b border-gray-700 mb-8">
+                    <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                        <button class="tab-button active py-4 px-1 text-lg font-medium" data-tab="phase1">Phase 1</button>
+                        <button class="tab-button py-4 px-1 text-lg font-medium" data-tab="phase2">Phase 2</button>
+                        <button class="tab-button py-4 px-1 text-lg font-medium" data-tab="phase3">Phase 3</button>
+                    </nav>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="tab-contents">
+                    <!-- Phase 1 Content -->
+                    <div id="phase1" class="tab-content active">
+                        <h2 class="text-3xl font-bold playfair text-accent mb-6">Phase 1: Foundational Investment ($3,400,000)</h2>
+                        <div class="grid lg:grid-cols-2 gap-12 items-start">
+                            <div class="space-y-2">
+                                <div class="collapsible-item bg-black/10 rounded-lg p-4">
+                                    <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                        <div><p class="font-bold text-lg playfair group-hover:text-accent">Land Acquisition</p><p class="text-xl text-accent font-semibold">$1,900,000</p></div>
+                                        <div class="icon text-accent text-3xl font-light">+</div>
+                                    </div>
+                                    <div class="collapsible-content"><div class="pt-3 mt-3 border-t border-gray-700/50 text-sm text-gray-400"><p>212 Acres including purchase price, closing costs, legal fees, due diligence, and survey work.</p></div></div>
+                                </div>
+                                <div class="collapsible-item bg-black/10 rounded-lg p-4">
+                                    <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                         <div><p class="font-bold text-lg playfair group-hover:text-accent">Core Infrastructure</p><p class="text-xl text-accent font-semibold">$1,150,000</p></div>
+                                        <div class="icon text-accent text-3xl font-light">+</div>
+                                    </div>
+                                    <div class="collapsible-content">
+                                        <div class="pt-3 mt-3 border-t border-gray-700/50 text-sm text-gray-300 space-y-2">
+                                            <div class="line-item"><span>Roads & Pathways</span><span>$350,000</span></div>
+                                            <div class="line-item"><span>Decentralized Renewable Energy</span><span>$450,000</span></div>
+                                            <div class="line-item"><span>Water & Septic Systems</span><span>$350,000</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="collapsible-item bg-black/10 rounded-lg p-4">
+                                    <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                        <div><p class="font-bold text-lg playfair group-hover:text-accent">Existing House Retrofit</p><p class="text-xl text-accent font-semibold">$350,000</p></div>
+                                        <div class="icon text-accent text-3xl font-light">+</div>
+                                    </div>
+                                    <div class="collapsible-content">
+                                        <div class="pt-3 mt-3 border-t border-gray-700/50 text-sm text-gray-300 space-y-2">
+                                            <div class="line-item"><span>Architectural & Design</span><span>$25,000</span></div>
+                                            <div class="collapsible-item nested-collapsible rounded-md p-3">
+                                                <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                                    <div><p class="font-semibold group-hover:text-accent">Structural & Systems</p><p class="text-accent">$125,000</p></div>
+                                                    <div class="icon text-accent text-2xl font-light">+</div>
+                                                </div>
+                                                <div class="collapsible-content"><div class="pt-3 mt-3 border-t border-gray-700/50 text-xs"><div class="line-item"><span>Foundation & Framing</span><span>$40,000</span></div><div class="line-item"><span>HVAC Upgrade</span><span>$35,000</span></div><div class="line-item"><span>Electrical Re-wiring</span><span>$25,000</span></div><div class="line-item"><span>Plumbing Overhaul</span><span>$25,000</span></div></div></div>
+                                            </div>
+                                            <div class="line-item px-3"><span>Interior Finishing</span><span>$150,000</span></div>
+                                            <div class="line-item px-3"><span>Exterior Improvements</span><span>$50,000</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative h-80 lg:h-96"><canvas id="phase1Chart"></canvas></div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2 Content -->
+                    <div id="phase2" class="tab-content">
+                        <h2 class="text-3xl font-bold playfair text-accent mb-6">Phase 2: Construction & Amenities ($1,782,350)</h2>
+                         <div class="grid lg:grid-cols-2 gap-12 items-start">
+                            <div class="space-y-2">
+                                <div class="collapsible-item bg-black/10 rounded-lg p-4">
+                                    <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                        <div><p class="font-bold text-lg playfair group-hover:text-accent">Primary Structures</p><p class="text-xl text-accent font-semibold">$1,002,350</p></div>
+                                        <div class="icon text-accent text-3xl font-light">+</div>
+                                    </div>
+                                    <div class="collapsible-content">
+                                        <div class="pt-3 mt-3 border-t border-gray-700/50 text-sm text-gray-300 space-y-2">
+                                            <div class="collapsible-item nested-collapsible rounded-md p-3">
+                                                <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                                    <div><p class="font-semibold group-hover:text-accent">Wonderful Structures & Pads</p><p class="text-accent">$578,130</p></div>
+                                                    <div class="icon text-accent text-2xl font-light">+</div>
+                                                </div>
+                                                <div class="collapsible-content"><div class="pt-3 mt-3 border-t border-gray-700/50 text-xs"><div class="line-item"><span>Royal Cabin (x4)</span><span>$97,188</span></div><div class="line-item"><span>Terranova 1-BR (x2)</span><span>$121,070</span></div><div class="line-item"><span>Terranova 2-BR (x2)</span><span>$156,378</span></div><div class="line-item"><span>Pads & Site Prep</span><span>$203,494</span></div></div></div>
+                                            </div>
+                                            <div class="line-item px-3"><span>Longhouse Construction</span><span>$424,220</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="collapsible-item bg-black/10 rounded-lg p-4">
+                                    <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                         <div><p class="font-bold text-lg playfair group-hover:text-accent">Initial Amenities</p><p class="text-xl text-accent font-semibold">$780,000</p></div>
+                                        <div class="icon text-accent text-3xl font-light">+</div>
+                                    </div>
+                                    <div class="collapsible-content">
+                                        <div class="pt-3 mt-3 border-t border-gray-700/50 text-sm text-gray-300 space-y-2">
+                                            <div class="collapsible-item nested-collapsible rounded-md p-3">
+                                                <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                                    <div><p class="font-semibold group-hover:text-accent">Fleet Vehicles & Equipment</p><p class="text-accent">$400,000</p></div>
+                                                    <div class="icon text-accent text-2xl font-light">+</div>
+                                                </div>
+                                                <div class="collapsible-content"><div class="pt-3 mt-3 border-t border-gray-700/50 text-xs"><div class="line-item"><span>All-wheel-drive Vans (x2)</span><span>$100,000</span></div><div class="line-item"><span>Heavy-Duty Tractor</span><span>$200,000</span></div><div class="line-item"><span>Heavy-Duty UTV</span><span>$50,000</span></div><div class="line-item"><span>Snowmobile & ATV</span><span>$50,000</span></div></div></div>
+                                            </div>
+                                            <div class="collapsible-item nested-collapsible rounded-md p-3">
+                                                <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                                    <div><p class="font-semibold group-hover:text-accent">Grotto Pool & Greenhouse</p><p class="text-accent">$330,000</p></div>
+                                                    <div class="icon text-accent text-2xl font-light">+</div>
+                                                </div>
+                                                <div class="collapsible-content"><div class="pt-3 mt-3 border-t border-gray-700/50 text-xs"><div class="line-item"><span>Structural Engineering & Design</span><span>$40,000</span></div><div class="line-item"><span>Greenhouse Structure</span><span>$100,000</span></div><div class="line-item"><span>Natural Grotto Pool</span><span>$150,000</span></div><div class="line-item"><span>Heated Flooring & Utilities</span><span>$30,000</span></div><div class="line-item"><span>Interior Landscaping</span><span>$10,000</span></div></div></div>
+                                            </div>
+                                            <div class="line-item px-3"><span>Indoor/Outdoor Dog Park</span><span>$50,000</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative h-80 lg:h-96"><canvas id="phase2Chart"></canvas></div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 3 Content -->
+                    <div id="phase3" class="tab-content">
+                        <h2 class="text-3xl font-bold playfair text-accent mb-6">Phase 3: Operational Launch ($534,730)</h2>
+                        <div class="grid lg:grid-cols-2 gap-12 items-start">
+                            <div class="space-y-2">
+                                <div class="collapsible-item bg-black/10 rounded-lg p-4">
+                                    <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                        <div><p class="font-bold text-lg playfair group-hover:text-accent">Furniture, Fixtures & Decor</p><p class="text-xl text-accent font-semibold">$250,000</p></div>
+                                        <div class="icon text-accent text-3xl font-light">+</div>
+                                    </div>
+                                    <div class="collapsible-content">
+                                        <div class="pt-3 mt-3 border-t border-gray-700/50 text-sm text-gray-300 space-y-2">
+                                            <div class="line-item"><span>Guest Accommodations FF&E</span><span>$150,000</span></div>
+                                            <div class="line-item"><span>Longhouse & Common Areas</span><span>$75,000</span></div>
+                                            <div class="line-item"><span>Outdoor Furnishings</span><span>$25,000</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="collapsible-item bg-black/10 rounded-lg p-4">
+                                    <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                         <div><p class="font-bold text-lg playfair group-hover:text-accent">Working Capital</p><p class="text-xl text-accent font-semibold">$175,000</p></div>
+                                        <div class="icon text-accent text-3xl font-light">+</div>
+                                    </div>
+                                    <div class="collapsible-content">
+                                        <div class="pt-3 mt-3 border-t border-gray-700/50 text-sm text-gray-300 space-y-2">
+                                            <div class="line-item"><span>Initial Payroll & Training</span><span>$75,000</span></div>
+                                            <div class="line-item"><span>Pre-Opening Marketing & PR</span><span>$40,000</span></div>
+                                            <div class="line-item"><span>Utilities & Insurance Deposits</span><span>$25,000</span></div>
+                                            <div class="line-item"><span>Initial Inventory (Consumables)</span><span>$15,000</span></div>
+                                            <div class="line-item"><span>Operational Contingency</span><span>$20,000</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="collapsible-item bg-black/10 rounded-lg p-4">
+                                    <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                        <div><p class="font-bold text-lg playfair group-hover:text-accent">Workshop & Kitchen Equipment</p><p class="text-xl text-accent font-semibold">$109,730</p></div>
+                                        <div class="icon text-accent text-3xl font-light">+</div>
+                                    </div>
+                                    <div class="collapsible-content">
+                                        <div class="pt-3 mt-3 border-t border-gray-700/50 text-sm text-gray-300 space-y-2">
+                                            <div class="collapsible-item nested-collapsible rounded-md p-3">
+                                                <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                                    <div><p class="font-semibold group-hover:text-accent">All Maker Workshops</p><p class="text-accent">$59,730</p></div>
+                                                    <div class="icon text-accent text-2xl font-light">+</div>
+                                                </div>
+                                                <div class="collapsible-content">
+                                                    <div class="pt-3 mt-3 border-t border-gray-700/50 text-xs space-y-1">
+                                                        <div class="collapsible-item double-nested-collapsible rounded-md p-2">
+                                                            <div class="collapsible-trigger flex justify-between items-center cursor-pointer group"><p class="font-semibold group-hover:text-accent text-xs">Woodworking ($9,300)</p><div class="icon text-accent text-xl font-light">+</div></div>
+                                                            <div class="collapsible-content"><div class="pt-2 mt-2 border-t border-gray-700/50 text-xs"><div class="line-item"><span>Table & Miter Saws</span><span>$2,500</span></div><div class="line-item"><span>Planer & Jointer</span><span>$2,000</span></div><div class="line-item"><span>Drill Press & Sanders</span><span>$1,800</span></div><div class="line-item"><span>Dust Collection</span><span>$1,500</span></div><div class="line-item"><span>Hand Tools</span><span>$1,500</span></div></div></div>
+                                                        </div>
+                                                        <div class="collapsible-item double-nested-collapsible rounded-md p-2">
+                                                            <div class="collapsible-trigger flex justify-between items-center cursor-pointer group"><p class="font-semibold group-hover:text-accent text-xs">Metal Arts & Forging ($6,150)</p><div class="icon text-accent text-xl font-light">+</div></div>
+                                                            <div class="collapsible-content"><div class="pt-2 mt-2 border-t border-gray-700/50 text-xs"><div class="line-item"><span>Forge & Anvil</span><span>$2,000</span></div><div class="line-item"><span>Welder (MIG/TIG)</span><span>$1,500</span></div><div class="line-item"><span>Grinders & Cutters</span><span>$1,150</span></div><div class="line-item"><span>Safety Gear</span><span>$1,500</span></div></div></div>
+                                                        </div>
+                                                        <div class="collapsible-item double-nested-collapsible rounded-md p-2">
+                                                             <div class="collapsible-trigger flex justify-between items-center cursor-pointer group"><p class="font-semibold group-hover:text-accent text-xs">Pottery Studio ($10,700)</p><div class="icon text-accent text-xl font-light">+</div></div>
+                                                            <div class="collapsible-content"><div class="pt-2 mt-2 border-t border-gray-700/50 text-xs"><div class="line-item"><span>Kiln</span><span>$4,000</span></div><div class="line-item"><span>Pottery Wheels (x4)</span><span>$4,000</span></div><div class="line-item"><span>Slab Roller & Tools</span><span>$1,500</span></div><div class="line-item"><span>Glazing Supplies</span><span>$1,200</span></div></div></div>
+                                                        </div>
+                                                        <div class="line-item px-2"><span>Lapidary & Jewelry</span><span>$6,950</span></div>
+                                                        <div class="line-item px-2"><span>Music Workshop</span><span>$4,700</span></div>
+                                                        <div class="line-item px-2"><span>Digital Arts Studio</span><span>$6,300</span></div>
+                                                        <div class="line-item px-2"><span>Performing Arts Studio</span><span>$5,000</span></div>
+                                                        <div class="line-item px-2"><span>Paint Studio</span><span>$5,520</span></div>
+                                                        <div class="line-item px-2"><span>10% Contingency</span><span>$5,110</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="collapsible-item nested-collapsible rounded-md p-3">
+                                                <div class="collapsible-trigger flex justify-between items-center cursor-pointer group">
+                                                    <div><p class="font-semibold group-hover:text-accent">Commercial Kitchen & Bar</p><p class="text-accent">$50,000</p></div>
+                                                    <div class="icon text-accent text-2xl font-light">+</div>
+                                                </div>
+                                                <div class="collapsible-content"><div class="pt-3 mt-3 border-t border-gray-700/50 text-xs"><div class="line-item"><span>Refrigeration</span><span>$8,000</span></div><div class="line-item"><span>Cooking Equipment</span><span>$15,000</span></div><div class="line-item"><span>Dishwashing & Sanitation</span><span>$5,000</span></div><div class="line-item"><span>Small Appliances & Utensils</span><span>$2,000</span></div><div class="line-item"><span>Bar & Coffee Station</span><span>$5,000</span></div><div class="line-item"><span>Dining Furnishings</span><span>$10,000</span></div></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative h-80 lg:h-96"><canvas id="phase3Chart"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Global Navigation -->
+    <nav id="global-nav" class="fixed bottom-0 left-0 right-0 bg-gray-900 bg-opacity-70 backdrop-blur-md z-50 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a id="prev-link" href="5 financialprojections.html" class="nav-button py-2 px-4 rounded-md">&larr; Previous</a>
+            
+            <div class="relative">
+                <button id="menu-button" class="nav-button py-2 px-6 rounded-md">Menu</button>
+                <div id="menu-dropdown" class="hidden absolute bottom-full mb-2 w-56 bg-gray-800 border border-gray-700 rounded-md shadow-lg">
+                    <a href="001iguessthisisfirst.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Overview</a>
+                    <a href="2 intro.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Introduction</a>
+                    <a href="3 strategiclocation.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Location</a>
+                    <a href="4 financialblueprint.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Financial Blueprint</a>
+                    <a href="5 financialprojections.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Projections</a>
+                    <a href="6 budgetexplorer.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Budget</a>
+                    <a href="7 crisisproofmodel.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Resilience Model</a>
+                    <a href="8 conclusion.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Conclusion</a>
+                </div>
+            </div>
+            
+            <a id="next-link" href="7 crisisproofmodel.html" class="nav-button py-2 px-4 rounded-md">Next &rarr;</a>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navigation Menu
+            const menuButton = document.getElementById('menu-button');
+            const menuDropdown = document.getElementById('menu-dropdown');
+            menuButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                menuDropdown.classList.toggle('hidden');
+            });
+            document.addEventListener('click', () => {
+                if (!menuDropdown.classList.contains('hidden')) {
+                    menuDropdown.classList.add('hidden');
+                }
+            });
+
+            // Tab Logic
+            const tabs = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-tab');
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+
+            // Collapsible Accordion Logic
+            const collapsibleTriggers = document.querySelectorAll('.collapsible-trigger');
+            collapsibleTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    this.classList.toggle('open');
+                    
+                    const updateAncestorsHeight = (element, change) => {
+                        let parentContent = element.parentElement.closest('.collapsible-content');
+                        if (parentContent && parentContent.style.maxHeight) {
+                           parentContent.style.maxHeight = (parseInt(parentContent.style.maxHeight, 10) + change) + 'px';
+                           updateAncestorsHeight(parentContent, change);
+                        }
+                    };
+
+                    if (content.style.maxHeight) {
+                        const heightChange = -content.scrollHeight;
+                        updateAncestorsHeight(content, heightChange);
+                        content.style.maxHeight = null;
+                    } else {
+                        const heightChange = content.scrollHeight;
+                        content.style.maxHeight = heightChange + 'px';
+                        updateAncestorsHeight(content, heightChange);
+                    }
+                });
+            });
+            
+            // Chart Logic
+            const chartTextColor = '#F5f2e8';
+            Chart.defaults.color = chartTextColor;
+            Chart.defaults.borderColor = 'rgba(245, 242, 232, 0.2)';
+
+            function createPhaseChart(canvasId, labels, data) {
+                const ctx = document.getElementById(canvasId);
+                if (!ctx) return;
+                new Chart(ctx.getContext('2d'), {
+                    type: 'doughnut',
+                    data: { labels: labels, datasets: [{ data: data, backgroundColor: ['#Bca86d', '#82a296', '#515f82'], borderWidth: 0, }] },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) { let label = context.label || ''; if (label) { label += ': '; } let value = context.parsed; label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(value); return label; } } } } }
+                });
+            }
+
+            createPhaseChart('phase1Chart', ['Land Acquisition', 'Core Infrastructure', 'House Retrofit'], [1900000, 1150000, 350000]);
+            createPhaseChart('phase2Chart', ['Primary Structures', 'Initial Amenities'], [1002350, 780000]);
+            createPhaseChart('phase3Chart', ['FF&E', 'Working Capital', 'Workshop & Kitchen'], [250000, 175000, 109730]);
+        });
+        
+        // Check authentication
+        if (sessionStorage.getItem('makersstay-access') !== 'granted') {
+            // Show redirect overlay
+        } else {
+            document.getElementById('password-redirect').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: Financial Projections</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #182719; 
+            color: #F5f2e8; 
+            padding-bottom: 80px;
+        }
+        h1, h2, h3, h4, .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-fixed-full {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center; z-index: -2;
+        }
+        .content-container {
+            background: rgba(24, 39, 25, 0.85);
+            backdrop-filter: blur(8px);
+            position: relative; z-index: 1;
+        }
+        .text-accent { color: #Bca86d; }
+        .card-style {
+            background: rgba(245, 242, 232, 0.05); 
+            border: 1px solid #333e2d; 
+        }
+        .nav-button {
+            background-color: rgba(188, 168, 109, 0.1);
+            border: 1px solid #Bca86d;
+            color: #Bca86d;
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button:hover {
+            background-color: #Bca86d;
+            color: #182719;
+        }
+        #menu-dropdown {
+            transform-origin: bottom center;
+        }
+        .data-source {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+        .projection-table th, .projection-table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid #333e2d;
+            text-align: right;
+        }
+        .projection-table th {
+            text-align: left;
+            font-weight: 600;
+        }
+        .projection-table td:first-child, .projection-table th:first-child {
+             text-align: left;
+        }
+        .projection-table .total-row td {
+            font-weight: bold;
+            color: #Bca86d;
+            border-top: 2px solid #Bca86d;
+        }
+        .projection-table .sub-item td:first-child{
+            padding-left: 1.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="bg-fixed-full" style="background: linear-gradient(60deg, #182719 0%, #1d301d 40%, #223422 80%, #1a2b1a 100%);"></div>
+    
+    <!-- Password Protection Check -->
+    <div id="password-redirect" class="fixed inset-0 bg-gray-900 bg-opacity-95 flex items-center justify-center z-50">
+        <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 max-w-md w-full mx-4 text-center">
+            <h2 class="text-2xl font-bold playfair mb-4 text-accent">Access Required</h2>
+            <p class="text-gray-300 mb-6">Please access through the main presentation page.</p>
+            <a href="001iguessthisisfirst.html" class="inline-block bg-accent text-gray-900 px-6 py-3 rounded font-semibold hover:bg-yellow-600 transition-colors">Go to Main Page</a>
+        </div>
+    </div>
+    
+    <div class="content-container min-h-screen">
+        <header class="text-center py-16 px-6">
+            <a href="the_makers_stay_presentation.html" class="text-accent hover:underline mb-8 inline-block">&larr; Back to Presentation Overview</a>
+            <h1 class="text-5xl md:text-6xl font-bold playfair">Long-Term Financial Projections</h1>
+        </header>
+
+        <main class="container mx-auto px-6 pb-24">
+            <section class="max-w-4xl mx-auto text-lg leading-relaxed space-y-6 text-center">
+                <div class="bg-red-900 bg-opacity-20 border border-red-600 rounded-lg p-4 mb-8">
+                    <h3 class="text-red-300 font-bold text-sm mb-2">⚠️ INVESTMENT RISK NOTICE</h3>
+                    <p class="text-red-200 text-sm">These projections are estimates based on assumptions that may prove incorrect. Real estate development involves significant risks including construction delays, cost overruns, market changes, regulatory issues, and financing challenges. Actual results may be materially different from projections.</p>
+                </div>
+                <p>Our financial model projects robust growth and profitability across multiple horizons. The strategy focuses on rapid stabilization in the early years, followed by sustained growth and significant long-term equity appreciation. This multi-phase outlook demonstrates a resilient, high-return venture built on a foundation of tangible assets and diversified revenue.</p>
+            </section>
+            
+            <!-- Projections by Period -->
+            <div class="mt-24 max-w-7xl mx-auto space-y-16">
+                <!-- Years 1-5 -->
+                <section id="years-1-5">
+                    <h2 class="text-4xl font-bold playfair mb-8 text-accent border-b-2 border-accent pb-2">Years 1-5: Stabilization & Growth</h2>
+                    <p class="mb-8 text-gray-300">The initial five years focus on establishing market presence, optimizing operations, and achieving consistent profitability. This period sees the highest revenue growth rate as the business scales to its full operational capacity.</p>
+                    <div class="card-style p-8 rounded-xl mb-8">
+                         <h3 class="text-2xl font-bold playfair mb-6 text-center">Year-over-Year Growth (Years 1-5)</h3>
+                         <div class="relative h-96">
+                             <canvas id="chartYears1to5"></canvas>
+                         </div>
+                    </div>
+                    <div class="card-style rounded-xl overflow-x-auto">
+                        <table class="w-full projection-table text-sm">
+                            <thead>
+                                <tr>
+                                    <th class="text-lg playfair p-4 bg-white bg-opacity-5">Metric</th>
+                                    <th>Year 1</th>
+                                    <th>Year 2</th>
+                                    <th>Year 3</th>
+                                    <th>Year 4</th>
+                                    <th>Year 5</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white bg-opacity-[2%]"><td class="font-semibold">Gross Revenue</td><td>$837,038</td><td>$903,901</td><td>$976,113</td><td>$1,054,102</td><td>$1,138,330</td></tr>
+                                <tr class="sub-item"><td>Short-Term Rentals</td><td>$649,875</td><td>$701,765</td><td>$757,806</td><td>$818,331</td><td>$883,707</td></tr>
+                                <tr class="sub-item"><td>Kuyper Home Sales (Net)</td><td>$120,000</td><td>$129,600</td><td>$139,968</td><td>$151,165</td><td>$163,258</td></tr>
+                                <tr class="sub-item"><td>Workshop & Ancillary</td><td>$67,163</td><td>$72,536</td><td>$78,339</td><td>$84,606</td><td>$91,365</td></tr>
+                                <tr class="bg-white bg-opacity-[2%]"><td class="font-semibold">Operating Expenses</td><td>$555,875</td><td>$572,551</td><td>$589,728</td><td>$607,420</td><td>$625,642</td></tr>
+                                <tr class="total-row"><td>Net Operating Income</td><td>$281,163</td><td>$331,350</td><td>$386,385</td><td>$446,682</td><td>$512,688</td></tr>
+                                <tr><td>Debt Service (Est.)</td><td>($211,000)</td><td>($211,000)</td><td>($211,000)</td><td>($211,000)</td><td>($211,000)</td></tr>
+                                <tr class="total-row"><td>Net Income (Pre-Tax)</td><td>$70,163</td><td>$120,350</td><td>$175,385</td><td>$235,682</td><td>$301,688</td></tr>
+                                <tr class="bg-white bg-opacity-[2%] font-semibold"><td>Appreciated Asset Value</td><td>$3,638,000</td><td>$3,892,660</td><td>$4,165,146</td><td>$4,456,706</td><td>$4,768,676</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     <p class="data-source mt-2">Assumes 8% annual revenue growth and 3% expense inflation from Year 2. Asset appreciation at 7% annually.</p>
+                </section>
+
+                <!-- Years 6-10 -->
+                <section id="years-6-10">
+                    <h2 class="text-4xl font-bold playfair mb-8 text-accent border-b-2 border-accent pb-2">Years 6-10: Expansion & Maturity</h2>
+                    <p class="mb-8 text-gray-300">This phase represents a mature, stable business with predictable cash flows. Growth moderates to a sustainable rate, while operational efficiencies are maximized. The focus shifts to long-term asset management and capital improvements.</p>
+                    <div class="card-style p-8 rounded-xl mb-8">
+                         <h3 class="text-2xl font-bold playfair mb-6 text-center">Year-over-Year Growth (Years 6-10)</h3>
+                         <div class="relative h-96">
+                             <canvas id="chartYears6to10"></canvas>
+                         </div>
+                    </div>
+                    <div class="card-style rounded-xl overflow-x-auto">
+                       <table class="w-full projection-table text-sm">
+                            <thead>
+                                <tr>
+                                    <th class="text-lg playfair p-4 bg-white bg-opacity-5">Metric</th>
+                                    <th>Year 6</th>
+                                    <th>Year 7</th>
+                                    <th>Year 8</th>
+                                    <th>Year 9</th>
+                                    <th>Year 10</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white bg-opacity-[2%]"><td class="font-semibold">Gross Revenue</td><td>$1,195,247</td><td>$1,255,009</td><td>$1,317,759</td><td>$1,383,647</td><td>$1,452,830</td></tr>
+                                <tr class="bg-white bg-opacity-[2%]"><td class="font-semibold">Operating Expenses</td><td>$644,411</td><td>$663,744</td><td>$683,656</td><td>$704,166</td><td>$725,291</td></tr>
+                                <tr class="total-row"><td>Net Operating Income</td><td>$550,835</td><td>$591,265</td><td>$634,103</td><td>$679,481</td><td>$727,539</td></tr>
+                                <tr><td>Debt Service (Est.)</td><td>($211,000)</td><td>($211,000)</td><td>($211,000)</td><td>($211,000)</td><td>($211,000)</td></tr>
+                                <tr class="total-row"><td>Net Income (Pre-Tax)</td><td>$339,835</td><td>$380,265</td><td>$423,103</td><td>$468,481</td><td>$516,539</td></tr>
+                                <tr class="bg-white bg-opacity-[2%] font-semibold"><td>Appreciated Asset Value</td><td>$5,102,483</td><td>$5,459,657</td><td>$5,841,833</td><td>$6,250,761</td><td>$6,688,314</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     <p class="data-source mt-2">Assumes 5% annual revenue growth and 3% expense inflation from Year 6.</p>
+                </section>
+
+                <!-- Years 11-20 -->
+                <section id="years-11-20">
+                    <h2 class="text-4xl font-bold playfair mb-8 text-accent border-b-2 border-accent pb-2">Years 11-20: Legacy & Profitability</h2>
+                    <p class="mb-8 text-gray-300">In the long term, the project becomes a legacy asset. The construction loan is fully amortized, significantly boosting free cash flow. The property stands as a highly valuable, debt-free asset generating substantial annual profits.</p>
+                     <div class="card-style p-8 rounded-xl mb-8">
+                         <h3 class="text-2xl font-bold playfair mb-6 text-center">Period Growth (Years 11-20)</h3>
+                         <div class="relative h-96">
+                             <canvas id="chartYears11to20"></canvas>
+                         </div>
+                    </div>
+                    <div class="card-style rounded-xl overflow-x-auto">
+                        <table class="w-full projection-table text-sm">
+                            <thead>
+                                <tr>
+                                    <th class="text-lg playfair p-4 bg-white bg-opacity-5">Metric</th>
+                                    <th>Year 11</th>
+                                    <th>Year 15</th>
+                                    <th>Year 20</th>
+                                </tr>
+                            </thead>
+                             <tbody>
+                                <tr class="bg-white bg-opacity-[2%]"><td class="font-semibold">Gross Revenue</td><td>$1,496,415</td><td>$1,684,275</td><td>$1,955,274</td></tr>
+                                <tr class="bg-white bg-opacity-[2%]"><td class="font-semibold">Operating Expenses</td><td>$746,949</td><td>$840,683</td><td>$975,987</td></tr>
+                                <tr class="total-row"><td>Net Operating Income</td><td>$749,465</td><td>$843,592</td><td>$979,287</td></tr>
+                                <tr><td>Debt Service (Est.)</td><td>($211,000)</td><td>($211,000)</td><td>$0</td></tr>
+                                <tr class="total-row"><td>Net Income (Pre-Tax)</td><td>$538,465</td><td>$632,592</td><td>$979,287</td></tr>
+                                <tr class="bg-white bg-opacity-[2%] font-semibold"><td>Appreciated Asset Value</td><td>$7,156,496</td><td>$9,188,486</td><td>$12,586,811</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="data-source mt-2">Assumes 3% annual revenue growth from Year 11. Construction loan paid off in Year 20.</p>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Global Navigation -->
+    <nav id="global-nav" class="fixed bottom-0 left-0 right-0 bg-gray-900 bg-opacity-70 backdrop-blur-md z-50 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a id="prev-link" href="4 financialblueprint.html" class="nav-button py-2 px-4 rounded-md">&larr; Previous</a>
+            
+            <div class="relative">
+                <button id="menu-button" class="nav-button py-2 px-6 rounded-md">Menu</button>
+                <div id="menu-dropdown" class="hidden absolute bottom-full mb-2 w-56 bg-gray-800 border border-gray-700 rounded-md shadow-lg">
+                    <a href="001iguessthisisfirst.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Overview</a>
+                    <a href="2 intro.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Introduction</a>
+                    <a href="3 strategiclocation.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Location</a>
+                    <a href="4 financialblueprint.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Financial Blueprint</a>
+                    <a href="5 financialprojections.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Projections</a>
+                    <a href="6 budgetexplorer.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Budget</a>
+                    <a href="7 crisisproofmodel.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Resilience Model</a>
+                    <a href="8 conclusion.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Conclusion</a>
+                </div>
+            </div>
+            
+            <a id="next-link" href="6 budgetexplorer.html" class="nav-button py-2 px-4 rounded-md">Next &rarr;</a>
+        </div>
+    </nav>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navigation Menu
+            const menuButton = document.getElementById('menu-button');
+            const menuDropdown = document.getElementById('menu-dropdown');
+            menuButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                menuDropdown.classList.toggle('hidden');
+            });
+            document.addEventListener('click', () => {
+                if (!menuDropdown.classList.contains('hidden')) {
+                    menuDropdown.classList.add('hidden');
+                }
+            });
+
+            // Chart Logic
+            const chartTextColor = '#F5f2e8';
+            Chart.defaults.color = chartTextColor;
+            Chart.defaults.borderColor = 'rgba(245, 242, 232, 0.2)';
+
+            function createPeriodChart(canvasId, labels, revenueData, expenseData, noiData) {
+                const ctx = document.getElementById(canvasId).getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Gross Revenue',
+                                data: revenueData,
+                                borderColor: '#Bca86d',
+                                backgroundColor: 'rgba(188, 168, 109, 0.2)',
+                                tension: 0.2,
+                                fill: true,
+                            },
+                            {
+                                label: 'Operating Expenses',
+                                data: expenseData,
+                                borderColor: '#515f82',
+                                backgroundColor: 'rgba(81, 95, 130, 0.2)',
+                                tension: 0.2,
+                                fill: true,
+                            },
+                            {
+                                label: 'Net Operating Income',
+                                data: noiData,
+                                borderColor: '#82a296',
+                                backgroundColor: 'rgba(130, 162, 150, 0.2)',
+                                tension: 0.2,
+                                fill: true,
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: { 
+                            legend: { position: 'bottom' },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(context.parsed.y);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: 'rgba(245, 242, 232, 0.1)' },
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(value);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // --- Data Generation ---
+            function generateData(startYear, numYears, initialRevenue, initialOpEx, revenueGrowthFn, expenseInflation) {
+                let revenues = [initialRevenue];
+                let expenses = [initialOpEx];
+                let noi = [initialRevenue - initialOpEx];
+                let labels = [`Year ${startYear}`];
+
+                for (let i = 1; i < numYears; i++) {
+                    let year = startYear + i;
+                    let lastRevenue = revenues[i - 1];
+                    let lastExpense = expenses[i - 1];
+                    
+                    let currentRevenue = lastRevenue * (1 + revenueGrowthFn(year));
+                    let currentExpense = lastExpense * (1 + expenseInflation);
+                    
+                    revenues.push(currentRevenue);
+                    expenses.push(currentExpense);
+                    noi.push(currentRevenue - currentExpense);
+                    labels.push(`Year ${year}`);
+                }
+                return { labels, revenues, expenses, noi };
+            }
+
+            // Chart 1: Years 1-5
+            const data1to5 = generateData(1, 5, 837038, 555875, (year) => year > 1 ? 0.08 : 0, 0.03);
+            createPeriodChart('chartYears1to5', data1to5.labels, data1to5.revenues, data1to5.expenses, data1to5.noi);
+            
+            // Chart 2: Years 6-10
+            const revenueY5 = data1to5.revenues[4];
+            const expenseY5 = data1to5.expenses[4];
+            const data6to10 = generateData(6, 5, revenueY5 * 1.05, expenseY5 * 1.03, () => 0.05, 0.03);
+            createPeriodChart('chartYears6to10', data6to10.labels, data6to10.revenues, data6to10.expenses, data6to10.noi);
+
+            // Chart 3: Years 11-20
+            const revenueY10 = data6to10.revenues[4];
+            const expenseY10 = data6to10.expenses[4];
+            const data11to20 = generateData(11, 10, revenueY10 * 1.03, expenseY10 * 1.03, () => 0.03, 0.03);
+             // For simplicity, showing every other year to avoid clutter
+            const labels11to20 = data11to20.labels.filter((_, i) => i === 0 || i === 4 || i === 9); // Year 11, 15, 20
+            const revenue11to20 = data11to20.revenues.filter((_, i) => i === 0 || i === 4 || i === 9);
+            const expense11to20 = data11to20.expenses.filter((_, i) => i === 0 || i === 4 || i === 9);
+            const noi11to20 = data11to20.noi.filter((_, i) => i === 0 || i === 4 || i === 9);
+            createPeriodChart('chartYears11to20', labels11to20, revenue11to20, expense11to20, noi11to20);
+
+        });
+        
+        // Check authentication
+        if (sessionStorage.getItem('makersstay-access') !== 'granted') {
+            // Show redirect overlay
+        } else {
+            document.getElementById('password-redirect').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+
