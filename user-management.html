@@ -8,31 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="floating-design.css">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #182719 0%, #1a2f1b 100%);
-            color: #F5f2e8;
-        }
-
-        .playfair {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .text-accent {
-            color: #Bca86d;
-        }
-
-        .bg-accent {
-            background-color: #Bca86d;
-        }
-
-        .card-style {
-            background-color: rgba(245, 242, 232, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(188, 168, 109, 0.2);
-        }
-
         .status-approved {
             color: #10B981;
         }
@@ -47,42 +24,60 @@
     </style>
 </head>
 
-<body class="min-h-screen p-6">
+<body>
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop playsinline>
+        <source src="177074-857013212_small.mp4" type="video/mp4">
+        <source src="177223-857013274_small.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <!-- Video Overlay -->
+    <div class="video-overlay"></div>
+    
+    <!-- Ambient Background Elements -->
+    <div class="ambient-orb"></div>
+    <div class="ambient-orb"></div>
+    <div class="ambient-orb"></div>
+
+    <!-- Floating Content Container -->
+    <div class="floating-container" style="padding: 1rem; min-height: 100vh;">
     <div class="max-w-7xl mx-auto">
         <!-- Header -->
-        <header class="mb-8">
-            <div class="flex justify-between items-center">
-                <div>
-                    <h1 class="text-4xl font-bold playfair text-accent mb-2">User Management</h1>
-                    <p class="text-gray-300">Manage investor and team member accounts</p>
-                </div>
-                <div class="flex space-x-4">
-                    <a href="admin-dashboard.html" class="text-accent hover:text-yellow-300">← Back to Dashboard</a>
-                    <button onclick="refreshData()"
-                        class="bg-accent text-black px-4 py-2 rounded font-medium hover:bg-yellow-600 transition-colors">
-                        🔄 Refresh
-                    </button>
+        <header class="mb-8 fade-in">
+            <div class="floating-card">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="floating-title playfair" style="font-size: 2rem; margin-bottom: 0.5rem;">User Management</h1>
+                        <p class="floating-subtitle" style="margin-bottom: 0;">Manage investor and team member accounts</p>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="admin-dashboard.html" class="text-accent hover:text-yellow-300 transition-colors">← Back to Dashboard</a>
+                        <button onclick="refreshData()" class="floating-button-secondary">
+                            🔄 Refresh
+                        </button>
+                    </div>
                 </div>
             </div>
         </header>
 
         <!-- Stats Cards -->
-        <div class="grid md:grid-cols-4 gap-6 mb-8">
-            <div class="card-style p-6 rounded-xl text-center">
+        <div class="grid md:grid-cols-4 gap-6 mb-8 fade-in">
+            <div class="floating-card text-center elevation-2">
                 <div class="text-3xl font-bold text-accent" id="totalUsers">0</div>
-                <div class="text-sm text-gray-300">Total Users</div>
+                <div class="text-sm" style="color: rgba(245, 242, 232, 0.7);">Total Users</div>
             </div>
-            <div class="card-style p-6 rounded-xl text-center">
+            <div class="floating-card text-center elevation-2">
                 <div class="text-3xl font-bold status-pending" id="pendingUsers">0</div>
-                <div class="text-sm text-gray-300">Pending Approval</div>
+                <div class="text-sm" style="color: rgba(245, 242, 232, 0.7);">Pending Approval</div>
             </div>
-            <div class="card-style p-6 rounded-xl text-center">
+            <div class="floating-card text-center elevation-2">
                 <div class="text-3xl font-bold status-approved" id="activeInvestors">0</div>
-                <div class="text-sm text-gray-300">Active Investors</div>
+                <div class="text-sm" style="color: rgba(245, 242, 232, 0.7);">Active Investors</div>
             </div>
-            <div class="card-style p-6 rounded-xl text-center">
+            <div class="floating-card text-center elevation-2">
                 <div class="text-3xl font-bold text-accent" id="teamMembers">0</div>
-                <div class="text-sm text-gray-300">Team Members</div>
+                <div class="text-sm" style="color: rgba(245, 242, 232, 0.7);">Team Members</div>
             </div>
         </div>
 

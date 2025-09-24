@@ -5,40 +5,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Maker's Stay - Investment Presentation</title>
-    <meta http-equiv="refresh" content="0; url=account-access.html">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #182719;
-            color: #F5f2e8;
-        }
-
-        .loading {
-            text-align: center;
-        }
-    </style>
+    <meta http-equiv="refresh" content="3; url=account-access.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="floating-design.css">
 </head>
 
 <body>
-    <div class="loading">
-        <h1>The Maker's Stay</h1>
-        <p>Redirecting to presentation...</p>
-        <p><a href="account-access.html" style="color: #Bca86d;">Click here if not redirected automatically</a></p>
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop playsinline>
+        <source src="177074-857013212_small.mp4" type="video/mp4">
+        <source src="177223-857013274_small.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-        <!-- Quick Access Links -->
-        <div style="margin-top: 30px; text-align: center;">
-            <a href="account-access.html"
-                style="background-color: #Bca86d; color: #182719; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; margin: 0 10px; display: inline-block;">Secure
-                Access Portal</a>
-            <a href="overview.html" style="color: #Bca86d; margin: 0 10px; text-decoration: none;">Direct to
-                Presentation</a>
+    <!-- Video Overlay -->
+    <div class="video-overlay"></div>
+
+    <!-- Ambient Background Elements -->
+    <div class="ambient-orb"></div>
+    <div class="ambient-orb"></div>
+    <div class="ambient-orb"></div>
+
+    <!-- Floating Content -->
+    <div class="floating-container">
+        <div class="floating-card fade-in">
+            <h1 class="floating-title playfair">The Maker's Stay</h1>
+            <p class="floating-subtitle">Preparing your investment portal experience...</p>
+
+            <div style="text-align: center; margin: 2rem 0;">
+                <div class="floating-loader"></div>
+            </div>
+
+            <p style="text-align: center; color: rgba(245, 242, 232, 0.7); margin-bottom: 2rem;">
+                <a href="account-access.html" class="text-accent" style="text-decoration: none;">Click here if not
+                    redirected automatically</a>
+            </p>
+
+            <!-- Quick Access Links -->
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="account-access.html" class="floating-button"
+                    style="text-decoration: none; display: inline-block;">
+                    🔐 Secure Access Portal
+                </a>
+                <a href="overview.html" class="floating-button-secondary"
+                    style="text-decoration: none; display: inline-block;">
+                    📊 Direct to Presentation
+                </a>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Add subtle entrance animation delay
+        setTimeout(() => {
+            document.querySelector('.floating-card').style.animation = 'fadeIn 1.2s ease-out';
+        }, 200);
+
+        // Preload the account access page
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = 'account-access.html';
+        document.head.appendChild(link);
+    </script>
 </body>
 
 </html>

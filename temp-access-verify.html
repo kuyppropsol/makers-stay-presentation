@@ -8,73 +8,50 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #182719 0%, #1a2f1b 100%);
-            color: #F5f2e8;
-            min-height: 100vh;
-        }
-
-        .playfair {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .text-accent {
-            color: #Bca86d;
-        }
-
-        .bg-accent {
-            background-color: #Bca86d;
-        }
-
-        .card-style {
-            background-color: rgba(245, 242, 232, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(188, 168, 109, 0.2);
-        }
-
-        .form-input {
-            background-color: rgba(245, 242, 232, 0.1);
-            border: 1px solid rgba(188, 168, 109, 0.3);
-            color: #F5f2e8;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #Bca86d;
-            box-shadow: 0 0 0 3px rgba(188, 168, 109, 0.2);
-        }
-    </style>
+    <link rel="stylesheet" href="floating-design.css">
 </head>
 
 <body>
-    <div class="min-h-screen flex items-center justify-center p-6">
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop playsinline>
+        <source src="177074-857013212_small.mp4" type="video/mp4">
+        <source src="177223-857013274_small.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <!-- Video Overlay -->
+    <div class="video-overlay"></div>
+    
+    <!-- Ambient Background Elements -->
+    <div class="ambient-orb"></div>
+    <div class="ambient-orb"></div>
+    <div class="ambient-orb"></div>
+
+    <!-- Floating Content Container -->
+    <div class="floating-container">
         <div class="w-full max-w-md">
-            <header class="text-center mb-8">
-                <h1 class="text-4xl font-bold playfair text-accent mb-4">Verify Access</h1>
-                <p class="text-gray-300">Enter the temporary access code sent to your email</p>
+            <header class="text-center mb-8 fade-in">
+                <h1 class="floating-title playfair">Verify Access</h1>
+                <p class="floating-subtitle">Enter the temporary access code sent to your email</p>
             </header>
 
-            <div class="card-style p-8 rounded-2xl">
+            <div class="floating-card fade-in">
                 <form id="verifyForm">
                     <div class="mb-6">
                         <label class="block text-sm font-medium mb-2">Email Address</label>
                         <input type="email" id="emailInput" readonly
-                            class="form-input w-full p-3 rounded-lg bg-gray-600">
+                            class="floating-input" style="background: rgba(245, 242, 232, 0.05);">
                     </div>
 
                     <div class="mb-6">
                         <label class="block text-sm font-medium mb-2">Access Code *</label>
                         <input type="text" name="accessCode" required
-                            class="form-input w-full p-3 rounded-lg text-center text-2xl tracking-widest"
+                            class="floating-input text-center text-2xl tracking-widest"
                             placeholder="ABC123" maxlength="6">
                         <p class="text-xs text-gray-400 mt-2">Check your email for the 6-character code</p>
                     </div>
 
-                    <button type="submit"
-                        class="w-full bg-accent text-black py-3 rounded-lg font-bold hover:bg-yellow-600 transition-colors">
+                    <button type="submit" class="floating-button w-full">
                         Verify & Access Presentation
                     </button>
                 </form>
@@ -92,10 +69,10 @@
             </div>
 
             <!-- Success Message -->
-            <div id="successMessage" class="card-style p-6 rounded-2xl text-center mt-6" style="display: none;">
+            <div id="successMessage" class="floating-card text-center mt-6" style="display: none;">
                 <div class="text-4xl mb-4">✅</div>
                 <h3 class="text-xl font-bold playfair text-accent mb-2">Access Verified!</h3>
-                <p class="text-gray-300 mb-4">Redirecting to presentation...</p>
+                <p style="color: rgba(245, 242, 232, 0.8); margin-bottom: 1rem;">Redirecting to presentation...</p>
             </div>
         </div>
     </div>

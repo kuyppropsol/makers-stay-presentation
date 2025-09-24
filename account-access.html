@@ -8,46 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="floating-design.css">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #182719 0%, #1a2f1b 100%);
-            color: #F5f2e8;
-            min-height: 100vh;
-        }
-
-        .playfair {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .text-accent {
-            color: #Bca86d;
-        }
-
-        .bg-accent {
-            background-color: #Bca86d;
-        }
-
-        .card-style {
-            background-color: rgba(245, 242, 232, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(188, 168, 109, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .form-input {
-            background-color: rgba(245, 242, 232, 0.1);
-            border: 1px solid rgba(188, 168, 109, 0.3);
-            color: #F5f2e8;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #Bca86d;
-            box-shadow: 0 0 0 3px rgba(188, 168, 109, 0.2);
-            background-color: rgba(245, 242, 232, 0.15);
-        }
 
         .tab-button {
             padding: 12px 24px;
@@ -131,31 +93,43 @@
 </head>
 
 <body>
-    <!-- Floating Background Elements -->
-    <div class="floating-bg"></div>
-    <div class="floating-bg"></div>
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop playsinline>
+        <source src="177074-857013212_small.mp4" type="video/mp4">
+        <source src="177223-857013274_small.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <!-- Video Overlay -->
+    <div class="video-overlay"></div>
+    
+    <!-- Ambient Background Elements -->
+    <div class="ambient-orb"></div>
+    <div class="ambient-orb"></div>
+    <div class="ambient-orb"></div>
 
-    <div class="relative z-10 min-h-screen flex items-center justify-center p-6">
+    <!-- Floating Content Container -->
+    <div class="floating-container">
         <div class="w-full max-w-2xl">
 
             <!-- Header -->
-            <header class="text-center mb-8">
-                <h1 class="text-4xl md:text-5xl font-bold playfair text-accent mb-4">The Maker's Stay</h1>
-                <p class="text-lg text-gray-300">Secure Portal Access</p>
+            <header class="text-center mb-8 fade-in">
+                <h1 class="floating-title playfair">The Maker's Stay</h1>
+                <p class="floating-subtitle">Secure Portal Access</p>
             </header>
 
             <!-- Main Card -->
-            <div class="card-style rounded-2xl shadow-2xl overflow-hidden">
+            <div class="floating-card fade-in">
 
                 <!-- Tabs -->
-                <div class="flex border-b border-gray-600">
-                    <button class="tab-button active flex-1" data-tab="visitor">
+                <div class="floating-tabs">
+                    <button class="floating-tab active" data-tab="visitor">
                         🌟 Visitor Access
                     </button>
-                    <button class="tab-button flex-1" data-tab="login">
+                    <button class="floating-tab" data-tab="login">
                         🔑 Account Login
                     </button>
-                    <button class="tab-button flex-1" data-tab="register">
+                    <button class="floating-tab" data-tab="register">
                         📝 Create Account
                     </button>
                 </div>
@@ -170,23 +144,22 @@
                         <div class="space-y-4">
                             <div>
                                 <label class="block text-sm font-medium mb-2">Full Name *</label>
-                                <input type="text" name="fullName" required class="form-input w-full p-3 rounded-lg"
+                                <input type="text" name="fullName" required class="floating-input"
                                     placeholder="John Smith">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Email Address *</label>
-                                <input type="email" name="email" required class="form-input w-full p-3 rounded-lg"
+                                <input type="email" name="email" required class="floating-input"
                                     placeholder="john@example.com">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Company/Organization (Optional)</label>
-                                <input type="text" name="company" class="form-input w-full p-3 rounded-lg"
+                                <input type="text" name="company" class="floating-input"
                                     placeholder="Your Company">
                             </div>
                         </div>
 
-                        <button type="submit"
-                            class="w-full bg-accent text-black py-3 rounded-lg font-bold mt-6 hover:bg-yellow-600 transition-colors">
+                        <button type="submit" class="floating-button w-full mt-6">
                             Send Temporary Access Code
                         </button>
 
@@ -205,18 +178,17 @@
                         <div class="space-y-4">
                             <div>
                                 <label class="block text-sm font-medium mb-2">Email Address *</label>
-                                <input type="email" name="loginEmail" required class="form-input w-full p-3 rounded-lg"
+                                <input type="email" name="loginEmail" required class="floating-input"
                                     placeholder="your@email.com">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Password *</label>
-                                <input type="password" name="password" required class="form-input w-full p-3 rounded-lg"
+                                <input type="password" name="password" required class="floating-input"
                                     placeholder="Your password">
                             </div>
                         </div>
 
-                        <button type="submit"
-                            class="w-full bg-accent text-black py-3 rounded-lg font-bold mt-6 hover:bg-yellow-600 transition-colors">
+                        <button type="submit" class="floating-button w-full mt-6">
                             Login to Account
                         </button>
 
@@ -238,22 +210,22 @@
                                 <div>
                                     <label class="block text-sm font-medium mb-2">First Name *</label>
                                     <input type="text" name="firstName" required
-                                        class="form-input w-full p-3 rounded-lg" placeholder="John">
+                                        class="floating-input" placeholder="John">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium mb-2">Last Name *</label>
-                                    <input type="text" name="lastName" required class="form-input w-full p-3 rounded-lg"
+                                    <input type="text" name="lastName" required class="floating-input"
                                         placeholder="Smith">
                                 </div>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Email Address *</label>
                                 <input type="email" name="registerEmail" required
-                                    class="form-input w-full p-3 rounded-lg" placeholder="john@example.com">
+                                    class="floating-input" placeholder="john@example.com">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Phone Number *</label>
-                                <input type="tel" name="phone" required class="form-input w-full p-3 rounded-lg"
+                                <input type="tel" name="phone" required class="floating-input"
                                     placeholder="(555) 123-4567">
                             </div>
 
@@ -261,19 +233,19 @@
                             <div>
                                 <label class="block text-sm font-medium mb-3">Account Type *</label>
                                 <div class="grid md:grid-cols-2 gap-4">
-                                    <label class="card-style p-4 rounded-lg cursor-pointer hover:bg-opacity-20">
+                                    <label class="glass-effect p-4 rounded-lg cursor-pointer hover:bg-opacity-20 transition-all duration-300">
                                         <input type="radio" name="accountType" value="investor" required class="mr-3">
                                         <div>
                                             <div class="font-bold text-accent">💼 Investor Account</div>
-                                            <div class="text-sm text-gray-300">Full financial access and investment
+                                            <div class="text-sm" style="color: rgba(245, 242, 232, 0.7)">Full financial access and investment
                                                 tools</div>
                                         </div>
                                     </label>
-                                    <label class="card-style p-4 rounded-lg cursor-pointer hover:bg-opacity-20">
+                                    <label class="glass-effect p-4 rounded-lg cursor-pointer hover:bg-opacity-20 transition-all duration-300">
                                         <input type="radio" name="accountType" value="team" required class="mr-3">
                                         <div>
                                             <div class="font-bold text-accent">🔐 Team Member</div>
-                                            <div class="text-sm text-gray-300">Administrative access and backend tools
+                                            <div class="text-sm" style="color: rgba(245, 242, 232, 0.7)">Administrative access and backend tools
                                             </div>
                                         </div>
                                     </label>
@@ -284,7 +256,7 @@
                             <div id="investorFields" class="space-y-4" style="display: none;">
                                 <div>
                                     <label class="block text-sm font-medium mb-2">Investment Experience</label>
-                                    <select name="experience" class="form-input w-full p-3 rounded-lg">
+                                    <select name="experience" class="floating-input">
                                         <option value="">Select experience level</option>
                                         <option value="first-time">First-time real estate investor</option>
                                         <option value="some">Some real estate experience</option>
@@ -294,7 +266,7 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium mb-2">Estimated Investment Range</label>
-                                    <select name="investmentRange" class="form-input w-full p-3 rounded-lg">
+                                    <select name="investmentRange" class="floating-input">
                                         <option value="">Select range (optional)</option>
                                         <option value="10k-50k">$10K - $50K</option>
                                         <option value="50k-150k">$50K - $150K</option>
@@ -308,12 +280,12 @@
                             <div id="teamFields" class="space-y-4" style="display: none;">
                                 <div>
                                     <label class="block text-sm font-medium mb-2">Role/Department *</label>
-                                    <input type="text" name="role" class="form-input w-full p-3 rounded-lg"
+                                    <input type="text" name="role" class="floating-input"
                                         placeholder="e.g., Development, Finance, Marketing">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium mb-2">Team Invitation Code *</label>
-                                    <input type="password" name="inviteCode" class="form-input w-full p-3 rounded-lg"
+                                    <input type="password" name="inviteCode" class="floating-input"
                                         placeholder="Provided by team admin">
                                     <p class="text-xs text-gray-400 mt-1">Contact your team administrator for the
                                         invitation code.</p>
@@ -324,18 +296,17 @@
                                 <div>
                                     <label class="block text-sm font-medium mb-2">Create Password *</label>
                                     <input type="password" name="newPassword" required
-                                        class="form-input w-full p-3 rounded-lg" placeholder="Strong password">
+                                        class="floating-input" placeholder="Strong password">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium mb-2">Confirm Password *</label>
                                     <input type="password" name="confirmPassword" required
-                                        class="form-input w-full p-3 rounded-lg" placeholder="Confirm password">
+                                        class="floating-input" placeholder="Confirm password">
                                 </div>
                             </div>
                         </div>
 
-                        <button type="submit"
-                            class="w-full bg-accent text-black py-3 rounded-lg font-bold mt-6 hover:bg-yellow-600 transition-colors">
+                        <button type="submit" class="floating-button w-full mt-6">
                             Create Account & Request Approval
                         </button>
 
@@ -347,19 +318,18 @@
             </div>
 
             <!-- Loading Screen -->
-            <div id="loadingScreen" class="card-style p-12 rounded-2xl text-center mt-8" style="display: none;">
-                <div class="loading-spinner mx-auto mb-6"></div>
+            <div id="loadingScreen" class="floating-card text-center mt-8" style="display: none;">
+                <div class="floating-loader mx-auto mb-6"></div>
                 <h3 class="text-2xl font-bold playfair text-accent mb-4">Processing...</h3>
-                <p id="loadingText" class="text-gray-300">Please wait while we process your request.</p>
+                <p id="loadingText" style="color: rgba(245, 242, 232, 0.8)">Please wait while we process your request.</p>
             </div>
 
             <!-- Success Messages -->
-            <div id="successMessage" class="card-style p-8 rounded-2xl text-center mt-8" style="display: none;">
+            <div id="successMessage" class="floating-card text-center mt-8" style="display: none;">
                 <div class="text-5xl mb-4">✅</div>
                 <h3 class="text-2xl font-bold playfair text-accent mb-4">Success!</h3>
-                <p id="successText" class="text-gray-300 mb-6"></p>
-                <button onclick="location.reload()"
-                    class="bg-accent text-black px-6 py-2 rounded font-medium hover:bg-yellow-600 transition-colors">
+                <p id="successText" style="color: rgba(245, 242, 232, 0.8); margin-bottom: 1.5rem;"></p>
+                <button onclick="location.reload()" class="floating-button">
                     Continue
                 </button>
             </div>
@@ -368,12 +338,12 @@
 
     <script>
         // Tab functionality
-        document.querySelectorAll('.tab-button').forEach(button => {
+        document.querySelectorAll('.floating-tab').forEach(button => {
             button.addEventListener('click', function () {
                 const targetTab = this.dataset.tab;
 
                 // Remove active from all tabs and contents
-                document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.floating-tab').forEach(b => b.classList.remove('active'));
                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
 
                 // Add active to clicked tab and corresponding content

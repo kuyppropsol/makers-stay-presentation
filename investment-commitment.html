@@ -8,43 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="floating-design.css">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #182719;
-            color: #F5f2e8;
-        }
-
-        .playfair {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .text-accent {
-            color: #Bca86d;
-        }
-
-        .bg-accent {
-            background-color: #Bca86d;
-        }
-
-        .card-style {
-            background-color: rgba(245, 242, 232, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(188, 168, 109, 0.2);
-        }
-
-        .form-input {
-            background-color: rgba(245, 242, 232, 0.1);
-            border: 1px solid rgba(188, 168, 109, 0.3);
-            color: #F5f2e8;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #Bca86d;
-            box-shadow: 0 0 0 2px rgba(188, 168, 109, 0.2);
-        }
-
         .commitment-level {
             cursor: pointer;
             transition: all 0.3s ease;
@@ -63,21 +28,37 @@
 </head>
 
 <body>
-    <div class="min-h-screen p-6">
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop playsinline>
+        <source src="177074-857013212_small.mp4" type="video/mp4">
+        <source src="177223-857013274_small.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <!-- Video Overlay -->
+    <div class="video-overlay"></div>
+    
+    <!-- Ambient Background Elements -->
+    <div class="ambient-orb"></div>
+    <div class="ambient-orb"></div>
+    <div class="ambient-orb"></div>
+
+    <!-- Floating Content Container -->
+    <div class="floating-container">
         <!-- Header -->
-        <header class="text-center mb-8">
-            <h1 class="text-4xl md:text-5xl font-bold playfair text-accent mb-4">Investment Commitment</h1>
-            <p class="text-xl text-gray-300 max-w-2xl mx-auto">Help us understand your investment intentions for The
+        <header class="text-center mb-8 fade-in">
+            <h1 class="floating-title playfair">Investment Commitment</h1>
+            <p class="floating-subtitle max-w-2xl mx-auto">Help us understand your investment intentions for The
                 Maker's Stay project</p>
             <nav class="mt-6">
-                <a href="overview.html" class="text-accent hover:text-yellow-300 mr-6">← Back to Presentation</a>
-                <a href="investor-portal.html" class="text-accent hover:text-yellow-300">Investor Portal</a>
+                <a href="overview.html" class="text-accent hover:text-yellow-300 mr-6 transition-colors">← Back to Presentation</a>
+                <a href="investor-portal.html" class="text-accent hover:text-yellow-300 transition-colors">Investor Portal</a>
             </nav>
         </header>
 
         <!-- Main Form -->
         <div class="max-w-4xl mx-auto">
-            <form id="commitmentForm" class="card-style p-8 rounded-xl">
+            <form id="commitmentForm" class="floating-card fade-in">
 
                 <!-- Personal Information -->
                 <section class="mb-8">
