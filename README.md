@@ -4,18 +4,34 @@ A comprehensive investment presentation and portal system for "The Maker's Stay"
 
 ## 🚀 Access the Portal
 
-**Start here:** [Visitor Access Portal](visitor-access.html)
+**Start here:** [Account Access Portal](account-access.html)
 
-The portal intelligently routes different user types:
-- **General Visitors**: Public presentation and basic information
-- **Accredited Investors**: Full financial details and investment tools  
-- **Team Members**: Admin dashboard and backend access
+The portal provides secure access management for different user types:
+
+### 🌟 **Visitors** (Temporary Access)
+- **Email verification** with temporary access codes
+- **24-hour access** to public presentation
+- **No account required** - immediate access via email
+
+### 💼 **Investors** (Full Accounts)
+- **Individual login accounts** with secure passwords
+- **Auto-approval** for faster onboarding
+- **Full financial access** and investment commitment tools
+- **Investment tracking** and personalized dashboard
+
+### 🔐 **Team Members** (Admin Accounts)
+- **Manual approval** required for security
+- **Invitation code** verification (`makers-team-2025`)
+- **Admin dashboard** with user management
+- **Full backend access** and system controls
 
 ## 📋 Portal Structure
 
-### Access Control
-- **Visitor Access** - `visitor-access.html` (Smart entry point)
-- **User Type Handler** - `user-type-handler.js` (Personalization system)
+### Account Management System
+- **Main Access Portal** - `account-access.html` (Login/Registration hub)
+- **Email Verification** - `temp-access-verify.html` (Visitor code verification)
+- **User Management** - `user-management.html` (Admin dashboard)
+- **User Type Handler** - `user-type-handler.js` (Session management)
 
 ### Presentation Pages
 1. **Overview** - `overview.html`
@@ -30,14 +46,28 @@ The portal intelligently routes different user types:
 ### Investor Tools
 - **Investment Commitment** - `investment-commitment.html`
 - **Investor Portal** - `investor-portal.html`
-- **Admin Dashboard** - `admin-dashboard.html`
+- **User Management Dashboard** - `user-management.html` (Admin only)
 
-## 🔧 Technical Details
+## � Deployment to Vercel
+
+1. **Connect to GitHub**: Link your `kuyppropsol/makers-stay-presentation` repository
+2. **Build Configuration**: Leave ALL fields blank:
+   - Build Command: (blank)
+   - Output Directory: (blank)  
+   - Install Command: (blank)
+   - Development Command: (blank)
+3. **Deploy**: Click "Deploy" - Vercel will automatically serve `index.html`
+
+The system is ready for immediate deployment as a static site.
+
+## �🔧 Technical Details
 
 - Built with HTML5, TailwindCSS, and Chart.js
 - Self-contained files with CDN dependencies
 - Interactive financial models and data visualizations
 - Responsive design optimized for all devices
+- Client-side user management with localStorage
+- Email-based temporary access system
 
 ## 📞 Contact
 
