@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay - Visitor Access</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #182719 0%, #1a2f1b 100%);
+            color: #F5f2e8;
+            min-height: 100vh;
+        }
+
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .text-accent {
+            color: #Bca86d;
+        }
+
+        .bg-accent {
+            background-color: #Bca86d;
+        }
+
+        .card-style {
+            background-color: rgba(245, 242, 232, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(188, 168, 109, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card-style:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(188, 168, 109, 0.1);
+            border-color: rgba(188, 168, 109, 0.4);
+        }
+
+        .form-input {
+            background-color: rgba(245, 242, 232, 0.1);
+            border: 1px solid rgba(188, 168, 109, 0.3);
+            color: #F5f2e8;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #Bca86d;
+            box-shadow: 0 0 0 3px rgba(188, 168, 109, 0.2);
+            background-color: rgba(245, 242, 232, 0.15);
+        }
+
+        .user-type-card {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-type-card.selected {
+            border-color: #Bca86d;
+            background-color: rgba(188, 168, 109, 0.2);
+        }
+
+        .user-type-card.selected::before {
+            content: '✓';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: #Bca86d;
+            color: #182719;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .floating-bg {
+            position: absolute;
+            background: radial-gradient(circle, rgba(188, 168, 109, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-bg:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            width: 300px;
+            height: 300px;
+            animation-delay: 0s;
+        }
+
+        .floating-bg:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            width: 200px;
+            height: 200px;
+            animation-delay: 2s;
+        }
+
+        .floating-bg:nth-child(3) {
+            bottom: 20%;
+            left: 30%;
+            width: 250px;
+            height: 250px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translateY(-20px) scale(1.1);
+                opacity: 0.6;
+            }
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .loading-spinner {
+            border: 3px solid rgba(188, 168, 109, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid #Bca86d;
+            width: 30px;
+            height: 30px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Background Elements -->
+    <div class="floating-bg"></div>
+    <div class="floating-bg"></div>
+    <div class="floating-bg"></div>
+
+    <div class="relative z-10 min-h-screen flex items-center justify-center p-6">
+        <div class="w-full max-w-4xl">
+
+            <!-- Header -->
+            <header class="text-center mb-12">
+                <h1 class="text-5xl md:text-7xl font-bold playfair text-accent mb-6">The Maker's Stay</h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-4">A Vision for Regenerative Living</p>
+                <p class="text-lg text-gray-400">Welcome to our exclusive investment presentation portal</p>
+            </header>
+
+            <!-- Access Form -->
+            <div id="accessForm" class="card-style p-8 md:p-12 rounded-2xl shadow-2xl">
+                <form id="visitorForm">
+
+                    <!-- Basic Information -->
+                    <section class="mb-10">
+                        <h2 class="text-3xl font-bold playfair text-accent mb-6 text-center">Welcome! Let's Get Started
+                        </h2>
+                        <p class="text-gray-300 text-center mb-8">Please provide your information to access the
+                            appropriate content for your visit.</p>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-3 text-accent">Full Name *</label>
+                                <input type="text" name="fullName" required
+                                    class="form-input w-full p-4 rounded-lg text-lg" placeholder="John Smith">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-3 text-accent">Email Address *</label>
+                                <input type="email" name="email" required
+                                    class="form-input w-full p-4 rounded-lg text-lg" placeholder="john@example.com">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- User Type Selection -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold playfair text-accent mb-6 text-center">How would you describe
+                            yourself?</h3>
+
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <!-- General Visitor -->
+                            <div class="user-type-card card-style p-6 rounded-xl" data-type="visitor">
+                                <div class="text-center">
+                                    <div class="text-4xl mb-4">🌟</div>
+                                    <h4 class="text-xl font-bold text-accent mb-3">General Visitor</h4>
+                                    <p class="text-gray-300 text-sm mb-4">I'm exploring this opportunity and learning
+                                        about the project</p>
+                                    <div class="text-xs text-gray-400">
+                                        • View public presentation<br>
+                                        • Learn about the vision<br>
+                                        • Access basic information
+                                    </div>
+                                </div>
+                                <input type="radio" name="userType" value="visitor" class="hidden">
+                            </div>
+
+                            <!-- Accredited Investor -->
+                            <div class="user-type-card card-style p-6 rounded-xl" data-type="investor">
+                                <div class="text-center">
+                                    <div class="text-4xl mb-4">💼</div>
+                                    <h4 class="text-xl font-bold text-accent mb-3">Accredited Investor</h4>
+                                    <p class="text-gray-300 text-sm mb-4">I'm qualified to invest and want detailed
+                                        financial information</p>
+                                    <div class="text-xs text-gray-400">
+                                        • Full financial presentation<br>
+                                        • Investment commitment tools<br>
+                                        • Direct access to team
+                                    </div>
+                                </div>
+                                <input type="radio" name="userType" value="investor" class="hidden">
+                            </div>
+
+                            <!-- Team/Admin -->
+                            <div class="user-type-card card-style p-6 rounded-xl" data-type="team">
+                                <div class="text-center">
+                                    <div class="text-4xl mb-4">🔐</div>
+                                    <h4 class="text-xl font-bold text-accent mb-3">Team Member</h4>
+                                    <p class="text-gray-300 text-sm mb-4">I'm part of the team and need backend/admin
+                                        access</p>
+                                    <div class="text-xs text-gray-400">
+                                        • Admin dashboard access<br>
+                                        • Backend information<br>
+                                        • Full system controls
+                                    </div>
+                                </div>
+                                <input type="radio" name="userType" value="team" class="hidden">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Additional Information (Shows based on selection) -->
+                    <section id="additionalInfo" class="mb-8 hide">
+
+                        <!-- Investor Verification -->
+                        <div id="investorFields" class="hide">
+                            <h4 class="text-lg font-bold text-accent mb-4">Investor Verification</h4>
+                            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Investment Experience</label>
+                                    <select name="experience" class="form-input w-full p-3 rounded-lg">
+                                        <option value="">Select experience level</option>
+                                        <option value="first-time">First-time real estate investor</option>
+                                        <option value="some">Some real estate experience</option>
+                                        <option value="experienced">Experienced investor</option>
+                                        <option value="institutional">Institutional investor</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Investment Range Interest</label>
+                                    <select name="investmentRange" class="form-input w-full p-3 rounded-lg">
+                                        <option value="">Select range</option>
+                                        <option value="10k-50k">$10K - $50K</option>
+                                        <option value="50k-150k">$50K - $150K</option>
+                                        <option value="150k-500k">$150K - $500K</option>
+                                        <option value="500k+">$500K+</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Team Verification -->
+                        <div id="teamFields" class="hide">
+                            <h4 class="text-lg font-bold text-accent mb-4">Team Access</h4>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Access Code</label>
+                                <input type="password" name="accessCode" class="form-input w-full p-3 rounded-lg"
+                                    placeholder="Enter team access code">
+                                <p class="text-xs text-gray-400 mt-2">Contact admin if you don't have the access code.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" id="submitBtn"
+                            class="bg-accent text-black px-12 py-4 rounded-lg font-bold text-lg hover:bg-yellow-600 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            <span id="submitText">Continue to Content</span>
+                            <div id="submitSpinner" class="loading-spinner mx-auto hide"></div>
+                        </button>
+                        <p class="text-sm text-gray-400 mt-4">Your information is secure and will only be used to
+                            provide you with relevant content.</p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Loading Screen -->
+            <div id="loadingScreen" class="card-style p-12 rounded-2xl text-center hide">
+                <div class="loading-spinner mx-auto mb-6"></div>
+                <h3 class="text-2xl font-bold playfair text-accent mb-4">Preparing Your Experience...</h3>
+                <p id="loadingText" class="text-gray-300">Verifying your information and loading appropriate content.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle user type selection
+        document.querySelectorAll('.user-type-card').forEach(card => {
+            card.addEventListener('click', function () {
+                // Remove selected from all cards
+                document.querySelectorAll('.user-type-card').forEach(c => c.classList.remove('selected'));
+
+                // Add selected to clicked card
+                this.classList.add('selected');
+
+                // Check the radio button
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+
+                // Show additional fields based on selection
+                const userType = this.dataset.type;
+                const additionalInfo = document.getElementById('additionalInfo');
+                const investorFields = document.getElementById('investorFields');
+                const teamFields = document.getElementById('teamFields');
+
+                // Hide all additional fields first
+                additionalInfo.classList.add('hide');
+                investorFields.classList.add('hide');
+                teamFields.classList.add('hide');
+
+                // Show relevant fields
+                if (userType === 'investor') {
+                    additionalInfo.classList.remove('hide');
+                    investorFields.classList.remove('hide');
+                } else if (userType === 'team') {
+                    additionalInfo.classList.remove('hide');
+                    teamFields.classList.remove('hide');
+                }
+            });
+        });
+
+        // Handle form submission
+        document.getElementById('visitorForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            // Validate required fields
+            if (!data.fullName || !data.email || !data.userType) {
+                alert('Please fill in all required fields and select your visitor type.');
+                return;
+            }
+
+            // Show loading state
+            document.getElementById('accessForm').classList.add('hide');
+            document.getElementById('loadingScreen').classList.remove('hide');
+
+            // Simulate processing and redirect based on user type
+            setTimeout(() => {
+                redirectUser(data);
+            }, 2000);
+        });
+
+        function redirectUser(userData) {
+            const userType = userData.userType;
+
+            // Store user data in sessionStorage for personalization
+            sessionStorage.setItem('visitorData', JSON.stringify(userData));
+
+            // Redirect based on user type
+            switch (userType) {
+                case 'visitor':
+                    document.getElementById('loadingText').textContent = 'Redirecting to public presentation...';
+                    setTimeout(() => {
+                        window.location.href = 'overview.html?type=visitor';
+                    }, 1000);
+                    break;
+
+                case 'investor':
+                    document.getElementById('loadingText').textContent = 'Verifying accreditation and loading investor portal...';
+                    setTimeout(() => {
+                        window.location.href = 'overview.html?type=investor';
+                    }, 1500);
+                    break;
+
+                case 'team':
+                    // Verify access code (in production, this would be server-side)
+                    const accessCode = userData.accessCode;
+                    if (accessCode === 'makers2025' || accessCode === 'admin123') {
+                        document.getElementById('loadingText').textContent = 'Access verified. Loading admin dashboard...';
+                        setTimeout(() => {
+                            window.location.href = 'admin-dashboard.html';
+                        }, 1500);
+                    } else {
+                        alert('Invalid access code. Please contact your administrator.');
+                        document.getElementById('loadingScreen').classList.add('hide');
+                        document.getElementById('accessForm').classList.remove('hide');
+                    }
+                    break;
+            }
+        }
+
+        // Auto-focus first input on load
+        window.addEventListener('load', () => {
+            document.querySelector('input[name="fullName"]').focus();
+        });
+    </script>
+</body>
+
+</html>
