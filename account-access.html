@@ -204,15 +204,27 @@
 
                     <form id="registerForm">
                         <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Full Name *</label>
-                                <input type="text" name="fullName" required class="floating-input"
-                                    placeholder="John Smith">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">First Name *</label>
+                                    <input type="text" name="firstName" required class="floating-input"
+                                        placeholder="John">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Last Name *</label>
+                                    <input type="text" name="lastName" required class="floating-input"
+                                        placeholder="Smith">
+                                </div>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Email Address *</label>
                                 <input type="email" name="registerEmail" required class="floating-input"
                                     placeholder="john@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Phone Number *</label>
+                                <input type="tel" name="phone" required class="floating-input"
+                                    placeholder="(555) 123-4567">
                             </div>
 
                             <!-- Account Type Selection -->
@@ -236,6 +248,30 @@
                                 </div>
                             </div>
 
+                            <!-- Investor-specific fields -->
+                            <div id="investorFields" class="space-y-4" style="display: none;">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Investment Experience</label>
+                                    <select name="experience" class="floating-input">
+                                        <option value="">Select experience level</option>
+                                        <option value="first-time">First-time real estate investor</option>
+                                        <option value="some">Some real estate experience</option>
+                                        <option value="experienced">Experienced investor</option>
+                                        <option value="institutional">Institutional investor</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Estimated Investment Range</label>
+                                    <select name="investmentRange" class="floating-input">
+                                        <option value="">Select range (optional)</option>
+                                        <option value="10k-50k">$10K - $50K</option>
+                                        <option value="50k-150k">$50K - $150K</option>
+                                        <option value="150k-500k">$150K - $500K</option>
+                                        <option value="500k+">$500K+</option>
+                                    </select>
+                                </div>
+                            </div>
+
 
 
                             <!-- Team-specific fields -->
@@ -248,10 +284,17 @@
                                 </div>
                             </div>
 
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Create Password *</label>
-                                <input type="password" name="newPassword" required class="floating-input"
-                                    placeholder="Enter a secure password">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Create Password *</label>
+                                    <input type="password" name="newPassword" required class="floating-input"
+                                        placeholder="Strong password">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Confirm Password *</label>
+                                    <input type="password" name="confirmPassword" required class="floating-input"
+                                        placeholder="Confirm password">
+                                </div>
                             </div>
                         </div>
 
@@ -302,15 +345,18 @@
             });
         });
 
-        // Account type selection - show/hide team fields only  
+        // Account type selection - show/hide specific fields
         document.querySelectorAll('input[name="accountType"]').forEach(radio => {
             radio.addEventListener('change', function () {
+                const investorFields = document.getElementById('investorFields');
                 const teamFields = document.getElementById('teamFields');
 
-                if (this.value === 'team') {
-                    teamFields.style.display = 'block';
-                } else {
+                if (this.value === 'investor') {
+                    investorFields.style.display = 'block';
                     teamFields.style.display = 'none';
+                } else if (this.value === 'team') {
+                    investorFields.style.display = 'none';
+                    teamFields.style.display = 'block';
                 }
             });
         });
@@ -406,6 +452,12 @@
         // Handle registration
         function handleRegistration(formData) {
             const data = Object.fromEntries(formData.entries());
+
+            // Validate passwords match
+            if (data.newPassword !== data.confirmPassword) {
+                alert('Passwords do not match. Please try again.');
+                return;
+            }
 
             // Validate team invitation code if financial partner
             if (data.accountType === 'team' && data.inviteCode !== 'finance-partner-2025') {
