@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: A Blueprint for Resilience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Deep Forest (Rich Black, Muted Green, Ochre, Cream) -->
+    <!-- Application Structure Plan: The SPA is a single, immersive narrative with a flowing, one-column design. It uses a fixed, full-bleed background and a scrolling content overlay to create a powerful parallax effect, simulating a journey. The narrative is sequential, moving from a personal "why" to a strategic "what" and a data-backed "how." Key interactions include a collapsible accordion for granular financial data and a tabbed interface to compare legal models. The structure is designed to be non-linear in its informational depth, allowing a visitor to explore details without disrupting the main narrative flow, making the experience captivating and holistic. -->
+    <!-- Visualization & Content Choices: 1. Immersive Visuals (Report Info: All content, photos provided -> Goal: Evoke an emotional connection and sense of place -> Presentation: Fixed background image with scrolling content overlay and subtle blur/opacity effects. This creates a powerful parallax effect, making the content feel as though it is passing over the landscape itself -> Justification: This is a direct response to the user's request for a "beautiful" and "seamless" experience that "takes you there." It transforms the static pitch into a dynamic, sensory journey. 2. Financial & Strategic Data (Report Info: Budget, legal model, U.P. research -> Goal: Present complex data as a natural conclusion of the narrative -> Viz: Dynamic bar chart (Chart.js) and a minimalist, expandable table -> Interaction: Collapsible sections to reveal granular data -> Justification: By revealing the numbers only after the emotional and environmental foundation has been laid, the financial data feels earned and deeply contextual, addressing the user's critique of the previous "boring" and "sterile" attempts. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-fixed-full {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+        .content-container {
+            background: rgba(26, 26, 26, 0.85);
+            backdrop-filter: blur(8px);
+            position: relative;
+            z-index: 1;
+            padding-bottom: 50vh;
+        }
+        .container {
+            max-width: 1000px;
+        }
+        .section {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .accordion-content.open {
+            max-height: 1000px;
+        }
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+        table tbody tr {
+            transition: background-color 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        table tbody tr:hover {
+            background-color: #333;
+        }
+        button.active {
+            background-color: #8c763f;
+            color: white;
+        }
+        .text-ochre {
+            color: #c79f42;
+        }
+        .bg-ochre-light {
+            background-color: #8c763f;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Fixed Background Image -->
+    <div class="bg-fixed-full" style="background-image: url('https://placehold.co/1920x1080/424242/E6E6E6?text=Upper+Peninsula+Forest');"></div>
+
+    <div class="content-container">
+        <!-- Hero Section -->
+        <header class="h-screen flex flex-col justify-center items-center text-center px-6">
+            <img src="https://placehold.co/200x200/1A1A1A/E6E6E6?text=Logo" alt="The Maker's Stay Logo" class="mx-auto mb-6">
+            <h1 class="text-6xl font-bold playfair">The Maker's Stay</h1>
+            <h2 class="text-3xl mt-4 playfair">A Thesis of Unprecedented Resilience</h2>
+            <p class="mt-6 text-lg max-w-2xl mx-auto">
+                This is a story of a silent struggle that culminated in a powerful moment of understanding. It is a testament to how a unique identity, a profound empathy for struggle, and a deep connection to the earth can forge a blueprint for a regenerative future.
+            </p>
+        </header>
+
+        <main class="container mx-auto px-6 py-24">
+            
+            <!-- Section 1: The Personal Why -->
+            <section class="section">
+                <h3 class="text-4xl font-bold playfair text-center mb-12">My Lived Experience: The Grounding Force</h3>
+                <div class="max-w-3xl mx-auto text-lg leading-relaxed space-y-8">
+                    <p>
+                        For the first three decades of my life, I navigated the world with a sense of "wrongness" that I couldn't place. The misdiagnoses of ADHD and Bipolar 2 were not the full picture; they were symptoms of a system that didn't understand the complex intersection of my neurodivergence. This lifelong struggle is the very foundation of my vision. It gave me a profound empathy for the human struggle and the understanding that true resilience is not about surviving a crisis, but about building a life that is fundamentally crisis-proof. The Maker's Stay is a direct, constructive response to that existential crisis—a physical manifestation of the sanctuary I needed but never had.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Section 2: From Quirks to Assets -->
+            <section class="section">
+                <h3 class="text-4xl font-bold playfair text-center mb-12">From a "Special Interest" to a Strategic Advantage</h3>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h4 class="text-2xl font-bold playfair mb-4">A Lifelong Obsession with Stones</h4>
+                        <p class="text-lg leading-relaxed mb-6">
+                            My lifelong, absorbing passion for stones, jewelry making, and lapidary arts was more than a hobby; it was a self-soothing mechanism, a constant, tactile search for calm in an overwhelming world. This deep-seated fascination with tangible, grounded systems is the direct inspiration for our core aesthetic and revenue stream. The Maker's Stay is built as a sensory sanctuary, with natural wood finishes, grotto-inspired bathrooms, and a fully equipped lapidary studio—a physical manifestation of a lifelong need.
+                        </p>
+                        <div class="accordion-item font-bold text-ochre cursor-pointer">
+                            <span class="mr-2">+</span> The Therapeutic Power of Tactile Experience
+                        </div>
+                        <div class="accordion-content p-4">
+                            <p class="mt-2 text-gray-400">
+                            My experience with stones is not unique to the neurodivergent community. The **act of creating with one's hands** is a powerful tool for self-regulation and emotional well-being. This is why our business model, which centers on **experiential education** and artisanal crafts, is so much more than a product—it is a purpose.
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="https://placehold.co/500x350/424242/E6E6E6?text=Stones+and+Jewelry" alt="A collection of polished stones and jewelry" class="rounded-xl shadow-lg w-full">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: The Financial Blueprint -->
+            <section class="section">
+                <h3 class="text-4xl font-bold playfair text-center mb-12">The Financial Blueprint: The Numbers of Resilience</h3>
+                <p class="text-lg leading-relaxed max-w-2xl mx-auto text-center text-gray-400 mb-8">
+                    The financial model for The Maker's Stay is not about aggressive growth; it is about profound stability. Every dollar is a strategic investment in a crisis-proof framework. The numbers below prove that our vision is not just a dream—it's a fiscally responsible blueprint for a regenerative future.
+                </p>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="bg-gray-800 p-6 rounded-xl shadow-lg mb-8">
+                            <p class="font-bold text-xl text-center mb-4">Phase 1 Total Capital Raise: <span class="text-ochre">$3,400,000</span></p>
+                            <div class="chart-container">
+                                <canvas id="phase1Chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+                            <h4 class="text-2xl font-bold playfair mb-4 text-ochre">The Strategic Breakdown</h4>
+                            <table class="w-full text-left table-auto text-sm">
+                                <thead>
+                                    <tr class="bg-gray-700 text-ochre">
+                                        <th class="p-3">Line Item</th>
+                                        <th class="p-3 text-right">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="accordion-item" data-id="land">
+                                        <td class="p-3 font-bold">Land Acquisition</td>
+                                        <td class="p-3 text-right">$1,900,000</td>
+                                    </tr>
+                                    <tr class="accordion-content" id="detail-land">
+                                        <td colspan="2" class="p-4 border-t border-gray-600 text-gray-400">
+                                            <ul class="list-disc list-inside space-y-1">
+                                                <li>212 acres in Michigan's Upper Peninsula.</li>
+                                                <li>Includes purchase price, closing costs, and legal fees.</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr class="accordion-item" data-id="retrofit">
+                                        <td class="p-3 font-bold">Existing House Retrofit</td>
+                                        <td class="p-3 text-right">$350,000</td>
+                                    </tr>
+                                    <tr class="accordion-content" id="detail-retrofit">
+                                        <td colspan="2" class="p-4 border-t border-gray-600 text-gray-400">
+                                            <ul class="list-disc list-inside space-y-1">
+                                                <li>Architectural & Design Fees: $25,000</li>
+                                                <li>Structural & Systems Upgrades: $125,000</li>
+                                                <li>Interior Finishing: $150,000</li>
+                                                <li>Exterior Improvements: $50,000</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr class="accordion-item" data-id="infrastructure">
+                                        <td class="p-3 font-bold">Core Infrastructure</td>
+                                        <td class="p-3 text-right">$1,150,000</td>
+                                    </tr>
+                                    <tr class="accordion-content" id="detail-infrastructure">
+                                        <td colspan="2" class="p-4 border-t border-gray-600 text-gray-400">
+                                            <ul class="list-disc list-inside space-y-1">
+                                                <li>Roads & Pathways: $350,000</li>
+                                                <li>Decentralized Renewable Energy System: $450,000</li>
+                                                <li>Water & Septic Systems: $350,000</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: The Legal Framework and the "How" -->
+            <section class="section">
+                <h3 class="text-4xl font-bold playfair text-center mb-12">The Crisis-Proof Model: A Thesis of Resilience</h3>
+                <p class="text-lg leading-relaxed max-w-2xl mx-auto text-center text-gray-400">
+                    The business model is not just financially sound; it is a profound declaration that a new economic paradigm is not only possible but is already being built. Our unique legal structure and the strategic choice of location are the final pieces of this crisis-proof blueprint.
+                </p>
+
+                <div class="bg-gray-800 p-8 mt-12 rounded-xl shadow-lg text-center">
+                    <div class="flex justify-center space-x-4 mb-8">
+                        <button id="coop-button" class="px-6 py-2 rounded-full text-sm font-medium transition active:scale-95 duration-200 bg-ochre-light text-white">The Cooperative</button>
+                        <button id="hoa-button" class="px-6 py-2 rounded-full text-sm font-medium transition active:scale-95 duration-200">The Traditional HOA</button>
+                    </div>
+                    <div id="coop-content">
+                        <h4 class="text-2xl font-bold playfair text-ochre mb-3">The Power of Collective Security</h4>
+                        <p class="text-gray-400">
+                            The **Community Land Trust (CLT)** model empowers residents by decoupling land from the speculative market. It fosters a high-trust environment where members are directly involved in governance, enabling mutual aid networks and barter systems to flourish in a crisis. This is a crucial layer of security that traditional models lack.
+                        </p>
+                    </div>
+                    <div id="hoa-content" class="hidden">
+                        <h4 class="text-2xl font-bold playfair text-ochre mb-3">A Focus on Market Value</h4>
+                        <p class="text-gray-400">
+                            A traditional Homeowners Association is a market-driven model designed to preserve and enhance property values. While this can work in stable times, it is inherently vulnerable to market speculation and financial shocks. The focus is on individual equity and control, not on collective resilience.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="bg-gray-900 mt-16">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <p>&copy; 2024 The Maker's Stay. A blueprint for a regenerative future.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart.js for financial data
+            const phase1Data = {
+                labels: ['Land', 'Retrofit', 'Infrastructure'],
+                datasets: [{
+                    label: 'Cost in Millions ($)',
+                    data: [1.9, 0.35, 1.15],
+                    backgroundColor: ['#c79f42', '#8c763f', '#6b5c32'],
+                    borderColor: '#f5f5f5',
+                    borderWidth: 1
+                }]
+            };
+
+            const phase1Chart = new Chart(document.getElementById('phase1Chart').getContext('2d'), {
+                type: 'bar',
+                data: phase1Data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            ticks: { color: '#f5f5f5' },
+                            grid: { color: 'rgba(245, 245, 245, 0.1)' }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) { return '$' + value + 'M'; },
+                                color: '#f5f5f5'
+                            },
+                            grid: { color: 'rgba(245, 245, 245, 0.1)' }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) { return `${context.label}: $${(context.raw * 1000000).toLocaleString()}`; }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Accordion logic for details
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const content = item.nextElementSibling;
+                    const isOpen = content.classList.toggle('open');
+                    
+                    if (isOpen) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        content.style.maxHeight = null;
+                    }
+                });
+            });
+
+            // Tab logic for community models
+            const coopButton = document.getElementById('coop-button');
+            const hoaButton = document.getElementById('hoa-button');
+            const coopContent = document.getElementById('coop-content');
+            const hoaContent = document.getElementById('hoa-content');
+            
+            const setActiveTab = (activeBtn, inactiveBtn, activeContent, inactiveContent) => {
+                activeBtn.classList.add('active', 'bg-ochre-light', 'text-white');
+                inactiveBtn.classList.remove('active', 'bg-ochre-light', 'text-white');
+                activeContent.classList.remove('hidden');
+                inactiveContent.classList.add('hidden');
+            };
+
+            setActiveTab(coopButton, hoaButton, coopContent, hoaContent);
+
+            coopButton.addEventListener('click', () => {
+                setActiveTab(coopButton, hoaButton, coopContent, hoaContent);
+            });
+
+            hoaButton.addEventListener('click', () => {
+                setActiveTab(hoaButton, coopButton, hoaContent, coopContent);
+            });
+        });
+    </script>
+</body>
+</html>

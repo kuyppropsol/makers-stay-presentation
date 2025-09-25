@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay - Financial Model</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #F8F4E1;
+            color: #4B3F3C;
+        }
+        .text-maker-brown { color: #4B3F3C; }
+        .bg-maker-tan { background-color: #EDE8D6; }
+        .border-maker-brown { border-color: #4B3F3C; }
+        .text-maker-sienna { color: #A66E4E; }
+        .bg-maker-sienna { background-color: #A66E4E; }
+        .shadow-maker {
+            box-shadow: 5px 5px 0px 0px #A66E4E;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            max-height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 300px;
+            }
+        }
+    </style>
+    <!-- Chosen Palette: Earthy & Professional -->
+    <!-- Application Structure Plan: The application is designed as a single-page interactive dashboard. The information architecture is structured to support a dynamic, non-linear exploration of the financial model. It begins with a "Key Assumptions" section where users can directly manipulate core variables using sliders and input fields. This is followed by detailed tables and charts for Revenue Projections, Expense Breakdown, and the final P&L statement. This structure was chosen because it allows a user to immediately understand the core drivers of the business and see how changes impact the final results, making the financial model transparent and highly interactive. The design encourages exploration rather than passive reading. -->
+    <!-- Visualization & Content Choices: The core of the application's interactive design is driven by dynamic data visualization using Chart.js. A line chart is used to show the P&L over time, making trends in profitability immediately clear. A pie chart visualizes the distribution of revenue streams, providing a quick understanding of where income is generated. Textual content blocks are dynamically updated to reflect the results of the calculations, such as the total revenue, total expenses, and net profit. This combination of interactive inputs, dynamic charts, and live-updating text makes the complex financial information easily digestible and highly persuasive. NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="bg-maker-tan text-maker-brown font-inter p-6 md:p-12">
+
+<div class="max-w-7xl mx-auto">
+    <header class="text-center mb-12">
+        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-maker-sienna mb-4">The Maker's Stay: A Blueprint for a Life Less Ordinary.</h1>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-2">Interactive Financial Model</h2>
+        <p class="text-lg text-maker-brown">Explore our projections. Adjust the assumptions. Witness the path to profitability.</p>
+    </header>
+
+    <main class="space-y-12">
+
+        <!-- KEY ASSUMPTIONS SECTION -->
+        <section class="bg-white rounded-xl p-8 shadow-maker">
+            <h3 class="text-3xl font-bold mb-6 text-maker-sienna">Key Assumptions</h3>
+            <p class="mb-6 text-lg">Adjust these sliders to see how changes impact our financial projections. The model is fully responsive, reflecting your inputs in real-time.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="flex flex-col">
+                    <label for="nightlyRate" class="font-medium mb-2">Regenerative Retreats: Avg Nightly Rate ($)</label>
+                    <input type="range" id="nightlyRate" min="150" max="500" value="300" step="10" class="w-full">
+                    <span id="rateValue" class="text-right font-bold text-maker-sienna">$300</span>
+                </div>
+                <div class="flex flex-col">
+                    <label for="occupancy" class="font-medium mb-2">Regenerative Retreats: Year 1 Occupancy (%)</label>
+                    <input type="range" id="occupancy" min="20" max="60" value="40" step="5" class="w-full">
+                    <span id="occupancyValue" class="text-right font-bold text-maker-sienna">40%</span>
+                </div>
+                <div class="flex flex-col">
+                    <label for="workshopPrice" class="font-medium mb-2">Workshops: Avg Price Per Person ($)</label>
+                    <input type="range" id="workshopPrice" min="50" max="300" value="150" step="10" class="w-full">
+                    <span id="workshopValue" class="text-right font-bold text-maker-sienna">$150</span>
+                </div>
+                <div class="flex flex-col">
+                    <label for="initialUnits" class="font-medium mb-2">Initial Regenerative Retreats (Qty)</label>
+                    <input type="range" id="initialUnits" min="3" max="15" value="7" step="1" class="w-full">
+                    <span id="unitsValue" class="text-right font-bold text-maker-sienna">7</span>
+                </div>
+                <div class="flex flex-col">
+                    <label for="farmToTable" class="font-medium mb-2">Eatery: Avg Daily Covers (Qty)</label>
+                    <input type="range" id="farmToTable" min="10" max="100" value="30" step="5" class="w-full">
+                    <span id="eateryValue" class="text-right font-bold text-maker-sienna">30</span>
+                </div>
+                <div class="flex flex-col">
+                    <label for="startupCapital" class="font-medium mb-2">Land & Infrastructure Cost ($)</label>
+                    <input type="range" id="startupCapital" min="500000" max="2000000" value="1200000" step="50000" class="w-full">
+                    <span id="capitalValue" class="text-right font-bold text-maker-sienna">$1,200,000</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINANCIAL PROJECTIONS -->
+        <section class="bg-white rounded-xl p-8 shadow-maker">
+            <h3 class="text-3xl font-bold mb-6 text-maker-sienna">Projected Profit & Loss</h3>
+            <p class="mb-6 text-lg">This graph visualizes our projected net profit over the next five years, based on the assumptions above.</p>
+            <div class="chart-container">
+                <canvas id="pnlChart"></canvas>
+            </div>
+            <div class="mt-8 text-center text-maker-brown">
+                <p class="text-xl font-bold mb-2">Key Financial Takeaways</p>
+                <p>Total Revenue (Year 5): <span id="totalRevenue" class="font-extrabold text-maker-sienna"></span></p>
+                <p>Total Expenses (Year 5): <span id="totalExpenses" class="font-extrabold text-maker-sienna"></span></p>
+                <p>Net Profit (Year 5): <span id="netProfit" class="font-extrabold text-maker-sienna"></span></p>
+            </div>
+        </section>
+
+        <!-- GRANULAR BREAKDOWN -->
+        <section class="bg-white rounded-xl p-8 shadow-maker">
+            <h3 class="text-3xl font-bold mb-6 text-maker-sienna">Granular Financial Breakdown</h3>
+            <p class="mb-6 text-lg">Below is a detailed breakdown of our projected revenues and expenses, providing a transparent view of our model's mechanics.</p>
+
+            <!-- Revenue Breakdown -->
+            <div class="mb-10">
+                <h4 class="text-2xl font-semibold mb-4 text-maker-brown">Revenue Streams</h4>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-maker-tan rounded-xl p-6 shadow-md">
+                        <h5 class="text-xl font-bold mb-3 text-maker-sienna">Revenue by Pillar (Year 5)</h5>
+                        <div class="chart-container h-80 max-h-80">
+                            <canvas id="revenuePieChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-maker-tan rounded-xl p-6 shadow-md">
+                        <h5 class="text-xl font-bold mb-3 text-maker-sienna">Regenerative Retreats Revenue Projection</h5>
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="border-b-2 border-maker-brown">
+                                    <th class="py-2">Year</th>
+                                    <th class="py-2">Units</th>
+                                    <th class="py-2">Occupancy</th>
+                                    <th class="py-2">Revenue</th>
+                                </tr>
+                            </thead>
+                            <tbody id="accommodationsTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expense Breakdown -->
+            <div>
+                <h4 class="text-2xl font-semibold mb-4 text-maker-brown">Expense Breakdown (Year 1)</h4>
+                <p class="mb-4">This section outlines the estimated costs associated with establishing and operating The Maker's Stay.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-maker-tan rounded-xl p-6 shadow-md">
+                        <h5 class="text-xl font-bold mb-3 text-maker-sienna">Initial Investment</h5>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Land Acquisition: <span class="font-bold text-maker-brown">$1,200,000</span> (Initial assumption, variable)</li>
+                            <li>Site Prep & Infrastructure: <span class="font-bold text-maker-brown">$150,000</span></li>
+                            <li>Initial Regenerative Retreats (x7): <span class="font-bold text-maker-brown">$140,000</span></li>
+                            <li>Legal & Admin: <span class="font-bold text-maker-brown">$30,000</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-maker-tan rounded-xl p-6 shadow-md">
+                        <h5 class="text-xl font-bold mb-3 text-maker-sienna">Annual Operating Costs</h5>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Salaries & Labor: <span class="font-bold text-maker-brown">$120,000</span></li>
+                            <li>Utilities & Maintenance: <span class="font-bold text-maker-brown">$40,000</span></li>
+                            <li>Marketing & Events: <span class="font-bold text-maker-brown">$25,000</span></li>
+                            <li>Supplies & Materials: <span class="font-bold text-maker-brown">$30,000</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-maker-tan rounded-xl p-6 shadow-md">
+                        <h5 class="text-xl font-bold mb-3 text-maker-sienna">Farm & Eatery Costs</h5>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Farm Equipment & Seeds: <span class="font-bold text-maker-brown">$50,000</span></li>
+                            <li>Livestock & Feed: <span class="font-bold text-maker-brown">$15,000</span></li>
+                            <li>Kitchen & Supplies: <span class="font-bold text-maker-brown">$20,000</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="https://docs.google.com/document/d/189wPed1QdvRVkR1yfrfdP8469A-ncGeu07VpZPo116s/edit?usp=sharing" target="_blank" class="inline-block bg-maker-sienna text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-opacity-90 transition-colors duration-300">
+                    View Full Business Plan
+                </a>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+    const data = {
+        nightlyRate: 300,
+        occupancy: 0.40,
+        workshopPrice: 150,
+        initialUnits: 7,
+        farmToTable: 30,
+        startupCapital: 1200000,
+        annualCosts: {
+            salaries: 120000,
+            utilities: 40000,
+            marketing: 25000,
+            supplies: 30000,
+            farmEquipment: 50000,
+            livestock: 15000,
+            kitchenSupplies: 20000
+        },
+        unitCost: 20000,
+        pnlData: [],
+        revenueBreakdown: {}
+    };
+
+    const elements = {
+        nightlyRate: document.getElementById('nightlyRate'),
+        rateValue: document.getElementById('rateValue'),
+        occupancy: document.getElementById('occupancy'),
+        occupancyValue: document.getElementById('occupancyValue'),
+        workshopPrice: document.getElementById('workshopPrice'),
+        workshopValue: document.getElementById('workshopValue'),
+        initialUnits: document.getElementById('initialUnits'),
+        unitsValue: document.getElementById('unitsValue'),
+        farmToTable: document.getElementById('farmToTable'),
+        eateryValue: document.getElementById('eateryValue'),
+        startupCapital: document.getElementById('startupCapital'),
+        capitalValue: document.getElementById('capitalValue'),
+        totalRevenue: document.getElementById('totalRevenue'),
+        totalExpenses: document.getElementById('totalExpenses'),
+        netProfit: document.getElementById('netProfit'),
+        accommodationsTable: document.getElementById('accommodationsTable'),
+    };
+
+    const pnlCtx = document.getElementById('pnlChart').getContext('2d');
+    const revenuePieCtx = document.getElementById('revenuePieChart').getContext('2d');
+
+    let pnlChart = new Chart(pnlCtx, {
+        type: 'line',
+        data: {
+            labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+            datasets: [{
+                label: 'Net Profit',
+                backgroundColor: '#A66E4E',
+                borderColor: '#A66E4E',
+                data: [],
+                fill: false,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Profit ($)'
+                    }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(context.parsed.y);
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    let revenuePieChart = new Chart(revenuePieCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Regenerative Retreats', 'Farm & Eatery', 'Workshops'],
+            datasets: [{
+                data: [],
+                backgroundColor: ['#A66E4E', '#8C7853', '#5E4A3A'],
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.raw !== null) {
+                                label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(context.raw);
+                            }
+                            return label;
+                        }
+                    }
+                },
+                legend: {
+                    position: 'right',
+                    labels: {
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    const calculateFinancials = () => {
+        const annualGrowthRate = 0.08;
+        const accommodationsIncrease = 0.05;
+        const workshopsIncrease = 0.05;
+
+        let pnl = [];
+        let totalRevenueByYear = [];
+        let totalExpensesByYear = [];
+
+        const initialLandCost = data.startupCapital;
+        const initialUnitCost = data.unitCost * data.initialUnits;
+        const initialInfrastructureCost = 150000;
+        const initialLegalCost = 30000;
+        const initialInvestmentTotal = initialLandCost + initialUnitCost + initialInfrastructureCost + initialLegalCost;
+
+        const fixedAnnualOperatingCosts = data.annualCosts.salaries + data.annualCosts.utilities + data.annualCosts.marketing + data.annualCosts.supplies;
+        const fixedAnnualFarmCosts = data.annualCosts.farmEquipment + data.annualCosts.livestock + data.annualCosts.kitchenSupplies;
+
+        for (let year = 1; year <= 5; year++) {
+            let yearMultiplier = (1 + annualGrowthRate) ** (year - 1);
+            let revenue = {
+                accommodations: 0,
+                workshops: 0,
+                eatery: 0
+            };
+            let expenses = {};
+
+            // Revenue Calculations
+            let roomsAvailable = data.initialUnits * 365;
+            let occupiedRooms = roomsAvailable * (data.occupancy + (year - 1) * accommodationsIncrease);
+            revenue.accommodations = occupiedRooms * data.nightlyRate;
+
+            let workshopsPerYear = 150 * yearMultiplier;
+            revenue.workshops = workshopsPerYear * data.workshopPrice * (1 + (year - 1) * workshopsIncrease);
+
+            let eateryRevenue = data.farmToTable * 40 * 365 * yearMultiplier;
+            revenue.eatery = eateryRevenue;
+
+            let totalRevenue = revenue.accommodations + revenue.workshops + revenue.eatery;
+            totalRevenueByYear.push(totalRevenue);
+
+            // Expense Calculations
+            let totalExpenses = fixedAnnualOperatingCosts + fixedAnnualFarmCosts;
+            totalExpensesByYear.push(totalExpenses);
+
+            // P&L Calculation
+            let netProfit = totalRevenue - totalExpenses;
+            if (year === 1) {
+                netProfit = netProfit - initialInvestmentTotal;
+            }
+            pnl.push(netProfit);
+
+            if (year === 5) {
+                data.revenueBreakdown = revenue;
+            }
+        }
+
+        data.pnlData = pnl;
+
+        updateUI(pnl, totalRevenueByYear, totalExpensesByYear);
+    };
+
+    const updateUI = (pnl, totalRevenueByYear, totalExpensesByYear) => {
+        // Update dashboard values
+        elements.totalRevenue.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(totalRevenueByYear[4]);
+        elements.totalExpenses.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(totalExpensesByYear[4]);
+        elements.netProfit.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(pnl[4]);
+
+        // Update P&L chart
+        pnlChart.data.datasets[0].data = pnl;
+        pnlChart.update();
+
+        // Update revenue pie chart
+        revenuePieChart.data.datasets[0].data = [
+            data.revenueBreakdown.accommodations,
+            data.revenueBreakdown.eatery,
+            data.revenueBreakdown.workshops
+        ];
+        revenuePieChart.update();
+
+        // Update accommodations table
+        elements.accommodationsTable.innerHTML = '';
+        for (let year = 1; year <= 5; year++) {
+            let yearMultiplier = (1 + 0.08) ** (year - 1);
+            let occupancy = (data.occupancy + (year - 1) * 0.05);
+            let units = Math.round(data.initialUnits * (1 + (year - 1) * 0.05));
+            let revenue = units * 365 * data.nightlyRate * occupancy;
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="py-2">Year ${year}</td>
+                <td class="py-2">${units}</td>
+                <td class="py-2">${(occupancy * 100).toFixed(1)}%</td>
+                <td class="py-2">${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(revenue)}</td>
+            `;
+            elements.accommodationsTable.appendChild(row);
+        }
+    };
+
+    const handleInput = () => {
+        data.nightlyRate = parseInt(elements.nightlyRate.value);
+        elements.rateValue.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(data.nightlyRate);
+
+        data.occupancy = parseFloat(elements.occupancy.value) / 100;
+        elements.occupancyValue.textContent = elements.occupancy.value + '%';
+
+        data.workshopPrice = parseInt(elements.workshopPrice.value);
+        elements.workshopValue.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(data.workshopPrice);
+
+        data.initialUnits = parseInt(elements.initialUnits.value);
+        elements.unitsValue.textContent = data.initialUnits;
+
+        data.farmToTable = parseInt(elements.farmToTable.value);
+        elements.eateryValue.textContent = data.farmToTable;
+
+        data.startupCapital = parseInt(elements.startupCapital.value);
+        elements.capitalValue.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(data.startupCapital);
+
+        calculateFinancials();
+    };
+
+    elements.nightlyRate.addEventListener('input', handleInput);
+    elements.occupancy.addEventListener('input', handleInput);
+    elements.workshopPrice.addEventListener('input', handleInput);
+    elements.initialUnits.addEventListener('input', handleInput);
+    elements.farmToTable.addEventListener('input', handleInput);
+    elements.startupCapital.addEventListener('input', handleInput);
+
+    // Initial calculation on page load
+    window.onload = function() {
+        calculateFinancials();
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: An Investor Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar-open {
+            transform: translateX(0);
+        }
+        .sidebar-closed {
+            transform: translateX(-100%);
+        }
+        .content-shifted {
+            margin-left: 256px; /* Same as sidebar width */
+        }
+        .chart-container {
+            position: relative;
+            height: 40vh;
+            width: 100%;
+        }
+        .interactive-element:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+         .variable-slider-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: #f9fafb;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .variable-slider {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        section {
+            scroll-margin-top: 80px; /* Offset for fixed header */
+        }
+        .section-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body class="bg-emerald-900 text-gray-800">
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="sidebar sidebar-closed md:sidebar-open bg-white w-64 min-h-screen fixed top-0 left-0 z-40 shadow-lg">
+        <div class="p-6">
+            <h1 class="text-2xl font-bold text-gray-900">The Maker's Stay</h1>
+            <p class="text-sm text-gray-500">A Regenerative Future</p>
+        </div>
+        <nav class="mt-6">
+            <a href="#introduction" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 text-gray-700">Introduction</a>
+            <a href="#location" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 text-gray-700">Strategic Location</a>
+            <a href="#financials" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 text-gray-700">Financial Blueprint</a>
+            <a href="#projections" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 text-gray-700">Financial Projections</a>
+            <a href="#budget" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 text-gray-700">Budget Explorer</a>
+            <a href="#resilience" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 text-gray-700">The Crisis-Proof Model</a>
+            <a href="#conclusion" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 text-gray-700">Conclusion</a>
+        </nav>
+    </aside>
+
+    <!-- Mobile Header -->
+    <header class="md:hidden bg-white shadow-md p-4 fixed top-0 w-full z-50">
+        <button id="menu-button" class="text-gray-800 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+        <h1 class="text-xl font-bold text-gray-900 inline-block ml-4">The Maker's Stay</h1>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main-content" class="md:ml-64 p-6 md:p-10 transition-all duration-300 ease-in-out mt-16 md:mt-0">
+        <div class="max-w-7xl mx-auto">
+            <!-- Introduction Section -->
+            <a href="introduction_detail.html" class="section-link">
+                <section id="introduction" class="bg-white rounded-lg shadow-xl p-8 mb-12 interactive-element">
+                    <h2 class="text-4xl font-bold mb-4 text-gray-900">A Blueprint for a Regenerative Future</h2>
+                    <p class="text-lg mb-6">The Maker's Stay is more than a business venture; it is a visionary ecovillage conceived as a direct and strategic response to the systemic dynamics of modern economies. It is a pioneering enterprise, designed not only to be resilient in the face of economic uncertainty but to emerge from it as a vital hub for its surrounding community. This is achieved through a multi-layered framework of legal, financial, and operational redundancies that provide profound stability.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200">
+                            <h3 class="text-2xl font-semibold mb-2">The Maker's Ethos</h3>
+                            <p>Our core identity is built on the narrative that a life of purpose, beauty, and creativity can be regenerative. We appeal to the "maker" in all of us—the dreamers, artists, farmers, and builders creating a life of purpose.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200">
+                            <h3 class="text-2xl font-semibold mb-2">Immersive Experience</h3>
+                            <p>We offer a sanctuary of the senses, incorporating biophilic design to reduce stress and improve well-being. From "Wonderful Structures" earth homes to curated art kits for every guest, the experience is designed to be restorative and inspiring.</p>
+                        </div>
+                    </div>
+                     <p class="text-right font-bold text-green-600 mt-4">Click to learn more &rarr;</p>
+                </section>
+            </a>
+
+            <!-- Strategic Location Section -->
+            <a href="location_detail.html" class="section-link">
+                <section id="location" class="bg-white rounded-lg shadow-xl p-8 mb-12 interactive-element">
+                    <h2 class="text-4xl font-bold mb-4 text-gray-900">The Strategic Case for Michigan's Upper Peninsula</h2>
+                    <p class="text-lg mb-6">Our chosen 212-acre property in Michigan's Upper Peninsula is a strategic asset. The location offers a perfect convergence of natural resources, a thriving "maker" culture, and a supportive regulatory environment. This is not a choice of convenience, but a data-driven decision for long-term success.</p>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200">
+                            <h3 class="text-2xl font-semibold mb-2">Market Dominance</h3>
+                            <p>Michigan is a top performer in tourism, generating over $28 billion annually. The U.P. itself is a premier tourism destination with a 7.7% increase in visitor spending in 2023, showcasing a thriving regional market.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200">
+                            <h3 class="text-2xl font-semibold mb-2">Cultural Alignment</h3>
+                            <p>The U.P. has an existing culture of craftsmanship and outdoor recreation. The creative sector in the region generated over $42.5 million in 2022, indicating a built-in audience for our "Maker's Ethos."</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200">
+                            <h3 class="text-2xl font-semibold mb-2">Supportive Environment</h3>
+                            <p>Michigan has specific laws supporting agritourism businesses, like the Farmland and Open Space Preservation Program, providing a clear path for development and long-term financial advantages.</p>
+                        </div>
+                    </div>
+                     <p class="text-right font-bold text-green-600 mt-4">Click to learn more &rarr;</p>
+                </section>
+            </a>
+
+            <!-- Financial Blueprint Section -->
+            <a href="financials_detail.html" class="section-link">
+                <section id="financials" class="bg-white rounded-lg shadow-xl p-8 mb-12 interactive-element">
+                    <h2 class="text-4xl font-bold mb-4 text-gray-900">A Phased Financial Blueprint for Success</h2>
+                    <p class="text-lg mb-6">Our project is structured into three distinct and sequential phases. This fiscally responsible approach de-risks the venture and ensures capital is deployed strategically and efficiently. The total project cost is estimated at <strong>$5,667,080</strong>.</p>
+                    <div class="grid md:grid-cols-3 gap-8 mt-8">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200 flex flex-col">
+                            <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-600 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div>
+                            <h3 class="text-xl font-bold mt-4 text-center">Phase 1: Foundational Investment</h3>
+                            <p class="text-3xl font-bold text-green-700 text-center my-2">$3,400,000</p>
+                            <p class="text-gray-600 text-sm flex-grow">Securing the 212-acre property and building the essential, non-negotiable infrastructure. This makes the property shovel-ready for all future development.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200 flex flex-col">
+                            <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-600 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5z" /><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-9.998 12.078 12.078 0 01.665-6.479L12 14z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-9.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20" /></svg></div>
+                            <h3 class="text-xl font-bold mt-4 text-center">Phase 2: Construction & Amenities</h3>
+                            <p class="text-3xl font-bold text-green-700 text-center my-2">$1,782,350</p>
+                            <p class="text-gray-600 text-sm flex-grow">Focuses exclusively on the construction of the primary structures and initial amenities, including guest accommodations and the grotto pool.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200 flex flex-col">
+                            <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-600 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
+                            <h3 class="text-xl font-bold mt-4 text-center">Phase 3: Operational Launch</h3>
+                            <p class="text-3xl font-bold text-green-700 text-center my-2">$484,730</p>
+                            <p class="text-gray-600 text-sm flex-grow">Covers the costs for getting the business fully operational, including all furnishings, workshop equipment, and working capital for a successful launch.</p>
+                        </div>
+                    </div>
+                     <p class="text-right font-bold text-green-600 mt-4">Click to learn more &rarr;</p>
+                </section>
+            </a>
+
+            <!-- Financial Projections Section -->
+             <a href="projections_detail.html" class="section-link">
+                <section id="projections" class="bg-white rounded-lg shadow-xl p-8 mb-12 interactive-element">
+                    <h2 class="text-4xl font-bold mb-4 text-gray-900">Data-Driven Financial Projections</h2>
+                    <p class="text-lg mb-6">Our financial model is built on a multi-faceted ecosystem of reinforcing revenue streams, providing inherent resilience. The projections demonstrate a clear path to profitability and long-term growth.</p>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-gray-50 p-8 rounded-lg shadow-inner border border-gray-200">
+                            <h3 class="text-2xl font-semibold mb-4 text-center">10-Year Growth Outlook</h3>
+                            <div class="chart-container">
+                                <canvas id="growthChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-8 rounded-lg shadow-inner border border-gray-200">
+                            <h3 class="text-2xl font-semibold mb-4 text-center">First-Year Scenario Analysis</h3>
+                            <div class="chart-container">
+                                <canvas id="scenarioChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                     <p class="text-right font-bold text-green-600 mt-4">Click to learn more &rarr;</p>
+                </section>
+            </a>
+
+            <!-- Interactive Budget Explorer Section -->
+            <a href="budget_detail_page.html" class="section-link">
+                <section id="budget" class="bg-white rounded-lg shadow-xl p-8 mb-12 interactive-element">
+                    <h2 class="text-4xl font-bold mb-4 text-gray-900">Interactive Budget Explorer</h2>
+                    <p class="text-lg mb-6">Explore our detailed project budget. Click on any component to see a granular breakdown of the costs. This transparency is key to our financial planning.</p>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Preview Items -->
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200"><h4 class="text-xl font-semibold">Land Acquisition</h4><p class="text-2xl font-bold text-green-600 mt-2">$1,900,000</p></div>
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200"><h4 class="text-xl font-semibold">Core Infrastructure</h4><p class="text-2xl font-bold text-green-600 mt-2">$1,150,000</p></div>
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200"><h4 class="text-xl font-semibold">Primary Structures</h4><p class="text-2xl font-bold text-green-600 mt-2">$1,002,350</p></div>
+                    </div>
+                     <p class="text-right font-bold text-green-600 mt-4">Click for full budget details &rarr;</p>
+                </section>
+            </a>
+
+            <!-- The Crisis-Proof Model Section -->
+            <a href="resilience_detail.html" class="section-link">
+                <section id="resilience" class="bg-white rounded-lg shadow-xl p-8 mb-12 interactive-element">
+                    <h2 class="text-4xl font-bold mb-4 text-gray-900">The "Crisis-Proof" Model</h2>
+                    <p class="text-lg mb-6">The Maker's Stay is engineered to withstand systemic shocks. Our multi-layered legal, financial, and operational frameworks insulate the project from the vulnerabilities that could cripple conventional enterprises.</p>
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-inner border border-gray-200 overflow-x-auto">
+                        <table class="w-full text-left min-w-max">
+                            <thead>
+                                <tr>
+                                    <th class="p-4 bg-gray-200 text-lg font-semibold">Criterion</th>
+                                    <th class="p-4 bg-green-200 text-lg font-semibold">The Maker's Trust (CLT-like Model)</th>
+                                    <th class="p-4 bg-red-200 text-lg font-semibold">Traditional HOA Model</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="p-4 font-medium">Primary Goal</td>
+                                    <td class="p-4">Mission-driven: to build a stable, resilient, and self-sustaining community for the long term.</td>
+                                    <td class="p-4">Market-driven: to protect and enhance individual property values.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     <p class="text-right font-bold text-green-600 mt-4">Click to learn more &rarr;</p>
+                </section>
+            </a>
+            
+            <!-- Conclusion Section -->
+            <a href="conclusion_detail.html" class="section-link">
+                <section id="conclusion" class="bg-white rounded-lg shadow-xl p-8 mb-12 text-center interactive-element">
+                    <h2 class="text-4xl font-bold mb-4 text-gray-900">An Invitation to Build the Future</h2>
+                    <p class="text-lg mb-6 max-w-3xl mx-auto">The Maker's Stay is not a retreat from the world but a proactive and pragmatic response to its increasing vulnerabilities. This is a replicable blueprint for a new, post-crisis economic paradigm—one based on a hybrid of purpose and profit, shared ownership, and a skills-based economy. We invite you to join us in building this resilient and regenerative future.</p>
+                     <p class="text-center font-bold text-green-600 mt-4">Click to get in touch &rarr;</p>
+                </section>
+            </a>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile menu toggle
+            const menuButton = document.getElementById('menu-button');
+            const sidebar = document.getElementById('sidebar');
+
+            menuButton.addEventListener('click', () => {
+                sidebar.classList.toggle('sidebar-closed');
+                sidebar.classList.toggle('sidebar-open');
+            });
+            
+            // Close sidebar when clicking on a link
+            document.querySelectorAll('#sidebar nav a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                     e.preventDefault();
+                    document.querySelector(link.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    if(window.innerWidth < 768) {
+                        sidebar.classList.add('sidebar-closed');
+                        sidebar.classList.remove('sidebar-open');
+                    }
+                });
+            });
+            
+            // Growth Chart
+            const growthCtx = document.getElementById('growthChart')?.getContext('2d');
+            if (growthCtx) {
+                const years = ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6', 'Year 7', 'Year 8', 'Year 9', 'Year 10'];
+                const revenue = [530163, 600000, 675000, 750000, 825000, 900000, 975000, 1050000, 1125000, 1200000];
+                const expenses = [249000, 260000, 270000, 285000, 300000, 315000, 330000, 345000, 360000, 375000];
+                const netIncome = [281163, 340000, 405000, 465000, 525000, 585000, 645000, 705000, 765000, 825000];
+
+                new Chart(growthCtx, {
+                    type: 'line',
+                    data: {
+                        labels: years,
+                        datasets: [{
+                            label: 'Total Annual Revenue',
+                            data: revenue,
+                            borderColor: 'rgba(22, 163, 74, 1)',
+                            backgroundColor: 'rgba(22, 163, 74, 0.2)',
+                            fill: true,
+                        }, {
+                            label: 'Total Annual Expenses',
+                            data: expenses,
+                            borderColor: 'rgba(239, 68, 68, 1)',
+                            backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                            fill: true,
+                        }, {
+                            label: 'Net Income',
+                            data: netIncome,
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                            fill: true,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) { return '$' + (value / 1000) + 'k'; }
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) { label += ': '; }
+                                        if (context.parsed.y !== null) {
+                                            label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Scenario Chart
+            const scenarioCtx = document.getElementById('scenarioChart')?.getContext('2d');
+            if (scenarioCtx) {
+                const scenarioChart = new Chart(scenarioCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Projected Case', 'Worst Case', 'Best Case'],
+                        datasets: [{
+                            label: 'Total Net Income',
+                            data: [304563, 82531, 595145],
+                            backgroundColor: ['rgba(59, 130, 246, 0.7)', 'rgba(239, 68, 68, 0.7)', 'rgba(22, 163, 74, 0.7)'],
+                            borderColor: ['rgba(59, 130, 246, 1)', 'rgba(239, 68, 68, 1)', 'rgba(22, 163, 74, 1)'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) { return '$' + (value / 1000) + 'k'; }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) { label += ': '; }
+                                        if (context.parsed.x !== null) {
+                                            label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.x);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

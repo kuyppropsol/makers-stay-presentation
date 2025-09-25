@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay - Investment Opportunity</title>
+    <meta http-equiv="refresh" content="0; url=investment-portal.html">
+    <link rel="canonical" href="investment-portal.html">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #f5f2e8;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .redirect-container {
+            max-width: 600px;
+            padding: 2rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #bc9f6d, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .loading {
+            font-size: 1rem;
+            opacity: 0.6;
+        }
+
+        .manual-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(188, 159, 109, 0.2);
+            border: 1px solid #bc9f6d;
+            border-radius: 8px;
+            color: #f5f2e8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .manual-link:hover {
+            background: rgba(188, 159, 109, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="redirect-container">
+        <div class="logo">The Maker's Stay</div>
+        <div class="tagline">Exclusive Investment Opportunity</div>
+        <div class="loading">Redirecting to investment presentation...</div>
+        <a href="investment-portal.html" class="manual-link">
+            Continue to Investment Portal →
+        </a>
+    </div>
+
+    <script>
+        // Backup redirect in case meta refresh doesn't work
+        setTimeout(() => {
+            window.location.href = 'investment-portal.html';
+        }, 1000);
+    </script>
+</body>
+
+</html>

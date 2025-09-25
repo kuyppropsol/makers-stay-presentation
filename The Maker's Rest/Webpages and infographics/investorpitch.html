@@ -1,0 +1,373 @@
+<!-- Chosen Palette: Custom Brand Palette (#Dddbbe, #404040, #588f55, #D5cd68). -->
+<!-- Application Structure Plan: The SPA is designed as a single, vertically scrolling page with a fixed top navigation. This structure allows for both a linear walkthrough of the pitch (by scrolling) and a non-linear exploration (by using the navigation links). The content is logically grouped into thematic sections: Vision, The Opportunity, Our Model, The Team, The Trust, and The Investment. This design breaks the information into digestible chunks, preventing user overwhelm and encouraging exploration. -->
+<!-- Visualization & Content Choices: 1. Vision -> Goal: Engage and state mission -> Viz: Animated text heading -> Interaction: None -> Justification: Creates a "wow" factor and memorable first impression -> Vanilla JS. 2. Opportunity -> Goal: Demonstrate market viability -> Viz: Bar Chart comparing market sizes -> Interaction: Hover for tooltips -> Justification: Clearly shows scale and growth potential of target markets -> Chart.js. 3. Our Model -> Goal: Explain the three pillars -> Viz: Tabbed content sections -> Interaction: Click tabs to reveal content -> Justification: Organizes complex information into a clean, explorable format -> Vanilla JS. 4. Investment -> Goal: Present financial data interactively -> Viz: Sliders, input fields, and dynamic line charts -> Interaction: Sliders and inputs update charts in real-time -> Justification: Proves financial model resilience and transparency -> Chart.js and Vanilla JS. CONFIRMING NO SVG/Mermaid. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: Investor Pitch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F2E8;
+            color: #404040;
+        }
+        .container {
+            max-width: 1440px;
+        }
+        .header-bg {
+            background-color: #Dddbbe;
+            position: relative;
+        }
+        .pulse-circle {
+            animation: pulse 4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(0.9);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 40vh;
+            max-height: 400px;
+            margin: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 50vh;
+            }
+        }
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #404040;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            z-index: 50;
+        }
+        .scroll-to-top.visible {
+            opacity: 1;
+        }
+        .scroll-to-top:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-[#F5F2E8] text-[#404040] leading-relaxed">
+    <header class="header-bg text-[#404040] shadow-lg p-6 flex flex-col items-center justify-center relative overflow-hidden h-[400px] sm:h-[500px] lg:h-[600px] text-center">
+        <div class="absolute inset-0 bg-black opacity-30"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-48 h-48 sm:w-64 sm:h-64 lg:w-96 lg:h-96 rounded-full bg-[#D5cd68] pulse-circle"></div>
+        </div>
+        <div class="relative z-10 p-4 rounded-xl">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">The Maker's Stay:</h1>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">A Blueprint for a Life Less Ordinary.</h2>
+            <p class="mt-4 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto">We are building a new standard for American home life—one that is both regenerative and financially sound. Join us in creating a community you'll never want to leave.</p>
+        </div>
+    </header>
+
+    <nav class="sticky top-0 z-50 bg-[#588f55] shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center text-white">
+            <span class="font-bold text-lg">The Maker's Stay</span>
+            <div class="space-x-4 flex-wrap justify-center">
+                <a href="#vision" class="hover:underline">Vision</a>
+                <a href="#opportunity" class="hover:underline">Opportunity</a>
+                <a href="#model" class="hover:underline">Model</a>
+                <a href="#team" class="hover:underline">Team</a>
+                <a href="#clt" class="hover:underline">The Trust</a>
+                <a href="#investment" class="hover:underline">Investment</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-12 lg:py-20">
+        <section id="vision" class="mb-12 lg:mb-20">
+            <h2 class="text-3xl font-bold text-center mb-6">Our Vision</h2>
+            <p class="max-w-4xl mx-auto text-lg text-center">Welcome. We are pioneering a new standard for American home life by creating a community that is both financially viable and deeply regenerative. The Maker's Stay is a revolutionary project designed to meet the growing demand for authentic, sustainable, and purpose-driven living. We are building more than a business; we are building a blueprint for a life you'll never need to escape from.</p>
+        </section>
+
+        <section id="opportunity" class="mb-12 lg:mb-20">
+            <h2 class="text-3xl font-bold text-center mb-6">The Opportunity</h2>
+            <p class="max-w-4xl mx-auto text-lg text-center mb-8">The market is ready for this. We are tapping into three high-growth sectors, and The Maker's Stay is the perfect convergence of these trends, providing a diversified, resilient, and high-margin revenue model.</p>
+            <div class="chart-container">
+                <canvas id="marketChart"></canvas>
+            </div>
+            <div class="max-w-4xl mx-auto mt-8">
+                <p class="text-lg text-center mb-4">The numbers don't lie. Ecotourism, agritourism, and the creator economy are all experiencing explosive growth. Our integrated model allows us to capture value from all three, making our business inherently resilient to market fluctuations.</p>
+            </div>
+        </section>
+
+        <section id="model" class="mb-12 lg:mb-20">
+            <h2 class="text-3xl font-bold text-center mb-6">Our Business Model</h2>
+            <p class="max-w-4xl mx-auto text-lg text-center mb-8">The Maker's Stay is a for-profit ecovillage operated by **Kuyper Property Solutions**. We are creating a three-pillar business designed for success.</p>
+            <div class="max-w-5xl mx-auto">
+                <div class="flex justify-center flex-wrap mb-8 space-x-2">
+                    <button class="model-tab px-6 py-3 rounded-full text-sm font-semibold transition-colors duration-200 bg-[#D5cd68] text-[#404040]" data-target="retreats">Regenerative Retreats</button>
+                    <button class="model-tab px-6 py-3 rounded-full text-sm font-semibold transition-colors duration-200 bg-white text-[#404040] hover:bg-[#D5cd68] hover:text-[#404040]" data-target="farm">Farm-to-Table Experience</button>
+                    <button class="model-tab px-6 py-3 rounded-full text-sm font-semibold transition-colors duration-200 bg-white text-[#404040] hover:bg-[#D5cd68] hover:text-[#404040]" data-target="workshops">Maker Workshops</button>
+                </div>
+                <div id="model-content" class="bg-white p-8 rounded-xl shadow-lg border border-[#D5cd68]">
+                    <div id="retreats" class="model-section space-y-4">
+                        <h3 class="text-2xl font-bold">Regenerative Retreats</h3>
+                        <p class="text-lg">Our luxury eco-accommodations, including our "Royal" and "Terranova" models, will offer guests a unique and restorative experience. Revenue is generated through nightly rentals, with a focus on delivering a premium experience that justifies high rates. These units are designed with a deep connection to the natural landscape, enhancing the guest experience and promoting repeat business.</p>
+                    </div>
+                    <div id="farm" class="model-section space-y-4 hidden">
+                        <h3 class="text-2xl font-bold">Farm-to-Table Experience</h3>
+                        <p class="text-lg">Our on-site regenerative farm is the heart of our community. Utilizing advanced agricultural practices, it will supply our farm-to-table eatery, creating a zero-mile food system. The farm also generates revenue through a direct-to-consumer farm stand, providing a consistent income stream from both guests and the local community.</p>
+                    </div>
+                    <div id="workshops" class="model-section space-y-4 hidden">
+                        <h3 class="text-2xl font-bold">Maker Workshops</h3>
+                        <p class="text-lg">This segment is the soul of our experiential model. We will host expert-led workshops in traditional crafts like pottery and blacksmithing, as well as sustainable living skills. These high-margin events not only generate revenue but also foster a vibrant, engaged community and attract a dedicated audience throughout all seasons.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="why" class="mb-12 lg:mb-20">
+            <h2 class="text-3xl font-bold text-center mb-6">Our Strategic Advantage</h2>
+            <p class="max-w-4xl mx-auto text-lg text-center mb-8">Our vision is supported by a deep understanding of market trends, a strong team, and a commitment to a new way of living. We have built-in advantages that ensure success.</p>
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-[#D5cd68] space-y-4">
+                    <h3 class="text-xl font-bold">Why Michigan?</h3>
+                    <p>Our site selection was a data-driven process that analyzed natural resources, regulatory environment, and demographics. The **215-acre property in Ontonagon** with Lake Superior frontage provides the perfect foundation for our vision.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-[#D5cd68] space-y-4">
+                    <h3 class="text-xl font-bold">Our Team</h3>
+                    <p>We have a collective of professionals with extensive, hands-on experience in construction, welding, and logistics. This in-house expertise allows us to execute our physical development efficiently and cost-effectively, reducing reliance on expensive contractors.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-[#D5cd68] space-y-4">
+                    <h3 class="text-xl font-bold">Silent Accessibility</h3>
+                    <p>Our commitment to **universal design** creates environments that are barrier-free and universally welcoming. This philosophy attracts a wider demographic and builds a community where everyone feels a sense of true belonging, providing a key competitive advantage.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="clt" class="mb-12 lg:mb-20">
+            <h2 class="text-3xl font-bold text-center mb-6">The Community Land Trust (CLT)</h2>
+            <div class="max-w-5xl mx-auto space-y-8 text-center bg-white p-8 rounded-xl shadow-lg border border-[#D5cd68]">
+                <p class="text-lg">This is the visionary core of our model. The land will be placed in a **Community Land Trust (CLT)**, a legal structure that separates land ownership from the ownership of homes. This ensures the ecovillage remains affordable and protected from market speculation, securing its long-term purpose.</p>
+                <p class="text-lg">This structure empowers our **co-creators** to actively participate in the community's governance, fostering a deep sense of ownership and well-being. It is a replicable and scalable solution for building resilient, self-governing communities.</p>
+            </div>
+        </section>
+
+        <section id="investment" class="mb-12 lg:mb-20">
+            <h2 class="text-3xl font-bold text-center mb-6">The Investment Opportunity</h2>
+            <p class="max-w-4xl mx-auto text-lg text-center mb-8">We are not just offering an investment; we are offering an opportunity to be a part of a new standard. We are seeking foundational capital to acquire the Michigan property and begin the first phase of development. Our model is built for transparency and offers two clear exit strategies.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg border border-[#D5cd68]">
+                <h3 class="text-2xl font-bold mb-4 text-center">Interactive Financial Model</h3>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <div>
+                            <label for="units" class="block font-semibold">Number of Units:</label>
+                            <input type="range" id="units" min="1" max="20" value="8" class="w-full">
+                            <span id="units-value" class="block text-center mt-2">8 Units</span>
+                        </div>
+                        <div>
+                            <label for="rate" class="block font-semibold">Average Nightly Rate ($):</label>
+                            <input type="range" id="rate" min="150" max="500" value="300" class="w-full">
+                            <span id="rate-value" class="block text-center mt-2">$300</span>
+                        </div>
+                        <div>
+                            <label for="occupancy" class="block font-semibold">Projected Occupancy Rate (%):</label>
+                            <input type="range" id="occupancy" min="20" max="80" value="40" class="w-full">
+                            <span id="occupancy-value" class="block text-center mt-2">40%</span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="profitChart"></canvas>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <p class="text-lg font-bold text-center mb-2">Total Funding Needed:</p>
+                    <p id="funding-needed" class="text-2xl font-extrabold text-center text-[#588f55]">$4,054,220</p>
+                </div>
+                <div class="mt-8 text-center">
+                    <a href="#" class="inline-block bg-[#404040] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition duration-300">View Full Business Plan</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="ask" class="text-center py-12 lg:py-20">
+            <h2 class="text-3xl font-bold mb-6">The Ask</h2>
+            <p class="text-lg max-w-4xl mx-auto mb-8">We invite you to partner with us in building a scalable, profitable, and meaningful venture. This is your opportunity to invest in a business that proves a regenerative future is not only possible, but profitable and profoundly fulfilling.</p>
+            <div class="inline-block bg-[#D5cd68] text-[#404040] font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition duration-300">Let's build the future together.</div>
+        </section>
+    </main>
+
+    <button id="scrollToTopBtn" class="scroll-to-top">&#9650;</button>
+
+    <script>
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        const modelTabs = document.querySelectorAll('.model-tab');
+        const modelSections = document.querySelectorAll('.model-section');
+        modelTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                modelTabs.forEach(t => t.classList.replace('bg-[#D5cd68]', 'bg-white'));
+                modelTabs.forEach(t => t.classList.replace('text-[#404040]', 'text-[#404040]'));
+                this.classList.replace('bg-white', 'bg-[#D5cd68]');
+                this.classList.replace('text-[#404040]', 'text-[#404040]');
+                const target = this.getAttribute('data-target');
+                modelSections.forEach(section => {
+                    if (section.id === target) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        const marketCtx = document.getElementById('marketChart').getContext('2d');
+        const marketChart = new Chart(marketCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Ecotourism', 'Agritourism', 'Creator Economy'],
+                datasets: [{
+                    label: 'Market Size (Billions USD)',
+                    data: [20, 11, 250],
+                    backgroundColor: [
+                        '#D5cd68',
+                        '#D5cd68',
+                        '#D5cd68'
+                    ],
+                    borderColor: [
+                        '#404040',
+                        '#404040',
+                        '#404040'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const unitsSlider = document.getElementById('units');
+        const rateSlider = document.getElementById('rate');
+        const occupancySlider = document.getElementById('occupancy');
+        const unitsValue = document.getElementById('units-value');
+        const rateValue = document.getElementById('rate-value');
+        const occupancyValue = document.getElementById('occupancy-value');
+        const fundingNeeded = document.getElementById('funding-needed');
+
+        const profitCtx = document.getElementById('profitChart').getContext('2d');
+        const profitChart = new Chart(profitCtx, {
+            type: 'line',
+            data: {
+                labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                datasets: [{
+                    label: 'Projected Net Income ($)',
+                    data: [0, 0, 0, 0, 0],
+                    borderColor: '#404040',
+                    backgroundColor: '#D5cd68',
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        function updateChart() {
+            const units = parseInt(unitsSlider.value);
+            const rate = parseInt(rateSlider.value);
+            const occupancy = parseInt(occupancySlider.value) / 100;
+            const revenue = [
+                units * rate * 365 * occupancy,
+                units * rate * 365 * 0.75,
+                units * rate * 365 * 0.8,
+                units * rate * 365 * 0.85,
+                units * rate * 365 * 0.9
+            ];
+            const expenses = [249000, 260000, 270000, 285000, 300000];
+            const netIncome = revenue.map((rev, i) => rev - expenses[i]);
+            profitChart.data.datasets[0].data = netIncome;
+            profitChart.update();
+        }
+
+        unitsSlider.addEventListener('input', () => {
+            unitsValue.textContent = unitsSlider.value + ' Units';
+            updateChart();
+        });
+        rateSlider.addEventListener('input', () => {
+            rateValue.textContent = '$' + rateSlider.value;
+            updateChart();
+        });
+        occupancySlider.addEventListener('input', () => {
+            occupancyValue.textContent = occupancySlider.value + '%';
+            updateChart();
+        });
+
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        window.onscroll = function() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        };
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        updateChart();
+    </script>
+</body>
+</html>

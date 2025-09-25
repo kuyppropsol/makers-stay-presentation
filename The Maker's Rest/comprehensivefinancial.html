@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: Workshop Budget Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003B46]">The Maker's Stay: A Vision for Creativity</h1>
+            <p class="text-lg text-[#66A5AD] mt-2">A Phased Financial Blueprint for Our Artisan Workshops</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="lg:col-span-3 bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center justify-center text-center">
+                <div>
+                    <p class="text-2xl text-[#07575B]">Total Initial Workshop Investment</p>
+                    <p class="text-6xl font-bold text-[#003B46] my-2">$350,000</p>
+                    <p class="text-md text-gray-600 max-w-2xl mx-auto">This represents the comprehensive budget to fully equip eight distinct, state-of-the-art workshop spaces, creating the heart of our hands-on, experiential community.</p>
+                </div>
+            </div>
+            
+            <div class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-[#003B46] mb-1 text-center">Project Funding Overview</h2>
+                <p class="text-center text-gray-600 mb-4">The workshop budget is a strategic component of the total Phase 1 funding request of $4,054,220. While significant, it is a targeted investment in the core revenue-generating experiences that define The Maker's Stay.</p>
+                <div class="chart-container mx-auto h-[400px] md:h-[450px]">
+                    <canvas id="fundingDonutChart"></canvas>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 text-center my-8">
+                 <h2 class="text-3xl font-bold text-[#003B46]">Phased Workshop Rollout</h2>
+                 <p class="text-lg text-gray-600 mt-2">Our development is structured in three strategic phases to manage capital expenditure and build operational momentum.</p>
+            </div>
+
+            <div class="lg:col-span-3 bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-[#07575B] mb-4 text-center">Phase 1: Foundational Makerspaces (Total: $145,000)</h3>
+                <p class="text-center text-gray-600 mb-6">This initial phase establishes the core, high-demand workshops that will attract a broad range of makers and form the foundation of our community programming.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-1">
+                        <div class="chart-container" style="height: 300px;">
+                            <canvas id="woodworkingChart"></canvas>
+                        </div>
+                        <p class="text-center mt-2 text-gray-600 font-semibold">Woodworking ($65,000)</p>
+                    </div>
+                    <div class="lg:col-span-1">
+                         <div class="chart-container" style="height: 300px;">
+                            <canvas id="potteryChart"></canvas>
+                        </div>
+                        <p class="text-center mt-2 text-gray-600 font-semibold">Pottery & Ceramics ($45,000)</p>
+                    </div>
+                    <div class="lg:col-span-1">
+                         <div class="chart-container" style="height: 300px;">
+                            <canvas id="digitalArtsChart"></canvas>
+                        </div>
+                        <p class="text-center mt-2 text-gray-600 font-semibold">Digital Arts ($35,000)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-[#07575B] mb-4 text-center">Phase 2: Specialized Craft & Artistry (Total: $120,000)</h3>
+                <p class="text-center text-gray-600 mb-6">Building on our foundation, Phase 2 introduces workshops for specialized, high-value crafts, requiring dedicated equipment and controlled environments.</p>
+                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <div class="chart-container" style="height: 350px;">
+                            <canvas id="metalworkingChart"></canvas>
+                        </div>
+                        <p class="text-center mt-2 text-gray-600 font-semibold">Metal Art & Forging ($75,000)</p>
+                    </div>
+                    <div>
+                        <div class="chart-container" style="height: 350px;">
+                            <canvas id="lapidaryChart"></canvas>
+                        </div>
+                        <p class="text-center mt-2 text-gray-600 font-semibold">Lapidary & Jewelry Making ($45,000)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-3 bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-[#07575B] mb-4 text-center">Phase 3: Expressive & Performing Arts (Total: $85,000)</h3>
+                <p class="text-center text-gray-600 mb-6">The final phase expands our creative ecosystem to include spaces for fine arts, music, and performance, completing our multidisciplinary vision.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-1">
+                        <div class="chart-container" style="height: 300px;">
+                            <canvas id="paintingChart"></canvas>
+                        </div>
+                        <p class="text-center mt-2 text-gray-600 font-semibold">Painting & Fine Arts ($25,000)</p>
+                    </div>
+                    <div class="lg:col-span-1">
+                         <div class="chart-container" style="height: 300px;">
+                            <canvas id="musicChart"></canvas>
+                        </div>
+                        <p class="text-center mt-2 text-gray-600 font-semibold">Music Studio ($40,000)</p>
+                    </div>
+                    <div class="lg:col-span-1">
+                         <div class="chart-container" style="height: 300px;">
+                            <canvas id="performingArtsChart"></canvas>
+                        </div>
+                        <p class="text-center mt-2 text-gray-600 font-semibold">Performing Arts ($20,000)</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        function processLabels(labels) {
+            const maxLen = 16;
+            return labels.map(label => {
+                if (label.length <= maxLen) {
+                    return label;
+                }
+                const words = label.split(' ');
+                let currentLine = '';
+                const lines = [];
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxLen) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            });
+        }
+
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const vibrantPalette = ['#003B46', '#07575B', '#66A5AD', '#C4DFE6', '#FFFFFF'];
+        const chartPalette = ['#07575B', '#66A5AD', '#003B46', '#88bdbc', '#549097'];
+
+        new Chart(document.getElementById('fundingDonutChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Land & Construction', 'Workshop Equipment', 'Operations & Other Costs'],
+                datasets: [{
+                    label: 'Funding Allocation',
+                    data: [3324220, 350000, 380000],
+                    backgroundColor: chartPalette,
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                             title: (tooltipItems) => tooltipItems[0].label
+                        }
+                    }
+                }
+            }
+        });
+
+        function createHorizontalBarChart(canvasId, chartTitle, labels, data) {
+            new Chart(document.getElementById(canvasId), {
+                type: 'bar',
+                data: {
+                    labels: processLabels(labels),
+                    datasets: [{
+                        label: 'Estimated Cost ($)',
+                        data: data,
+                        backgroundColor: chartPalette,
+                        borderColor: vibrantPalette[0],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...tooltipTitleCallback,
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value / 1000 + 'k';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: chartTitle
+                        }
+                    }
+                }
+            });
+        }
+
+        createHorizontalBarChart('woodworkingChart', 'Woodworking Equipment', ['Professional Table Saw', 'CNC Router', 'Lathe', 'Planer & Jointer', 'Dust Collection System', 'Bandsaw', 'Hand Tools & Clamps', 'Workbenches & Finishing'], [8000, 15000, 4000, 6000, 7000, 3000, 12000, 10000]);
+        createHorizontalBarChart('potteryChart', 'Pottery Equipment', ["Potter's Wheels (x8)", 'Electric Kilns (x2)', 'Pug Mill', 'Slab Roller', 'Glazing Station & Supplies', 'Work Tables & Shelving', 'Clay & Tools'], [12000, 15000, 5000, 3000, 4000, 4000, 2000]);
+        createHorizontalBarChart('digitalArtsChart', 'Digital Arts Equipment', ['High-Performance PCs (x5)', '3D Printers (x2)', 'Laser Cutter', 'Large Format Printer', 'Software Licenses', 'VR/AR Headsets (x2)', 'Drawing Tablets'], [10000, 6000, 8000, 4000, 3000, 2000, 2000]);
+        createHorizontalBarChart('metalworkingChart', 'Metalworking Equipment', ['Forges (x2) & Ventilation', 'Power Hammer', 'Anvils & Vises (x4)', 'Welders (MIG/TIG)', 'Belt Grinders', 'Plasma Cutter', 'Hand Tools & Safety Gear'], [15000, 12000, 10000, 8000, 9000, 6000, 15000]);
+        createHorizontalBarChart('lapidaryChart', 'Lapidary & Jewelry', ['Cabbing Machines (x3)', 'Slab & Trim Saws', 'Faceting Machine', 'Ultrasonic Cleaners', 'Flex Shafts & Hand Tools', 'Soldering Stations', 'Casting & Polishing Tools'], [9000, 7000, 6000, 3000, 8000, 5000, 7000]);
+        createHorizontalBarChart('paintingChart', 'Fine Arts Supplies', ['Professional Easels (x10)', 'Ventilation System', 'Drying Racks & Storage', 'Lighting System', 'Initial Paint & Canvas Stock', 'Brushes & Mediums'], [4000, 7000, 3000, 4000, 5000, 2000]);
+        createHorizontalBarChart('musicChart', 'Music Studio Equipment', ['Audio Interface & Mixer', 'Studio Monitors', 'Microphones & Stands', 'Acoustic Treatment', 'MIDI Controller & DAW', 'Instruments (Guitar, Bass, Drums)', 'Cables & Accessories'], [7000, 4000, 6000, 8000, 4000, 9000, 2000]);
+        createHorizontalBarChart('performingArtsChart', 'Performing Arts Space', ['Portable Staging/Risers', 'Basic Stage Lighting', 'PA System & Mixer', 'Dance Barres & Mirrors', 'Props & Costume Racks', 'Projector & Screen'], [5000, 4000, 5000, 2000, 2000, 2000]);
+    </script>
+</body>
+</html>
