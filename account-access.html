@@ -200,120 +200,67 @@
                 <!-- Register Tab -->
                 <div class="tab-content p-8" id="register-tab">
                     <h2 class="text-2xl font-bold playfair text-accent mb-4 text-center">Create Account</h2>
-                    <p class="text-gray-300 mb-6 text-center">Register for full investor or team member access.</p>
+                    <p class="text-gray-300 mb-6 text-center">Quick registration for investors and financial partners.</p>
 
                     <form id="registerForm">
                         <div class="space-y-4">
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">First Name *</label>
-                                    <input type="text" name="firstName" required class="floating-input"
-                                        placeholder="John">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">Last Name *</label>
-                                    <input type="text" name="lastName" required class="floating-input"
-                                        placeholder="Smith">
-                                </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Full Name *</label>
+                                <input type="text" name="fullName" required class="floating-input"
+                                    placeholder="John Smith">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Email Address *</label>
                                 <input type="email" name="registerEmail" required class="floating-input"
                                     placeholder="john@example.com">
                             </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Phone Number *</label>
-                                <input type="tel" name="phone" required class="floating-input"
-                                    placeholder="(555) 123-4567">
-                            </div>
 
                             <!-- Account Type Selection -->
                             <div>
-                                <label class="block text-sm font-medium mb-3">Account Type *</label>
-                                <div class="grid md:grid-cols-2 gap-4">
-                                    <label
-                                        class="glass-effect p-4 rounded-lg cursor-pointer hover:bg-opacity-20 transition-all duration-300">
+                                <label class="block text-sm font-medium mb-3">I am a... *</label>
+                                <div class="space-y-3">
+                                    <label class="glass-effect p-4 rounded-lg cursor-pointer hover:bg-opacity-20 transition-all duration-300 flex items-center">
                                         <input type="radio" name="accountType" value="investor" required class="mr-3">
                                         <div>
-                                            <div class="font-bold text-accent">💼 Investor Account</div>
-                                            <div class="text-sm" style="color: rgba(245, 242, 232, 0.7)">Full financial
-                                                access and investment
-                                                tools</div>
+                                            <div class="font-bold text-accent">💼 Potential Investor</div>
+                                            <div class="text-sm" style="color: rgba(245, 242, 232, 0.7)">Interested in investment opportunities</div>
                                         </div>
                                     </label>
-                                    <label
-                                        class="glass-effect p-4 rounded-lg cursor-pointer hover:bg-opacity-20 transition-all duration-300">
+                                    <label class="glass-effect p-4 rounded-lg cursor-pointer hover:bg-opacity-20 transition-all duration-300 flex items-center">
                                         <input type="radio" name="accountType" value="team" required class="mr-3">
                                         <div>
-                                            <div class="font-bold text-accent">🔐 Team Member</div>
-                                            <div class="text-sm" style="color: rgba(245, 242, 232, 0.7)">Administrative
-                                                access and backend tools
-                                            </div>
+                                            <div class="font-bold text-accent">🤝 Financial Partner</div>
+                                            <div class="text-sm" style="color: rgba(245, 242, 232, 0.7)">Finance professional or funding partner</div>
                                         </div>
                                     </label>
                                 </div>
                             </div>
 
-                            <!-- Investor-specific fields -->
-                            <div id="investorFields" class="space-y-4" style="display: none;">
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">Investment Experience</label>
-                                    <select name="experience" class="floating-input">
-                                        <option value="">Select experience level</option>
-                                        <option value="first-time">First-time real estate investor</option>
-                                        <option value="some">Some real estate experience</option>
-                                        <option value="experienced">Experienced investor</option>
-                                        <option value="institutional">Institutional investor</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">Estimated Investment Range</label>
-                                    <select name="investmentRange" class="floating-input">
-                                        <option value="">Select range (optional)</option>
-                                        <option value="10k-50k">$10K - $50K</option>
-                                        <option value="50k-150k">$50K - $150K</option>
-                                        <option value="150k-500k">$150K - $500K</option>
-                                        <option value="500k+">$500K+</option>
-                                    </select>
-                                </div>
-                            </div>
+
 
                             <!-- Team-specific fields -->
                             <div id="teamFields" class="space-y-4" style="display: none;">
                                 <div>
-                                    <label class="block text-sm font-medium mb-2">Role/Department *</label>
-                                    <input type="text" name="role" class="floating-input"
-                                        placeholder="e.g., Development, Finance, Marketing">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">Team Invitation Code *</label>
+                                    <label class="block text-sm font-medium mb-2">Partner Access Code *</label>
                                     <input type="password" name="inviteCode" class="floating-input"
-                                        placeholder="Provided by team admin">
-                                    <p class="text-xs text-gray-400 mt-1">Contact your team administrator for the
-                                        invitation code.</p>
+                                        placeholder="Provided by project lead">
+                                    <p class="text-xs text-gray-400 mt-1">Contact the project lead for your access code.</p>
                                 </div>
                             </div>
 
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">Create Password *</label>
-                                    <input type="password" name="newPassword" required class="floating-input"
-                                        placeholder="Strong password">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">Confirm Password *</label>
-                                    <input type="password" name="confirmPassword" required class="floating-input"
-                                        placeholder="Confirm password">
-                                </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Create Password *</label>
+                                <input type="password" name="newPassword" required class="floating-input"
+                                    placeholder="Enter a secure password">
                             </div>
                         </div>
 
                         <button type="submit" class="floating-button w-full mt-6">
-                            Create Account & Request Approval
+                            Create Account
                         </button>
 
                         <p class="text-xs text-gray-400 mt-4 text-center">
-                            Account creation requires manual approval. You'll receive email confirmation once approved.
+                            You'll receive email confirmation once your account is ready.
                         </p>
                     </form>
                 </div>
@@ -355,18 +302,15 @@
             });
         });
 
-        // Account type selection
+        // Account type selection - show/hide team fields only  
         document.querySelectorAll('input[name="accountType"]').forEach(radio => {
             radio.addEventListener('change', function () {
-                const investorFields = document.getElementById('investorFields');
                 const teamFields = document.getElementById('teamFields');
 
-                if (this.value === 'investor') {
-                    investorFields.style.display = 'block';
-                    teamFields.style.display = 'none';
-                } else if (this.value === 'team') {
-                    investorFields.style.display = 'none';
+                if (this.value === 'team') {
                     teamFields.style.display = 'block';
+                } else {
+                    teamFields.style.display = 'none';
                 }
             });
         });
@@ -463,15 +407,9 @@
         function handleRegistration(formData) {
             const data = Object.fromEntries(formData.entries());
 
-            // Validate passwords match
-            if (data.newPassword !== data.confirmPassword) {
-                alert('Passwords do not match. Please try again.');
-                return;
-            }
-
-            // Validate team invitation code if team member
-            if (data.accountType === 'team' && data.inviteCode !== 'makers-team-2025') {
-                alert('Invalid team invitation code. Please contact your administrator.');
+            // Validate team invitation code if financial partner
+            if (data.accountType === 'team' && data.inviteCode !== 'finance-partner-2025') {
+                alert('Invalid partner access code. Please contact the project lead.');
                 return;
             }
 
@@ -491,7 +429,7 @@
 
                 const message = data.accountType === 'investor'
                     ? `Account created successfully!<br>You can now login with your credentials.`
-                    : `Account created and submitted for approval!<br>You'll receive an email once your team access is approved.`;
+                    : `Partner account created!<br>You'll receive email confirmation once approved.`;
 
                 showSuccess(message, () => {
                     if (data.accountType === 'investor') {
