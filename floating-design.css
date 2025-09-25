@@ -1,0 +1,387 @@
+/* The Maker's Stay - Floating Design System */
+/* Global styles for elevated, sleek design with video background */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #F5f2e8;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Video Background System */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+            rgba(24, 39, 25, 0.85) 0%,
+            rgba(26, 47, 27, 0.9) 50%,
+            rgba(24, 39, 25, 0.85) 100%);
+    backdrop-filter: blur(2px);
+    z-index: -1;
+}
+
+/* Floating Content Container */
+.floating-container {
+    position: relative;
+    z-index: 10;
+    padding: 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.floating-card {
+    background: rgba(245, 242, 232, 0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(188, 168, 109, 0.25);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin: 1rem;
+    box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.3),
+        0 10px 25px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: translateY(0);
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg,
+            rgba(188, 168, 109, 0.1),
+            rgba(188, 168, 109, 0.2),
+            rgba(188, 168, 109, 0.1));
+    border-radius: 22px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.floating-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 35px 70px rgba(0, 0, 0, 0.4),
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.floating-card:hover::before {
+    opacity: 1;
+}
+
+/* Elevated Form Elements */
+.floating-input {
+    background: rgba(245, 242, 232, 0.12);
+    border: 1px solid rgba(188, 168, 109, 0.3);
+    border-radius: 12px;
+    padding: 16px 20px;
+    color: #F5f2e8;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    backdrop-filter: blur(10px);
+    width: 100%;
+}
+
+.floating-input:focus {
+    outline: none;
+    border-color: #Bca86d;
+    box-shadow:
+        0 0 0 4px rgba(188, 168, 109, 0.15),
+        0 8px 25px rgba(0, 0, 0, 0.2);
+    background: rgba(245, 242, 232, 0.18);
+    transform: translateY(-2px);
+}
+
+.floating-input::placeholder {
+    color: rgba(245, 242, 232, 0.6);
+}
+
+/* Elevated Buttons */
+.floating-button {
+    background: linear-gradient(135deg, #Bca86d 0%, #d4c087 100%);
+    color: #182719;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 32px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 8px 25px rgba(188, 168, 109, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.floating-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(188, 168, 109, 0.4);
+}
+
+.floating-button:hover::before {
+    left: 100%;
+}
+
+.floating-button:active {
+    transform: translateY(-1px);
+}
+
+/* Secondary Button */
+.floating-button-secondary {
+    background: rgba(245, 242, 232, 0.1);
+    color: #F5f2e8;
+    border: 1px solid rgba(188, 168, 109, 0.4);
+    border-radius: 12px;
+    padding: 16px 32px;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    backdrop-filter: blur(10px);
+}
+
+.floating-button-secondary:hover {
+    background: rgba(188, 168, 109, 0.15);
+    border-color: #Bca86d;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Tab System */
+.floating-tabs {
+    display: flex;
+    background: rgba(245, 242, 232, 0.05);
+    border-radius: 16px;
+    padding: 4px;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(188, 168, 109, 0.2);
+}
+
+.floating-tab {
+    flex: 1;
+    padding: 14px 24px;
+    background: transparent;
+    color: rgba(245, 242, 232, 0.7);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.floating-tab.active {
+    background: rgba(188, 168, 109, 0.2);
+    color: #F5f2e8;
+    box-shadow: 0 4px 15px rgba(188, 168, 109, 0.2);
+}
+
+.floating-tab:hover:not(.active) {
+    background: rgba(245, 242, 232, 0.08);
+    color: #F5f2e8;
+}
+
+/* Typography */
+.playfair {
+    font-family: 'Playfair Display', serif;
+}
+
+.text-accent {
+    color: #Bca86d;
+}
+
+.floating-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #F5f2e8 0%, #Bca86d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.floating-subtitle {
+    font-size: 1.1rem;
+    text-align: center;
+    color: rgba(245, 242, 232, 0.8);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Ambient Background Elements */
+.ambient-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.1;
+    z-index: 1;
+    animation: drift 20s ease-in-out infinite;
+}
+
+.ambient-orb:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #Bca86d, transparent);
+    animation-delay: 0s;
+}
+
+.ambient-orb:nth-child(2) {
+    top: 60%;
+    right: 10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #2a4f2b, transparent);
+    animation-delay: 10s;
+}
+
+.ambient-orb:nth-child(3) {
+    bottom: 20%;
+    left: 30%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, #Bca86d, transparent);
+    animation-delay: 5s;
+}
+
+@keyframes drift {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(30px, -30px) rotate(90deg);
+    }
+
+    50% {
+        transform: translate(-20px, 20px) rotate(180deg);
+    }
+
+    75% {
+        transform: translate(-30px, -10px) rotate(270deg);
+    }
+}
+
+/* Loading Animation */
+.floating-loader {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(245, 242, 232, 0.3);
+    border-radius: 50%;
+    border-top-color: #Bca86d;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .floating-container {
+        padding: 1rem;
+    }
+
+    .floating-card {
+        padding: 2rem 1.5rem;
+        margin: 0.5rem;
+    }
+
+    .floating-title {
+        font-size: 2rem;
+    }
+
+    .floating-tabs {
+        flex-direction: column;
+    }
+
+    .floating-tab {
+        margin-bottom: 4px;
+    }
+}
+
+/* Utility Classes */
+.glass-effect {
+    background: rgba(245, 242, 232, 0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(188, 168, 109, 0.25);
+}
+
+.elevation-1 {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.elevation-2 {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.elevation-3 {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.elevation-4 {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

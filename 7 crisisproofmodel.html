@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: Crisis-Proof Model</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #182719; 
+            color: #F5f2e8; 
+            padding-bottom: 80px;
+        }
+        h1, h2, h3, h4, .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-fixed-full {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center; z-index: -2;
+        }
+        .content-container {
+            background: rgba(24, 39, 25, 0.85);
+            backdrop-filter: blur(8px);
+            position: relative; z-index: 1;
+        }
+        .text-accent { color: #Bca86d; }
+        .card-style {
+            background: rgba(245, 242, 232, 0.05); 
+            border: 1px solid #333e2d; 
+        }
+        .nav-button {
+            background-color: rgba(188, 168, 109, 0.1);
+            border: 1px solid #Bca86d;
+            color: #Bca86d;
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button:hover {
+            background-color: #Bca86d;
+            color: #182719;
+        }
+        #menu-dropdown {
+            transform-origin: bottom center;
+        }
+        .allocation-tab-button {
+            transition: all 0.3s ease;
+            color: #9ca3af;
+            border-bottom: 2px solid transparent;
+        }
+        .allocation-tab-button.active, .allocation-tab-button:hover {
+            color: #Bca86d;
+            border-bottom-color: #Bca86d;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="bg-fixed-full" style="background: linear-gradient(180deg, #182719 0%, #1b2e1b 25%, #1e311e 75%, #182719 100%);"></div>
+    
+    <!-- Password Protection Check -->
+    <div id="password-redirect" class="fixed inset-0 bg-gray-900 bg-opacity-95 flex items-center justify-center z-50">
+        <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 max-w-md w-full mx-4 text-center">
+            <h2 class="text-2xl font-bold playfair mb-4 text-accent">Access Required</h2>
+            <p class="text-gray-300 mb-6">Please access through the main presentation page.</p>
+            <a href="001iguessthisisfirst.html" class="inline-block bg-accent text-gray-900 px-6 py-3 rounded font-semibold hover:bg-yellow-600 transition-colors">Go to Main Page</a>
+        </div>
+    </div>
+    
+    <div class="content-container min-h-screen">
+        <header class="text-center py-16 px-6">
+            <a href="the_makers_stay_presentation.html" class="text-accent hover:text-F5f2e8 font-medium underline underline-offset-4 transition-colors mb-8 inline-block">&larr; Back to Presentation Overview</a>
+            <h1 class="text-5xl md:text-6xl font-bold playfair">A Crisis-Proof Economic Model</h1>
+        </header>
+
+        <main class="container mx-auto px-6 pb-24">
+            <section class="max-w-4xl mx-auto text-lg leading-relaxed space-y-6 text-center">
+                <p>The Maker's Stay is engineered for resilience through a multi-layered framework of legal, financial, and operational redundancies. This design provides profound stability, transforming a private venture into a foundational community asset that can weather economic volatility.</p>
+            </section>
+            
+            <section class="mt-24 max-w-6xl mx-auto">
+                <h2 class="text-4xl font-bold playfair mb-12 text-center text-accent">The Community Land Trust (CLT) Model</h2>
+                <div class="card-style p-8 rounded-xl text-center mb-12">
+                    <p class="text-lg leading-relaxed">A Community Land Trust is a nonprofit, community-based organization designed to ensure long-term housing affordability and community stewardship of land. The CLT acquires land and holds it in trust for the benefit of the community, separating the ownership of the land from the ownership of the buildings on it. This innovative model allows us to create affordable homeownership opportunities through Kuyper Property Solutions while preserving the land as a community asset in perpetuity.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-5 gap-8 items-start mb-16">
+                    <div class="lg:col-span-3 card-style p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold playfair mb-6 text-center">CLT vs. Traditional HOA</h3>
+                        <div class="grid md:grid-cols-2 gap-8 text-left">
+                            <div>
+                                <h4 class="text-xl font-bold playfair mb-4 text-accent">Our CLT-like Model</h4>
+                                <ul class="space-y-4 text-gray-300">
+                                    <li><strong class="text-white">&rarr; Community Ownership of Land:</strong> The land is held in trust, removing it from the speculative market.</li>
+                                    <li><strong class="text-white">&rarr; Focus on Stewardship:</strong> Prioritizes long-term ecological health and community benefit.</li>
+                                    <li><strong class="text-white">&rarr; Permanent Affordability:</strong> Homeowners own their homes, but the trust owns the land, ensuring resale prices remain affordable.</li>
+                                    <li><strong class="text-white">&rarr; Democratic Governance:</strong> A board structure that includes residents and community members ensures decisions serve the collective good.</li>
+                                </ul>
+                            </div>
+                            <div>
+                               <h4 class="text-xl font-bold playfair mb-4 text-gray-400">Traditional HOA Model</h4>
+                                <ul class="space-y-4 text-gray-300">
+                                    <li>&rarr; Private Ownership of Land: Each homeowner owns their lot, subject to market forces.</li>
+                                    <li>&rarr; Focus on Rule Enforcement: Primarily concerned with maintaining property values through covenants.</li>
+                                     <li>&rarr; Market-Rate Fluctuation: Home prices are subject to the volatility of the real estate market.</li>
+                                     <li>&rarr; Board-Centric Governance: Typically governed by a board of homeowners focused on property management.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 card-style p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold playfair mb-4 text-center">Long-Term Community Equity</h3>
+                         <div class="relative h-64"><canvas id="cltEquityChart"></canvas></div>
+                        <p class="text-sm text-gray-400 mt-4 text-center">The CLT model ensures the land's appreciating value is retained as a permanent asset for the entire community.</p>
+                    </div>
+                </div>
+
+                <!-- Strategic Allocation of Community Profits -->
+                <div class="card-style p-8 md:p-12 rounded-xl">
+                    <h3 class="text-3xl font-bold playfair mb-2 text-center">Strategic Allocation of Community Profits</h3>
+                    <p class="text-center text-gray-400 mb-8">As the project matures, the allocation of profits generated by the CLT will evolve to meet the community's changing needs, shifting from foundational investment to direct resident benefit.</p>
+                    <div class="border-b border-gray-700 flex justify-center space-x-4 md:space-x-8">
+                        <button class="allocation-tab-button text-lg playfair py-3 px-2 active" data-tab="years1-5">Years 1-5</button>
+                        <button class="allocation-tab-button text-lg playfair py-3 px-2" data-tab="years6-10">Years 6-10</button>
+                        <button class="allocation-tab-button text-lg playfair py-3 px-2" data-tab="years11plus">Years 11+</button>
+                    </div>
+                    
+                    <div id="allocation-content" class="mt-8">
+                        <!-- Years 1-5 -->
+                        <div id="years1-5-content" class="grid md:grid-cols-2 gap-8 items-start">
+                            <div class="space-y-4">
+                                <h4 class="text-xl font-bold playfair text-accent mb-2">Foundation & Growth</h4>
+                                <div><p class="font-semibold text-accent">Community Reinvestment (50%)</p><p class="text-sm text-gray-400">Aggressively funding new projects, infrastructure upgrades, and expansion of amenities to enhance community value and future revenue potential.</p></div>
+                                <div><p class="font-semibold text-accent">Stewardship Reserve (30%)</p><p class="text-sm text-gray-400">Building a robust fund for long-term land maintenance, ecological restoration projects, and unforeseen capital repairs.</p></div>
+                                <div><p class="font-semibold text-accent">Resident Dividends (10%)</p><p class="text-sm text-gray-400">Initiating early-stage profit sharing to residents, fostering a sense of ownership and shared success from the outset.</p></div>
+                                <div><p class="font-semibold text-accent">Programming Fund (10%)</p><p class="text-sm text-gray-400">Seeding the budget for educational workshops, community arts projects, and cultural events that enrich resident life.</p></div>
+                            </div>
+                            <div class="relative h-64"><canvas id="allocationChart1-5"></canvas></div>
+                        </div>
+                        <!-- Years 6-10 -->
+                        <div id="years6-10-content" class="hidden grid md:grid-cols-2 gap-8 items-start">
+                             <div class="space-y-4">
+                                <h4 class="text-xl font-bold playfair text-accent mb-2">Maturity & Stability</h4>
+                                <div><p class="font-semibold text-accent">Community Reinvestment (35%)</p><p class="text-sm text-gray-400">Continued strategic investment in value-add projects based on community feedback, such as a natural swimming pond or expanded workshop facilities.</p></div>
+                                <div><p class="font-semibold text-accent">Stewardship Reserve (25%)</p><p class="text-sm text-gray-400">Maintaining a healthy reserve while actively deploying funds for ongoing stewardship initiatives like reforestation or waterway protection.</p></div>
+                                <div><p class="font-semibold text-accent">Resident Dividends (25%)</p><p class="text-sm text-gray-400">Significantly increasing direct financial returns to residents as the business stabilizes and profits grow.</p></div>
+                                <div><p class="font-semibold text-accent">Programming Fund (15%)</p><p class="text-sm text-gray-400">Expanding the scope and quality of community-focused programming, including bringing in guest instructors and artists.</p></div>
+                            </div>
+                            <div class="relative h-64"><canvas id="allocationChart6-10"></canvas></div>
+                        </div>
+                        <!-- Years 11+ -->
+                        <div id="years11plus-content" class="hidden grid md:grid-cols-2 gap-8 items-start">
+                            <div class="space-y-4">
+                                <h4 class="text-xl font-bold playfair text-accent mb-2">Legacy & Abundance</h4>
+                                <div><p class="font-semibold text-accent">Resident Dividends (40%)</p><p class="text-sm text-gray-400">The largest share of profits is now returned directly to the residents, reflecting a mature and highly profitable operation.</p></div>
+                                <div><p class="font-semibold text-accent">Community Reinvestment (20%)</p><p class="text-sm text-gray-400">Focusing on legacy projects and major, long-term enhancements, such as endowing a local scholarship or acquiring adjacent conservation land.</p></div>
+                                <div><p class="font-semibold text-accent">Stewardship Reserve (20%)</p><p class="text-sm text-gray-400">Ensuring the ecological and physical health of the land for generations to come through a self-sustaining endowment model.</p></div>
+                                <div><p class="font-semibold text-accent">Programming Fund (20%)</p><p class="text-sm text-gray-400">Establishing a permanent, self-sustaining endowment for a rich cultural and educational program without relying on annual revenue.</p></div>
+                            </div>
+                           <div class="relative h-64"><canvas id="allocationChart11plus"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <section class="mt-24 max-w-6xl mx-auto">
+                <h2 class="text-4xl font-bold playfair mb-12 text-center text-accent">Financial & Operational Resilience</h2>
+                 <div class="grid md:grid-cols-2 gap-8">
+                     <div class="card-style p-8 rounded-xl flex flex-col">
+                        <h3 class="text-2xl font-bold playfair mb-4">Diversified Revenue Streams</h3>
+                        <p class="text-gray-300 mb-6">Revenue is generated from multiple sources, insulating the project from downturns in any single sector.</p>
+                        <div class="relative h-64 flex-grow"><canvas id="revenueStreamsChart"></canvas></div>
+                    </div>
+                    <div class="card-style p-8 rounded-xl flex flex-col">
+                        <h3 class="text-2xl font-bold playfair mb-4">Low Break-Even Point</h3>
+                        <p class="text-gray-300 mb-6">The model is designed for profitability even in conservative scenarios, providing a significant margin of safety.</p>
+                        <div class="relative h-64 flex-grow"><canvas id="breakEvenChart"></canvas></div>
+                    </div>
+                    <div class="card-style p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold playfair text-accent mb-4">Hard Asset Foundation</h3>
+                        <div class="pt-4 mt-4 border-t border-gray-700/50">
+                            <p class="text-gray-400 mb-4">The core investment is in tangible assets (land and infrastructure), which hold intrinsic value and are less susceptible to market speculation than purely operational businesses.</p>
+                            <ul class="space-y-3 text-gray-300 list-disc list-inside">
+                                <li><strong class="text-white">Intrinsic Value:</strong> Unlike stocks or digital assets, land and buildings have inherent physical value that provides a stable financial floor.</li>
+                                <li><strong class="text-white">Inflation Hedge:</strong> Real assets historically appreciate in value during inflationary periods, protecting invested capital from losing purchasing power.</li>
+                                <li><strong class="text-white">Secure Collateral:</strong> The tangible nature of these assets allows for more favorable and secure financing terms for future phases and refinancing events.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-style p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold playfair text-accent mb-4">Barter & Mutual Credit System</h3>
+                        <div class="pt-4 mt-4 border-t border-gray-700/50">
+                            <p class="text-gray-400 mb-4">An internal economy allows residents and the business to exchange goods and services, reducing reliance on external cash flow and strengthening community interdependence.</p>
+                            <ul class="space-y-3 text-gray-300 list-disc list-inside">
+                                 <li><strong class="text-white">Reduced Cash Dependency:</strong> Allows operations to continue smoothly even with tight external cash flow, as essential services can be exchanged internally.</li>
+                                <li><strong class="text-white">Community Strengthening:</strong> Fosters collaboration, mutual support, and a deeper sense of shared purpose among residents and the business.</li>
+                                <li><strong class="text-white">Economic Velocity:</strong> Keeps value circulating within the community, multiplying the economic impact of every transaction.</li>
+                            </ul>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Global Navigation -->
+    <nav id="global-nav" class="fixed bottom-0 left-0 right-0 bg-gray-900 bg-opacity-70 backdrop-blur-md z-50 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a id="prev-link" href="6 budgetexplorer.html" class="nav-button py-2 px-4 rounded-md">&larr; Previous</a>
+            
+            <div class="relative">
+                <button id="menu-button" class="nav-button py-2 px-6 rounded-md">Menu</button>
+                <div id="menu-dropdown" class="hidden absolute bottom-full mb-2 w-56 bg-gray-800 border border-gray-700 rounded-md shadow-lg">
+                    <a href="001iguessthisisfirst.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Overview</a>
+                    <a href="2 intro.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Introduction</a>
+                    <a href="3 strategiclocation.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Location</a>
+                    <a href="4 financialblueprint.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Financial Blueprint</a>
+                    <a href="5 financialprojections.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Projections</a>
+                    <a href="6 budgetexplorer.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Budget</a>
+                    <a href="7 crisisproofmodel.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Resilience Model</a>
+                    <a href="8 conclusion.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Conclusion</a>
+                </div>
+            </div>
+            
+            <a id="next-link" href="8 conclusion.html" class="nav-button py-2 px-4 rounded-md">Next &rarr;</a>
+        </div>
+    </nav>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const menuDropdown = document.getElementById('menu-dropdown');
+
+            menuButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                menuDropdown.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', () => {
+                if (!menuDropdown.classList.contains('hidden')) {
+                    menuDropdown.classList.add('hidden');
+                }
+            });
+
+            // Chart Logic
+            const chartTextColor = '#F5f2e8';
+            Chart.defaults.color = chartTextColor;
+            Chart.defaults.borderColor = 'rgba(245, 242, 232, 0.2)';
+            
+            // Revenue Streams Chart
+            new Chart(document.getElementById('revenueStreamsChart').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Short-Term Rentals', 'Home Sales (Net)', 'Workshops & Ancillary'],
+                    datasets: [{
+                        data: [77.6, 14.3, 8.1],
+                        backgroundColor: ['#Bca86d', '#82a296', '#515f82'],
+                        borderWidth: 0,
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 20 } } } }
+            });
+
+            // Break-Even Chart (Gauge)
+            new Chart(document.getElementById('breakEvenChart').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Break-Even Point', 'Margin of Safety'],
+                    datasets: [{ data: [46.9, 53.1], backgroundColor: ['#b33e4b', '#82a296'], borderWidth: 0, }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, rotation: -90, circumference: 180, cutout: '70%', plugins: { legend: { display: false }, tooltip: { enabled: false }, title: { display: true, text: '46.9% Break-Even Occupancy', position: 'bottom', padding: { top: -10 }, font: { size: 16, family: "'Playfair Display', serif" } } } }
+            });
+
+            // CLT Equity Chart
+            new Chart(document.getElementById('cltEquityChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Year 1', 'Year 5', 'Year 10', 'Year 20'],
+                    datasets: [{ label: 'Community Land Value', data: [1900000, 2495000, 3277000, 5436000], backgroundColor: '#82a296', }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { ticks: { callback: function(value) { return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(value); } } } } }
+            });
+
+            // Profit Allocation Charts
+            const allocationChartOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 15 } } } };
+            const allocationColors = ['#Bca86d', '#82a296', '#515f82', '#7d8352'];
+
+            new Chart(document.getElementById('allocationChart1-5').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Reinvestment', 'Stewardship', 'Dividends', 'Programming'],
+                    datasets: [{ data: [50, 30, 10, 10], backgroundColor: allocationColors, borderWidth: 0, }]
+                },
+                options: allocationChartOptions
+            });
+             new Chart(document.getElementById('allocationChart6-10').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Reinvestment', 'Stewardship', 'Dividends', 'Programming'],
+                    datasets: [{ data: [35, 25, 25, 15], backgroundColor: allocationColors, borderWidth: 0, }]
+                },
+                options: allocationChartOptions
+            });
+             new Chart(document.getElementById('allocationChart11plus').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Dividends', 'Reinvestment', 'Stewardship', 'Programming'],
+                    datasets: [{ data: [40, 20, 20, 20], backgroundColor: allocationColors, borderWidth: 0, }]
+                },
+                options: allocationChartOptions
+            });
+
+            // Allocation Tabs
+            const allocTabs = document.querySelectorAll('.allocation-tab-button');
+            allocTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    allocTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    document.querySelectorAll('#allocation-content > div').forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    document.getElementById(tab.dataset.tab + '-content').classList.remove('hidden');
+                });
+            });
+
+        });
+        
+        // Check authentication
+        if (sessionStorage.getItem('makersstay-access') !== 'granted') {
+            // Show redirect overlay
+        } else {
+            document.getElementById('password-redirect').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+

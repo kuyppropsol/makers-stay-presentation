@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Commitment - The Maker's Stay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="floating-design.css">
+    <style>
+        .commitment-level {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .commitment-level:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(188, 168, 109, 0.2);
+        }
+
+        .commitment-level.selected {
+            border-color: #Bca86d;
+            background-color: rgba(188, 168, 109, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop playsinline>
+        <source src="177074-857013212_small.mp4" type="video/mp4">
+        <source src="177223-857013274_small.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Video Overlay -->
+    <div class="video-overlay"></div>
+
+    <!-- Ambient Background Elements -->
+    <div class="ambient-orb"></div>
+    <div class="ambient-orb"></div>
+    <div class="ambient-orb"></div>
+
+    <!-- Floating Content Container -->
+    <div class="floating-container">
+        <!-- Header -->
+        <header class="text-center mb-8 fade-in">
+            <h1 class="floating-title playfair">Investment Commitment</h1>
+            <p class="floating-subtitle max-w-2xl mx-auto">Help us understand your investment intentions for The
+                Maker's Stay project</p>
+            <nav class="mt-6">
+                <a href="overview.html" class="text-accent hover:text-yellow-300 mr-6 transition-colors">← Back to
+                    Presentation</a>
+                <a href="investor-portal.html" class="text-accent hover:text-yellow-300 transition-colors">Investor
+                    Portal</a>
+            </nav>
+        </header>
+
+        <!-- Main Form -->
+        <div class="max-w-4xl mx-auto">
+            <form id="commitmentForm" class="floating-card fade-in">
+
+                <!-- Personal Information -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold playfair text-accent mb-6">Contact Information</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Full Name *</label>
+                            <input type="text" name="fullName" required class="form-input w-full p-3 rounded-lg"
+                                placeholder="John Smith">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email Address *</label>
+                            <input type="email" name="email" required class="form-input w-full p-3 rounded-lg"
+                                placeholder="john@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Phone Number</label>
+                            <input type="tel" name="phone" class="form-input w-full p-3 rounded-lg"
+                                placeholder="(555) 123-4567">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Location</label>
+                            <input type="text" name="location" class="form-input w-full p-3 rounded-lg"
+                                placeholder="City, State">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Investment Commitment Level -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold playfair text-accent mb-6">Investment Commitment Level</h2>
+                    <p class="text-gray-300 mb-6">Select the range that best represents your potential investment
+                        commitment:</p>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="commitment-level card-style p-6 rounded-xl text-center" data-level="exploring"
+                            data-amount="$0">
+                            <h3 class="text-lg font-bold text-accent mb-2">🔍 Exploring</h3>
+                            <p class="text-2xl font-bold mb-2">$0</p>
+                            <p class="text-sm text-gray-300">Just learning about the opportunity</p>
+                            <input type="radio" name="commitmentLevel" value="exploring" class="hidden">
+                        </div>
+
+                        <div class="commitment-level card-style p-6 rounded-xl text-center" data-level="interested"
+                            data-amount="$10,000 - $50,000">
+                            <h3 class="text-lg font-bold text-accent mb-2">🤔 Interested</h3>
+                            <p class="text-2xl font-bold mb-2">$10K - $50K</p>
+                            <p class="text-sm text-gray-300">Considering a smaller investment</p>
+                            <input type="radio" name="commitmentLevel" value="interested" class="hidden">
+                        </div>
+
+                        <div class="commitment-level card-style p-6 rounded-xl text-center" data-level="committed"
+                            data-amount="$50,000 - $150,000">
+                            <h3 class="text-lg font-bold text-accent mb-2">💼 Committed</h3>
+                            <p class="text-2xl font-bold mb-2">$50K - $150K</p>
+                            <p class="text-sm text-gray-300">Ready for substantial investment</p>
+                            <input type="radio" name="commitmentLevel" value="committed" class="hidden">
+                        </div>
+
+                        <div class="commitment-level card-style p-6 rounded-xl text-center" data-level="major"
+                            data-amount="$150,000 - $500,000">
+                            <h3 class="text-lg font-bold text-accent mb-2">🏆 Major Investor</h3>
+                            <p class="text-2xl font-bold mb-2">$150K - $500K</p>
+                            <p class="text-sm text-gray-300">Significant capital commitment</p>
+                            <input type="radio" name="commitmentLevel" value="major" class="hidden">
+                        </div>
+
+                        <div class="commitment-level card-style p-6 rounded-xl text-center" data-level="strategic"
+                            data-amount="$500,000+">
+                            <h3 class="text-lg font-bold text-accent mb-2">⭐ Strategic Partner</h3>
+                            <p class="text-2xl font-bold mb-2">$500K+</p>
+                            <p class="text-sm text-gray-300">Partnership-level investment</p>
+                            <input type="radio" name="commitmentLevel" value="strategic" class="hidden">
+                        </div>
+
+                        <div class="commitment-level card-style p-6 rounded-xl text-center" data-level="custom"
+                            data-amount="Custom Amount">
+                            <h3 class="text-lg font-bold text-accent mb-2">💬 Custom</h3>
+                            <p class="text-2xl font-bold mb-2">Other</p>
+                            <p class="text-sm text-gray-300">Specify your amount</p>
+                            <input type="radio" name="commitmentLevel" value="custom" class="hidden">
+                        </div>
+                    </div>
+
+                    <!-- Custom amount input (hidden by default) -->
+                    <div id="customAmountSection" class="mt-6 hidden">
+                        <label class="block text-sm font-medium mb-2">Custom Investment Amount</label>
+                        <input type="text" name="customAmount" class="form-input w-full p-3 rounded-lg"
+                            placeholder="$100,000">
+                    </div>
+                </section>
+
+                <!-- Investment Timeline -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold playfair text-accent mb-6">Investment Timeline</h2>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <label class="commitment-level card-style p-4 rounded-xl text-center cursor-pointer">
+                            <input type="radio" name="timeline" value="immediate" class="hidden">
+                            <h3 class="font-bold text-accent mb-2">🚀 Immediate</h3>
+                            <p class="text-sm text-gray-300">Ready to invest within 30 days</p>
+                        </label>
+
+                        <label class="commitment-level card-style p-4 rounded-xl text-center cursor-pointer">
+                            <input type="radio" name="timeline" value="short-term" class="hidden">
+                            <h3 class="font-bold text-accent mb-2">📅 Short-term</h3>
+                            <p class="text-sm text-gray-300">Within 2-6 months</p>
+                        </label>
+
+                        <label class="commitment-level card-style p-4 rounded-xl text-center cursor-pointer">
+                            <input type="radio" name="timeline" value="long-term" class="hidden">
+                            <h3 class="font-bold text-accent mb-2">⏰ Long-term</h3>
+                            <p class="text-sm text-gray-300">6+ months planning</p>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Additional Information -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold playfair text-accent mb-6">Additional Information</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Investment Experience</label>
+                            <select name="experience" class="form-input w-full p-3 rounded-lg">
+                                <option value="">Select your experience level</option>
+                                <option value="first-time">First-time real estate investor</option>
+                                <option value="some">Some real estate investment experience</option>
+                                <option value="experienced">Experienced real estate investor</option>
+                                <option value="professional">Professional/institutional investor</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Primary Interest</label>
+                            <select name="interest" class="form-input w-full p-3 rounded-lg">
+                                <option value="">What interests you most?</option>
+                                <option value="financial-returns">Financial returns</option>
+                                <option value="sustainability">Sustainability/environmental impact</option>
+                                <option value="community">Community building</option>
+                                <option value="innovation">Innovative housing concepts</option>
+                                <option value="diversification">Portfolio diversification</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Questions or Comments</label>
+                            <textarea name="comments" rows="4" class="form-input w-full p-3 rounded-lg"
+                                placeholder="Any specific questions about the investment opportunity or project details?"></textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Preferred Contact Method -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold playfair text-accent mb-6">Follow-up Preference</h2>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <label class="commitment-level card-style p-4 rounded-xl text-center cursor-pointer">
+                            <input type="radio" name="contactMethod" value="email" class="hidden">
+                            <h3 class="font-bold text-accent mb-2">📧 Email</h3>
+                            <p class="text-sm text-gray-300">Detailed information via email</p>
+                        </label>
+
+                        <label class="commitment-level card-style p-4 rounded-xl text-center cursor-pointer">
+                            <input type="radio" name="contactMethod" value="phone" class="hidden">
+                            <h3 class="font-bold text-accent mb-2">📞 Phone Call</h3>
+                            <p class="text-sm text-gray-300">Direct phone conversation</p>
+                        </label>
+
+                        <label class="commitment-level card-style p-4 rounded-xl text-center cursor-pointer">
+                            <input type="radio" name="contactMethod" value="meeting" class="hidden">
+                            <h3 class="font-bold text-accent mb-2">🤝 In-Person Meeting</h3>
+                            <p class="text-sm text-gray-300">Face-to-face discussion</p>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit"
+                        class="bg-accent text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-600 transition-colors">
+                        Submit Investment Commitment
+                    </button>
+                    <p class="text-sm text-gray-400 mt-4">This information helps us tailor our follow-up to your
+                        specific investment goals.</p>
+                </div>
+            </form>
+        </div>
+
+        <!-- Success Message (Hidden by default) -->
+        <div id="successMessage" class="max-w-2xl mx-auto mt-8 card-style p-8 rounded-xl text-center hidden">
+            <h2 class="text-2xl font-bold playfair text-accent mb-4">Thank You!</h2>
+            <p class="text-gray-300 mb-4">Your investment commitment has been received. We'll follow up within 24-48
+                hours with next steps.</p>
+            <div class="space-x-4">
+                <a href="overview.html"
+                    class="bg-accent text-black px-6 py-2 rounded font-medium hover:bg-yellow-600 transition-colors">Back
+                    to Presentation</a>
+                <a href="investor-portal.html" class="text-accent hover:text-yellow-300">Visit Investor Portal</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle commitment level selection
+        document.querySelectorAll('.commitment-level').forEach(card => {
+            card.addEventListener('click', function () {
+                // Remove selected class from all cards in this section
+                const section = this.closest('section');
+                section.querySelectorAll('.commitment-level').forEach(c => c.classList.remove('selected'));
+
+                // Add selected class to clicked card
+                this.classList.add('selected');
+
+                // Select the radio button
+                const radio = this.querySelector('input[type="radio"]');
+                if (radio) radio.checked = true;
+
+                // Show/hide custom amount section
+                const customSection = document.getElementById('customAmountSection');
+                if (this.dataset.level === 'custom') {
+                    customSection.classList.remove('hidden');
+                } else {
+                    customSection.classList.add('hidden');
+                }
+            });
+        });
+
+        // Handle form submission
+        document.getElementById('commitmentForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            // Add selected commitment details
+            const selectedCommitment = document.querySelector('.commitment-level.selected[data-level]');
+            if (selectedCommitment) {
+                data.commitmentAmount = selectedCommitment.dataset.amount;
+                data.commitmentLevel = selectedCommitment.dataset.level;
+            }
+
+            // Simulate form submission (replace with actual endpoint)
+            console.log('Investment Commitment Data:', data);
+
+            // Show success message
+            document.getElementById('commitmentForm').style.display = 'none';
+            document.getElementById('successMessage').classList.remove('hidden');
+
+            // In production, send to your backend:
+            // fetch('/api/investment-commitment', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(data)
+            // });
+        });
+    </script>
+</body>
+
+</html>

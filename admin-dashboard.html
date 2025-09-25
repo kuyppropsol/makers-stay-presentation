@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Dashboard - The Maker's Stay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+        .playfair { font-family: 'Playfair Display', serif; }
+        .text-accent { color: #fbbf24; }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-900">
+    <div class="container mx-auto px-6 py-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold playfair mb-2 text-accent">Investor Dashboard</h1>
+            <p class="text-gray-400">The Maker's Stay - Back Office Management</p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-gray-800 p-6 rounded-xl border border-gray-700">
+                <h3 class="text-sm font-medium text-gray-400 mb-2">Total Requests</h3>
+                <p class="text-2xl font-bold text-white" id="total-requests">0</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-xl border border-gray-700">
+                <h3 class="text-sm font-medium text-gray-400 mb-2">Pending Review</h3>
+                <p class="text-2xl font-bold text-yellow-400" id="pending-requests">0</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-xl border border-gray-700">
+                <h3 class="text-sm font-medium text-gray-400 mb-2">Approved</h3>
+                <p class="text-2xl font-bold text-green-400" id="approved-requests">0</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-xl border border-gray-700">
+                <h3 class="text-sm font-medium text-gray-400 mb-2">Total Interest</h3>
+                <p class="text-2xl font-bold text-accent" id="total-interest">$0</p>
+            </div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 mb-8">
+            <div class="flex flex-wrap gap-4">
+                <select id="status-filter" class="p-2 bg-gray-700 border border-gray-600 rounded text-white">
+                    <option value="">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+                <select id="investment-filter" class="p-2 bg-gray-700 border border-gray-600 rounded text-white">
+                    <option value="">All Investment Ranges</option>
+                    <option value="50k-100k">$50K - $100K</option>
+                    <option value="100k-250k">$100K - $250K</option>
+                    <option value="250k-500k">$250K - $500K</option>
+                    <option value="500k-1m">$500K - $1M</option>
+                    <option value="1m+">$1M+</option>
+                </select>
+                <input type="date" id="date-filter" class="p-2 bg-gray-700 border border-gray-600 rounded text-white">
+                <button onclick="exportData()" class="px-4 py-2 bg-accent text-gray-900 rounded font-medium hover:bg-yellow-500">
+                    Export CSV
+                </button>
+            </div>
+        </div>
+
+        <!-- Requests Table -->
+        <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
+            <div class="p-6 border-b border-gray-700">
+                <h2 class="text-xl font-semibold">Investor Access Requests</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-750">
+                        <tr class="text-left text-sm font-medium text-gray-400">
+                            <th class="p-4">Date</th>
+                            <th class="p-4">Name</th>
+                            <th class="p-4">Email</th>
+                            <th class="p-4">Company</th>
+                            <th class="p-4">Investment Range</th>
+                            <th class="p-4">Status</th>
+                            <th class="p-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="requests-table" class="text-sm">
+                        <!-- Dynamic content will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Request Detail Modal -->
+        <div id="detail-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+            <div class="flex items-center justify-center min-h-screen p-4">
+                <div class="bg-gray-800 rounded-xl max-w-4xl w-full max-h-screen overflow-y-auto">
+                    <div class="p-6 border-b border-gray-700 flex justify-between items-center">
+                        <h3 class="text-xl font-semibold">Investor Request Details</h3>
+                        <button onclick="closeModal()" class="text-gray-400 hover:text-white">✕</button>
+                    </div>
+                    <div id="modal-content" class="p-6">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:3001/api'; // Change to your production URL
+        let authToken = localStorage.getItem('adminToken');
+        let currentRequests = [];
+        
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!authToken) {
+                showLoginForm();
+            } else {
+                loadRequests();
+            }
+        });
+        
+        // Show login form
+        function showLoginForm() {
+            document.body.innerHTML = `
+                <div class="min-h-screen flex items-center justify-center bg-gray-900 p-4">
+                    <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 max-w-md w-full">
+                        <h2 class="text-2xl font-bold playfair mb-6 text-accent text-center">Admin Login</h2>
+                        
+                        <!-- Regular Login Form -->
+                        <div id="regular-login">
+                            <form id="login-form">
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium mb-2">Email/Username</label>
+                                    <input type="text" name="username" placeholder="karolsue@themakersstay.com" required 
+                                           class="w-full p-3 bg-gray-700 border border-gray-600 rounded text-white focus:border-accent focus:outline-none">
+                                </div>
+                                <div class="mb-6">
+                                    <label class="block text-sm font-medium mb-2">Password</label>
+                                    <input type="password" name="password" required 
+                                           class="w-full p-3 bg-gray-700 border border-gray-600 rounded text-white focus:border-accent focus:outline-none">
+                                </div>
+                                <button type="submit" class="w-full bg-accent text-gray-900 p-3 rounded font-semibold hover:bg-yellow-600 mb-4">
+                                    Login
+                                </button>
+                            </form>
+                            
+                            <div class="text-center">
+                                <button onclick="showEmergencyLogin()" class="text-red-400 hover:text-red-300 text-sm underline">
+                                    🚨 Emergency Access (Lost Password)
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Emergency Login Form -->
+                        <div id="emergency-login" class="hidden">
+                            <div class="mb-4 p-4 bg-red-900 bg-opacity-30 border border-red-600 rounded">
+                                <h3 class="text-red-200 font-semibold mb-2">🚨 Emergency Access</h3>
+                                <p class="text-red-300 text-sm">Use backup methods if you've lost access to your regular login.</p>
+                            </div>
+                            
+                            <form id="emergency-form">
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium mb-2">Your Email Address</label>
+                                    <input type="email" id="emergency-email" placeholder="karolsue@themakersstay.com" required 
+                                           class="w-full p-3 bg-gray-700 border border-gray-600 rounded text-white focus:border-accent focus:outline-none">
+                                    <button type="button" onclick="loadEmergencyMethods()" class="mt-2 text-accent text-sm hover:text-yellow-500">
+                                        → Load Available Methods
+                                    </button>
+                                </div>
+                                
+                                <div id="emergency-methods" class="hidden">
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium mb-2">Emergency Method</label>
+                                        <select id="emergency-method" class="w-full p-3 bg-gray-700 border border-gray-600 rounded text-white">
+                                            <option value="">Select backup method...</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="mb-6">
+                                        <label class="block text-sm font-medium mb-2">
+                                            <span id="secret-label">Emergency Secret</span>
+                                        </label>
+                                        <input type="password" id="emergency-secret" required 
+                                               class="w-full p-3 bg-gray-700 border border-gray-600 rounded text-white focus:border-accent focus:outline-none">
+                                        <div id="secret-hint" class="text-xs text-gray-400 mt-1"></div>
+                                    </div>
+                                    
+                                    <button type="submit" class="w-full bg-red-600 text-white p-3 rounded font-semibold hover:bg-red-700 mb-4">
+                                        Emergency Access
+                                    </button>
+                                </div>
+                            </form>
+                            
+                            <div class="text-center">
+                                <button onclick="showRegularLogin()" class="text-accent hover:text-yellow-500 text-sm underline">
+                                    ← Back to Regular Login
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="login-error" class="hidden mt-4 p-3 bg-red-900 bg-opacity-50 border border-red-600 rounded text-red-200 text-sm"></div>
+                    </div>
+                </div>
+            `;
+            
+            // Regular login handler
+            document.getElementById('login-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                const credentials = Object.fromEntries(formData.entries());
+                
+                try {
+                    const response = await fetch(`${API_BASE_URL}/admin/login`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(credentials)
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (response.ok) {
+                        authToken = result.token;
+                        localStorage.setItem('adminToken', authToken);
+                        
+                        if (result.user.role === 'master') {
+                            localStorage.setItem('adminRole', 'master');
+                        }
+                        
+                        location.reload();
+                    } else {
+                        let errorMsg = result.error;
+                        if (result.attemptsRemaining !== undefined) {
+                            errorMsg += ` (${result.attemptsRemaining} attempts remaining)`;
+                        }
+                        document.getElementById('login-error').textContent = errorMsg;
+                        document.getElementById('login-error').classList.remove('hidden');
+                    }
+                } catch (error) {
+                    document.getElementById('login-error').textContent = 'Login failed. Please try again.';
+                    document.getElementById('login-error').classList.remove('hidden');
+                }
+            });
+            
+            // Emergency login handler
+            document.getElementById('emergency-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('emergency-email').value;
+                const method = document.getElementById('emergency-method').value;
+                const secret = document.getElementById('emergency-secret').value;
+                
+                if (!method) {
+                    document.getElementById('login-error').textContent = 'Please select an emergency method.';
+                    document.getElementById('login-error').classList.remove('hidden');
+                    return;
+                }
+                
+                try {
+                    const response = await fetch(`${API_BASE_URL}/admin/emergency-login`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            method: method.split('|')[0],
+                            identifier: method.split('|')[1],
+                            secret: secret
+                        })
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (response.ok) {
+                        authToken = result.token;
+                        localStorage.setItem('adminToken', authToken);
+                        localStorage.setItem('emergencyLogin', 'true');
+                        
+                        alert('🚨 Emergency access granted! Please update your regular password immediately.');
+                        location.reload();
+                    } else {
+                        document.getElementById('login-error').textContent = result.error;
+                        document.getElementById('login-error').classList.remove('hidden');
+                    }
+                } catch (error) {
+                    document.getElementById('login-error').textContent = 'Emergency login failed. Please try again.';
+                    document.getElementById('login-error').classList.remove('hidden');
+                }
+            });
+        }
+        
+        // Emergency login functions
+        function showEmergencyLogin() {
+            document.getElementById('regular-login').classList.add('hidden');
+            document.getElementById('emergency-login').classList.remove('hidden');
+            document.getElementById('login-error').classList.add('hidden');
+        }
+        
+        function showRegularLogin() {
+            document.getElementById('emergency-login').classList.add('hidden');
+            document.getElementById('regular-login').classList.remove('hidden');
+            document.getElementById('login-error').classList.add('hidden');
+        }
+        
+        async function loadEmergencyMethods() {
+            const email = document.getElementById('emergency-email').value;
+            if (!email) {
+                alert('Please enter your email address first.');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/emergency-methods/${encodeURIComponent(email)}`);
+                const result = await response.json();
+                
+                if (response.ok) {
+                    const methodSelect = document.getElementById('emergency-method');
+                    methodSelect.innerHTML = '<option value="">Select backup method...</option>';
+                    
+                    result.methods.forEach(method => {
+                        const option = document.createElement('option');
+                        option.value = `${method.method}|${method.identifier}`;
+                        option.textContent = method.description;
+                        methodSelect.appendChild(option);
+                    });
+                    
+                    document.getElementById('emergency-methods').classList.remove('hidden');
+                    
+                    // Add method-specific hints
+                    methodSelect.addEventListener('change', function() {
+                        const selectedMethod = this.value.split('|')[0];
+                        const hints = {
+                            'recovery-phrase': 'Enter the complete recovery phrase (multiple words)',
+                            'security-question': 'What is The Maker\'s Stay focus? (hint: sustainable...)',
+                            'emergency-pin': 'Enter your 6-digit emergency PIN'
+                        };
+                        
+                        document.getElementById('secret-hint').textContent = hints[selectedMethod] || '';
+                        document.getElementById('secret-label').textContent = selectedMethod === 'recovery-phrase' ? 'Recovery Phrase' :
+                            selectedMethod === 'security-question' ? 'Security Answer' : 'Emergency PIN';
+                    });
+                } else {
+                    alert('No emergency methods found for this email address.');
+                }
+            } catch (error) {
+                alert('Failed to load emergency methods. Please try again.');
+            }
+        }
+        
+        // Load and display investor requests
+        async function loadRequests() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/requests`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.status === 401) {
+                    localStorage.removeItem('adminToken');
+                    showLoginForm();
+                    return;
+                }
+                
+                currentRequests = await response.json();
+                const tableBody = document.getElementById('requests-table');
+                
+                // Update stats
+                document.getElementById('total-requests').textContent = currentRequests.length;
+                document.getElementById('pending-requests').textContent = currentRequests.filter(r => r.status === 'pending').length;
+                document.getElementById('approved-requests').textContent = currentRequests.filter(r => r.status === 'approved').length;
+                
+                // Calculate total interest
+                const investmentRanges = {
+                    '50k-100k': 75000,
+                    '100k-250k': 175000,
+                    '250k-500k': 375000,
+                    '500k-1m': 750000,
+                    '1m+': 1500000
+                };
+                
+                const totalInterest = currentRequests.reduce((sum, r) => {
+                    return sum + (investmentRanges[r.investmentRange] || 0);
+                }, 0);
+                
+                document.getElementById('total-interest').textContent = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 0
+                }).format(totalInterest);
+                
+                // Populate table
+                tableBody.innerHTML = currentRequests.map((request, index) => {
+                    const date = new Date(request.submittedAt).toLocaleDateString();
+                    const status = request.status || 'pending';
+                    const statusColor = {
+                        'pending': 'text-yellow-400',
+                        'approved': 'text-green-400',
+                        'rejected': 'text-red-400'
+                    }[status];
+                    
+                    return `
+                        <tr class="border-b border-gray-700 hover:bg-gray-750">
+                            <td class="p-4">${date}</td>
+                            <td class="p-4">${request.firstName} ${request.lastName}</td>
+                            <td class="p-4">${request.email}</td>
+                            <td class="p-4">${request.company || '-'}</td>
+                            <td class="p-4">${request.investmentRange || '-'}</td>
+                            <td class="p-4 ${statusColor} font-medium">${status.toUpperCase()}</td>
+                            <td class="p-4">
+                                <button onclick="viewDetails(${index})" class="text-accent hover:text-yellow-500 mr-3">View</button>
+                                <button onclick="approveRequest(${request.id})" class="text-green-400 hover:text-green-300 mr-3">Approve</button>
+                                <button onclick="rejectRequest(${request.id})" class="text-red-400 hover:text-red-300">Reject</button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+                
+            } catch (error) {
+                console.error('Error loading requests:', error);
+                alert('Failed to load requests. Please refresh the page.');
+            }
+        }
+        
+        function viewDetails(index) {
+            const request = currentRequests[index];
+            
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-accent">Contact Information</h4>
+                        <div class="space-y-2 text-sm">
+                            <p><strong>Name:</strong> ${request.firstName} ${request.lastName}</p>
+                            <p><strong>Email:</strong> ${request.email}</p>
+                            <p><strong>Phone:</strong> ${request.phone || 'Not provided'}</p>
+                            <p><strong>Company:</strong> ${request.company || 'Not provided'}</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-accent">Investment Details</h4>
+                        <div class="space-y-2 text-sm">
+                            <p><strong>Investment Range:</strong> ${request.investmentRange || 'Not specified'}</p>
+                            <p><strong>Timeline:</strong> ${request.timeline || 'Not specified'}</p>
+                            <p><strong>Referral Source:</strong> ${request.referralSource || 'Not provided'}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <h4 class="text-lg font-semibold mb-4 text-accent">Accreditation Status</h4>
+                        <div class="text-sm">
+                            ${request.accreditation && request.accreditation.length > 0 ? 
+                                '<ul class="list-disc list-inside space-y-1">' + 
+                                request.accreditation.map(acc => {
+                                    const labels = {
+                                        'income': 'Individual income exceeding $200,000 ($300,000 joint)',
+                                        'networth': 'Net worth exceeding $1,000,000',
+                                        'professional': 'Investment professional with credentials',
+                                        'entity': 'Entity with assets exceeding $5,000,000'
+                                    };
+                                    return '<li>' + labels[acc] + '</li>';
+                                }).join('') + '</ul>'
+                                : 'No accreditation information provided'
+                            }
+                        </div>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <h4 class="text-lg font-semibold mb-4 text-accent">Submission Details</h4>
+                        <div class="text-sm space-y-1">
+                            <p><strong>Submitted:</strong> ${new Date(request.submittedAt).toLocaleString()}</p>
+                            <p><strong>User Agent:</strong> ${request.userAgent}</p>
+                            <p><strong>Referrer:</strong> ${request.referrerUrl || 'Direct'}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex gap-4">
+                    <button onclick="approveRequest(${index}); closeModal();" class="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                        Approve Access
+                    </button>
+                    <button onclick="rejectRequest(${index}); closeModal();" class="px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                        Reject Request
+                    </button>
+                    <button onclick="sendCustomEmail(${index})" class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                        Send Custom Email
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('detail-modal').classList.remove('hidden');
+        }
+        
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+        }
+        
+        async function approveRequest(requestId) {
+            if (!confirm('Approve this investor request? An approval email will be sent automatically.')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/approve/${requestId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    alert('Request approved! Access credentials have been sent via email.');
+                    loadRequests();
+                } else {
+                    alert('Error approving request: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Approval error:', error);
+                alert('Failed to approve request. Please try again.');
+            }
+        }
+        
+        async function rejectRequest(requestId) {
+            if (!confirm('Reject this investor request? A rejection email will be sent automatically.')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/reject/${requestId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    alert('Request rejected. Notification email has been sent.');
+                    loadRequests();
+                } else {
+                    alert('Error rejecting request: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Rejection error:', error);
+                alert('Failed to reject request. Please try again.');
+            }
+        }
+        
+        function sendCustomEmail(index) {
+            const requests = JSON.parse(localStorage.getItem('investorRequests') || '[]');
+            const request = requests[index];
+            const subject = encodeURIComponent('The Maker\'s Stay Investment Opportunity');
+            const body = encodeURIComponent(`Dear ${request.firstName},\n\nThank you for your interest in The Maker's Stay investment opportunity.\n\nBest regards,\nThe Maker's Stay Team`);
+            
+            window.location.href = `mailto:${request.email}?subject=${subject}&body=${body}`;
+        }
+        
+        function exportData() {
+            const requests = JSON.parse(localStorage.getItem('investorRequests') || '[]');
+            
+            // Create CSV content
+            const headers = ['Date', 'Name', 'Email', 'Phone', 'Company', 'Investment Range', 'Timeline', 'Status', 'Accreditation'];
+            const csvContent = [
+                headers.join(','),
+                ...requests.map(r => [
+                    new Date(r.submittedAt).toLocaleDateString(),
+                    `"${r.firstName} ${r.lastName}"`,
+                    r.email,
+                    r.phone || '',
+                    `"${r.company || ''}"`,
+                    r.investmentRange || '',
+                    r.timeline || '',
+                    r.status || 'pending',
+                    `"${(r.accreditation || []).join('; ')}"`
+                ].join(','))
+            ].join('\n');
+            
+            // Download CSV
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `investor-requests-${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadRequests);
+        
+        // Auto-refresh every 30 seconds
+        setInterval(loadRequests, 30000);
+    </script>
+</body>
+</html>

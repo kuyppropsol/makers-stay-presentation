@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Temporary Access - The Maker's Stay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="floating-design.css">
+</head>
+
+<body>
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop playsinline>
+        <source src="177074-857013212_small.mp4" type="video/mp4">
+        <source src="177223-857013274_small.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Video Overlay -->
+    <div class="video-overlay"></div>
+
+    <!-- Ambient Background Elements -->
+    <div class="ambient-orb"></div>
+    <div class="ambient-orb"></div>
+    <div class="ambient-orb"></div>
+
+    <!-- Floating Content Container -->
+    <div class="floating-container">
+        <div class="w-full max-w-md">
+            <header class="text-center mb-8 fade-in">
+                <h1 class="floating-title playfair">Verify Access</h1>
+                <p class="floating-subtitle">Enter the temporary access code sent to your email</p>
+            </header>
+
+            <div class="floating-card fade-in">
+                <form id="verifyForm">
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium mb-2">Email Address</label>
+                        <input type="email" id="emailInput" readonly class="floating-input"
+                            style="background: rgba(245, 242, 232, 0.05);">
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium mb-2">Access Code *</label>
+                        <input type="text" name="accessCode" required
+                            class="floating-input text-center text-2xl tracking-widest" placeholder="ABC123"
+                            maxlength="6">
+                        <p class="text-xs text-gray-400 mt-2">Check your email for the 6-character code</p>
+                    </div>
+
+                    <button type="submit" class="floating-button w-full">
+                        Verify & Access Presentation
+                    </button>
+                </form>
+
+                <div class="text-center mt-6">
+                    <p class="text-sm text-gray-400 mb-2">Didn't receive the code?</p>
+                    <button onclick="resendCode()" class="text-accent hover:text-yellow-300 text-sm">Resend Access
+                        Code</button>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="account-access.html" class="text-gray-400 hover:text-accent text-sm">← Back to Access
+                        Options</a>
+                </div>
+            </div>
+
+            <!-- Success Message -->
+            <div id="successMessage" class="floating-card text-center mt-6" style="display: none;">
+                <div class="text-4xl mb-4">✅</div>
+                <h3 class="text-xl font-bold playfair text-accent mb-2">Access Verified!</h3>
+                <p style="color: rgba(245, 242, 232, 0.8); margin-bottom: 1rem;">Redirecting to presentation...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get email from URL parameter and populate
+        window.addEventListener('load', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+            if (email) {
+                document.getElementById('emailInput').value = email;
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('verifyForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const accessCode = formData.get('accessCode');
+            const email = document.getElementById('emailInput').value;
+
+            if (!email) {
+                alert('Email address is required. Please go back and try again.');
+                return;
+            }
+
+            // Verify the access code
+            const storedData = localStorage.getItem('tempAccess_' + email);
+            if (!storedData) {
+                alert('No temporary access found for this email. Please request a new code.');
+                return;
+            }
+
+            const tempData = JSON.parse(storedData);
+
+            // Check if code has expired
+            if (Date.now() > tempData.expires) {
+                alert('Your access code has expired. Please request a new one.');
+                localStorage.removeItem('tempAccess_' + email);
+                return;
+            }
+
+            // Verify the code
+            if (accessCode.toUpperCase() === tempData.tempCode) {
+                // Store visitor session data
+                sessionStorage.setItem('visitorData', JSON.stringify({
+                    fullName: tempData.fullName,
+                    email: tempData.email,
+                    company: tempData.company,
+                    userType: 'visitor',
+                    accessType: 'temporary',
+                    verifiedAt: new Date().toISOString()
+                }));
+
+                // Show success and redirect
+                document.getElementById('successMessage').style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = 'overview.html?type=visitor';
+                }, 2000);
+            } else {
+                alert('Invalid access code. Please check your email and try again.');
+            }
+        });
+
+        // Resend code function
+        function resendCode() {
+            const email = document.getElementById('emailInput').value;
+            if (!email) {
+                alert('Email address is required.');
+                return;
+            }
+
+            // Check if we have existing temp data
+            const existingData = localStorage.getItem('tempAccess_' + email);
+            if (existingData) {
+                const data = JSON.parse(existingData);
+                // Generate new code and extend expiry
+                data.tempCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+                data.expires = Date.now() + (24 * 60 * 60 * 1000); // 24 hours
+                localStorage.setItem('tempAccess_' + email, JSON.stringify(data));
+
+                alert(`New access code generated: ${data.tempCode}\\n(In production, this would be sent to your email)`);
+            } else {
+                alert('No access request found. Please go back and request access first.');
+            }
+        }
+
+        // Auto-format access code input
+        document.querySelector('input[name="accessCode"]').addEventListener('input', function (e) {
+            this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        });
+    </script>
+</body>
+
+</html>

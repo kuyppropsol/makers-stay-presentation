@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: Strategic Location</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #182719; /* Restored correct background */
+            color: #F5f2e8; /* Cream */
+             padding-bottom: 80px;
+        }
+        h1, h2, h3, h4, .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-fixed-full {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center; z-index: -2;
+        }
+        .content-container {
+            background: rgba(24, 39, 25, 0.85); /* Restored correct overlay */
+            backdrop-filter: blur(8px);
+            position: relative; z-index: 1;
+        }
+        .text-accent { color: #Bca86d; } /* Muted Gold */
+        .card-style {
+            background: rgba(245, 242, 232, 0.05); /* Transparent cream */
+            border: 1px solid #333e2d; /* Restored correct border */
+        }
+        .nav-button {
+            background-color: rgba(188, 168, 109, 0.1);
+            border: 1px solid #Bca86d;
+            color: #Bca86d;
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button:hover {
+            background-color: #Bca86d;
+            color: #182719;
+        }
+        #menu-dropdown {
+            transform-origin: bottom center;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="bg-fixed-full" style="background: linear-gradient(45deg, #182719 0%, #1c2d1c 30%, #203220 70%, #1a2b1a 100%);"></div>
+    
+    <!-- Password Protection Check -->
+    <div id="password-redirect" class="fixed inset-0 bg-gray-900 bg-opacity-95 flex items-center justify-center z-50">
+        <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 max-w-md w-full mx-4 text-center">
+            <h2 class="text-2xl font-bold playfair mb-4 text-accent">Access Required</h2>
+            <p class="text-gray-300 mb-6">Please access through the main presentation page.</p>
+            <a href="001iguessthisisfirst.html" class="inline-block bg-accent text-gray-900 px-6 py-3 rounded font-semibold hover:bg-yellow-600 transition-colors">Go to Main Page</a>
+        </div>
+    </div>
+    
+    <div class="content-container min-h-screen">
+        <header class="text-center py-16 px-6">
+            <a href="the_makers_stay_presentation.html" class="text-accent hover:underline mb-8 inline-block">&larr; Back to Presentation Overview</a>
+            <h1 class="text-5xl md:text-6xl font-bold playfair">Strategic Location: The Upper Peninsula</h1>
+        </header>
+
+        <main class="container mx-auto px-6 pb-24">
+            <section class="max-w-4xl mx-auto text-lg leading-relaxed space-y-6 text-center">
+                <p>The choice of Michigan's Upper Peninsula (U.P.) is not an incidental detail but a cornerstone of our strategic plan. The region's unique confluence of economic trends, cultural identity, and natural assets makes it a premier, de-risked location for a venture like The Maker's Stay.</p>
+            </section>
+            
+            <div class="mt-24 grid md:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
+                <div class="space-y-8">
+                    <div class="card-style p-8 rounded-xl">
+                        <h2 class="text-3xl font-bold playfair mb-4 text-accent">Economic & Market Strength</h2>
+                        <ul class="space-y-4 text-gray-300">
+                           <li>&rarr; <strong class="text-white">Robust Tourism:</strong> A top-performing market with a thriving four-season tourism economy ensures consistent demand.</li>
+                           <li>&rarr; <strong class="text-white">"Maker" Culture:</strong> A deep-rooted, flourishing artisan and maker culture provides a rich talent pool and authentic local experiences.</li>
+                           <li>&rarr; <strong class="text-white">Supportive Government:</strong> State and local policies actively support agritourism, land preservation, and small business development.</li>
+                        </ul>
+                    </div>
+                     <div class="card-style p-8 rounded-xl">
+                        <h2 class="text-3xl font-bold playfair mb-4 text-accent">Unparalleled Natural Assets</h2>
+                        <ul class="space-y-4 text-gray-300">
+                           <li>&rarr; <strong class="text-white">Vast Wilderness:</strong> Millions of acres of national forests, hundreds of miles of shoreline, and pristine natural beauty.</li>
+                           <li>&rarr; <strong class="text-white">Outdoor Recreation Hub:</strong> Premier destination for hiking, kayaking, skiing, and snowmobiling, attracting a diverse visitor base.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="card-style p-8 rounded-xl">
+                        <h3 class="text-xl font-bold playfair mb-4 text-center">U.P. Tourism Growth (Annual Visitors)</h3>
+                        <div class="relative h-80">
+                            <canvas id="tourismChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card-style p-8 rounded-xl">
+                        <h3 class="text-xl font-bold playfair mb-4 text-center">Key Economic Sectors</h3>
+                        <div class="relative h-80">
+                            <canvas id="economyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="mt-24 max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold playfair mb-12 text-center text-accent">Deep Community Alignment & Mutual Benefit</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card-style p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold playfair mb-4">Economic Synergy</h3>
+                        <p class="text-gray-300">We create high-quality, year-round jobs, source materials and services from local suppliers, and attract tourism revenue that circulates within the local economy. Our model is designed to be a catalyst for, not a drain on, regional prosperity.</p>
+                    </div>
+                    <div class="card-style p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold playfair mb-4">Cultural Preservation</h3>
+                        <p class="text-gray-300">The project celebrates and provides a platform for the U.P.'s rich artisan and "maker" culture. Our workshops and community spaces are designed to be resources for local artists and creators, preserving and promoting the region's unique identity.</p>
+                    </div>
+                    <div class="card-style p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold playfair mb-4">Shared Infrastructure Goals</h3>
+                        <p class="text-gray-300">Our investment in renewable energy, resilient infrastructure, and sustainable land management aligns with the long-term goals of local governments focused on smart, sustainable development and environmental stewardship.</p>
+                    </div>
+                     <div class="card-style p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold playfair mb-4">Community Asset Building</h3>
+                        <p class="text-gray-300">The Maker's Stay is not an isolated retreat. Through our CLT-like model and community-focused amenities, we are building a long-term asset that provides value and stability for residents and the broader community, not just for transient guests.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Global Navigation -->
+    <nav id="global-nav" class="fixed bottom-0 left-0 right-0 bg-gray-900 bg-opacity-70 backdrop-blur-md z-50 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a id="prev-link" href="2 intro.html" class="nav-button py-2 px-4 rounded-md">&larr; Previous</a>
+            
+            <div class="relative">
+                <button id="menu-button" class="nav-button py-2 px-6 rounded-md">Menu</button>
+                <div id="menu-dropdown" class="hidden absolute bottom-full mb-2 w-56 bg-gray-800 border border-gray-700 rounded-md shadow-lg">
+                    <a href="001iguessthisisfirst.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Overview</a>
+                    <a href="2 intro.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Introduction</a>
+                    <a href="3 strategiclocation.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Location</a>
+                    <a href="4 financialblueprint.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Financial Blueprint</a>
+                    <a href="5 financialprojections.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Projections</a>
+                    <a href="6 budgetexplorer.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Budget</a>
+                    <a href="7 crisisproofmodel.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Resilience Model</a>
+                    <a href="8 conclusion.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Conclusion</a>
+                </div>
+            </div>
+            
+            <a id="next-link" href="4 financialblueprint.html" class="nav-button py-2 px-4 rounded-md">Next &rarr;</a>
+        </div>
+    </nav>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navigation Menu
+            const menuButton = document.getElementById('menu-button');
+            const menuDropdown = document.getElementById('menu-dropdown');
+            menuButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                menuDropdown.classList.toggle('hidden');
+            });
+            document.addEventListener('click', () => {
+                if (!menuDropdown.classList.contains('hidden')) {
+                    menuDropdown.classList.add('hidden');
+                }
+            });
+
+            // Chart Logic
+            const chartTextColor = '#F5f2e8';
+            Chart.defaults.color = chartTextColor;
+            Chart.defaults.borderColor = 'rgba(245, 242, 232, 0.2)';
+
+            // Tourism Chart
+            const tourismCtx = document.getElementById('tourismChart').getContext('2d');
+            new Chart(tourismCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2021', '2022', '2023', '2024'],
+                    datasets: [{
+                        label: 'Annual Visitors (in millions)',
+                        data: [2.1, 2.3, 2.5, 2.8, 3.1],
+                        backgroundColor: 'rgba(188, 168, 109, 0.2)',
+                        borderColor: '#Bca86d',
+                        tension: 0.3,
+                        fill: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, grid: { color: 'rgba(245, 242, 232, 0.1)' } } }
+                }
+            });
+
+            // Economy Chart
+            const economyCtx = document.getElementById('economyChart').getContext('2d');
+            new Chart(economyCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Tourism & Hospitality', 'Artisan & Retail', 'Agriculture', 'Other'],
+                    datasets: [{
+                        label: 'Economic Sectors',
+                        data: [45, 25, 15, 15],
+                        backgroundColor: ['#Bca86d', '#82a296', '#7d8352', '#515f82'],
+                        borderWidth: 0,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 15 } }
+                    }
+                }
+            });
+        });
+        
+        // Check authentication
+        if (sessionStorage.getItem('makersstay-access') !== 'granted') {
+            // Show redirect overlay
+        } else {
+            document.getElementById('password-redirect').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+

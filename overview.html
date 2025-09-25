@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Maker's Stay: A regenerative ecovillage investment opportunity in Michigan's Upper Peninsula. $3.4M creates a crisis-proof, high-return venture.">
+    <meta name="keywords" content="ecovillage, investment, sustainable development, Upper Peninsula, real estate, regenerative agriculture">
+    <meta property="og:title" content="The Maker's Stay: Investor Presentation">
+    <meta property="og:description" content="A visionary ecovillage investment opportunity designed for resilience and profitability.">
+    <meta property="og:type" content="website">
+    <title>The Maker's Stay: An Investor Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #182719; 
+            color: #F5f2e8; 
+            padding-bottom: 80px; /* Add padding for the nav bar */
+        }
+        h1, h2, h3, h4, .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-fixed-full {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center; z-index: -2;
+        }
+        .content-container {
+            background: rgba(24, 39, 25, 0.85);
+            backdrop-filter: blur(8px);
+            position: relative; z-index: 1;
+        }
+        .text-accent { color: #Bca86d; }
+        .card-style {
+            background: rgba(245, 242, 232, 0.05); 
+            border: 1px solid #333e2d; 
+            transition: all 0.3s ease;
+        }
+        .card-style:hover {
+            transform: translateY(-5px);
+            border-color: #Bca86d;
+        }
+        .nav-button {
+            background-color: rgba(188, 168, 109, 0.1);
+            border: 1px solid #Bca86d;
+            color: #Bca86d;
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button:hover {
+            background-color: #Bca86d;
+            color: #182719;
+        }
+        #menu-dropdown {
+            transform-origin: bottom center;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="bg-fixed-full" style="background: linear-gradient(135deg, #182719 0%, #1a2b1b 50%, #1c2f1d 100%);"></div>
+    
+    <!-- Password Protection Overlay -->
+    <div id="password-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-95 flex items-center justify-center z-50">
+        <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 max-w-md w-full mx-4">
+            <h2 class="text-2xl font-bold playfair mb-4 text-center text-accent">Private Investor Access</h2>
+            <p class="text-gray-300 mb-6 text-center text-sm">This presentation contains confidential investment information.</p>
+            <div class="space-y-4">
+                <input type="password" id="password-input" placeholder="Enter access password" class="w-full p-3 bg-gray-700 border border-gray-600 rounded text-white focus:border-accent focus:outline-none">
+                <button onclick="checkPassword()" class="w-full bg-accent text-gray-900 p-3 rounded font-semibold hover:bg-yellow-600 transition-colors">Access Presentation</button>
+            </div>
+            <p id="error-message" class="text-red-400 text-sm mt-2 text-center hidden">Incorrect password. Please try again.</p>
+        </div>
+    </div>
+    
+    <div class="content-container min-h-screen">
+        <header class="text-center py-16 px-6">
+            <h1 class="text-5xl md:text-7xl font-bold playfair">The Maker's Stay</h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-300">A Two-Part Blueprint for a Regenerative Future</p>
+        </header>
+
+        <main class="container mx-auto px-6 pb-24">
+            <section class="max-w-3xl mx-auto text-lg leading-relaxed space-y-6 text-center">
+                <div class="bg-yellow-900 bg-opacity-30 border border-yellow-600 rounded-lg p-4 mb-6">
+                    <p class="text-yellow-200 font-semibold text-sm">⚠️ CONFIDENTIAL INVESTOR MATERIALS</p>
+                    <p class="text-yellow-100 text-sm mt-2">This presentation contains confidential business information intended solely for qualified accredited investors. By proceeding, you acknowledge you meet accredited investor requirements and agree to maintain confidentiality.</p>
+                </div>
+                <p>Welcome to The Maker's Stay, a visionary ecovillage conceived as a direct and strategic response to the systemic dynamics of modern economies. This presentation outlines a pioneering enterprise designed not only to be resilient in the face of uncertainty but to emerge as a vital hub for its community.</p>
+                <p class="text-accent font-semibold">To fully benefit from this resource, please explore every section. This will allow you to access all supporting data, interactive models, and additional content.</p>
+            </section>
+            
+            <div class="mt-24 grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Cards for each section -->
+                <a href="2 intro.html" class="card-style p-8 rounded-xl block text-center">
+                    <h2 class="text-2xl font-bold playfair mb-4 text-accent">Introduction</h2>
+                    <p class="text-gray-400">The Vision: A detailed look at the project's foundational "why" and strategic blueprint.</p>
+                </a>
+                <a href="3 strategiclocation.html" class="card-style p-8 rounded-xl block text-center">
+                    <h2 class="text-2xl font-bold playfair mb-4 text-accent">Strategic Location</h2>
+                    <p class="text-gray-400">An in-depth analysis of the Upper Peninsula of Michigan as the ideal project site.</p>
+                </a>
+                <a href="4 financialblueprint.html" class="card-style p-8 rounded-xl block text-center">
+                    <h2 class="text-2xl font-bold playfair mb-4 text-accent">Financial Blueprint</h2>
+                    <p class="text-gray-400">A breakdown of the project's phased financial strategy and funding requirements.</p>
+                </a>
+                <a href="5 financialprojections.html" class="card-style p-8 rounded-xl block text-center">
+                    <h2 class="text-2xl font-bold playfair mb-4 text-accent">Financial Projections</h2>
+                    <p class="text-gray-400">Interactive, data-driven models of the project's economic performance.</p>
+                </a>
+                <a href="6 budgetexplorer.html" class="card-style p-8 rounded-xl block text-center">
+                    <h2 class="text-2xl font-bold playfair mb-4 text-accent">Budget Explorer</h2>
+                    <p class="text-gray-400">A granular, line-item deep dive into the total project cost and expenditures.</p>
+                </a>
+                 <a href="7 crisisproofmodel.html" class="card-style p-8 rounded-xl block text-center">
+                    <h2 class="text-2xl font-bold playfair mb-4 text-accent">Crisis-Proof Model</h2>
+                    <p class="text-gray-400">Exploring the legal and operational frameworks that ensure long-term stability.</p>
+                </a>
+            </div>
+             <div class="mt-8 flex justify-center">
+                <a href="8 conclusion.html" class="card-style p-8 rounded-xl block text-center w-full max-w-sm">
+                    <h2 class="text-2xl font-bold playfair mb-4 text-accent">Conclusion & CTA</h2>
+                    <p class="text-gray-400">An invitation to partner with us and build a lasting legacy.</p>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Global Navigation -->
+    <nav id="global-nav" class="fixed bottom-0 left-0 right-0 bg-gray-900 bg-opacity-70 backdrop-blur-md z-50 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a id="prev-link" href="8 conclusion.html" class="nav-button py-2 px-4 rounded-md">&larr; Previous</a>
+            
+            <div class="relative">
+                <button id="menu-button" class="nav-button py-2 px-6 rounded-md">Menu</button>
+                <div id="menu-dropdown" class="hidden absolute bottom-full mb-2 w-56 bg-gray-800 border border-gray-700 rounded-md shadow-lg">
+                    <a href="001iguessthisisfirst.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Overview</a>
+                    <a href="2 intro.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Introduction</a>
+                    <a href="3 strategiclocation.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Location</a>
+                    <a href="4 financialblueprint.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Financial Blueprint</a>
+                    <a href="5 financialprojections.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Projections</a>
+                    <a href="6 budgetexplorer.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Budget</a>
+                    <a href="7 crisisproofmodel.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Resilience Model</a>
+                    <a href="8 conclusion.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Conclusion</a>
+                </div>
+            </div>
+            
+            <a id="next-link" href="2 intro.html" class="nav-button py-2 px-4 rounded-md">Next &rarr;</a>
+        </div>
+    </nav>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const menuDropdown = document.getElementById('menu-dropdown');
+
+            menuButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                menuDropdown.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', () => {
+                if (!menuDropdown.classList.contains('hidden')) {
+                    menuDropdown.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Password Protection
+        const API_BASE_URL = 'http://localhost:3001/api'; // Change to your production URL
+        
+        // Check for access token in URL or session
+        const urlParams = new URLSearchParams(window.location.search);
+        const tokenFromUrl = urlParams.get('token');
+        let accessToken = tokenFromUrl || sessionStorage.getItem('investorAccessToken');
+        
+        async function verifyAccess() {
+            if (!accessToken) {
+                showPasswordFallback();
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/verify-access`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: accessToken })
+                });
+                
+                const result = await response.json();
+                
+                if (result.valid) {
+                    // Store token and investor ID
+                    sessionStorage.setItem('investorAccessToken', accessToken);
+                    sessionStorage.setItem('investorId', result.investorId);
+                    
+                    // Hide password overlay
+                    document.getElementById('password-overlay').style.display = 'none';
+                    
+                    // Start tracking
+                    startPageTracking();
+                    
+                    // Clean URL
+                    if (tokenFromUrl) {
+                        window.history.replaceState({}, document.title, window.location.pathname);
+                    }
+                } else {
+                    showPasswordFallback();
+                }
+            } catch (error) {
+                console.error('Token verification failed:', error);
+                showPasswordFallback();
+            }
+        }
+        
+        function showPasswordFallback() {
+            // Check for old session storage
+            if (sessionStorage.getItem('makersstay-access') === 'granted') {
+                document.getElementById('password-overlay').style.display = 'none';
+                startPageTracking();
+                return;
+            }
+            
+            // Show password overlay
+            document.getElementById('password-overlay').style.display = 'flex';
+        }
+        
+        function checkPassword() {
+            const password = document.getElementById('password-input').value;
+            const correctPassword = 'MakersStay2025!';
+            
+            if (password === correctPassword) {
+                document.getElementById('password-overlay').style.display = 'none';
+                sessionStorage.setItem('makersstay-access', 'granted');
+                startPageTracking();
+            } else {
+                document.getElementById('error-message').classList.remove('hidden');
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-input').focus();
+            }
+        }
+        
+        function startPageTracking() {
+            const sessionId = Math.random().toString(36).substring(2, 15);
+            const startTime = Date.now();
+            
+            // Track page view if we have an access token
+            if (accessToken) {
+                fetch(`${API_BASE_URL}/track-page`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        token: accessToken,
+                        pageName: 'Overview',
+                        pageUrl: window.location.href,
+                        sessionId: sessionId,
+                        timeSpent: 0
+                    })
+                }).catch(err => console.log('Tracking failed:', err));
+                
+                // Track time spent when leaving page
+                window.addEventListener('beforeunload', () => {
+                    const timeSpent = Math.round((Date.now() - startTime) / 1000);
+                    navigator.sendBeacon(`${API_BASE_URL}/track-page`, JSON.stringify({
+                        token: accessToken,
+                        pageName: 'Overview',
+                        pageUrl: window.location.href,
+                        sessionId: sessionId,
+                        timeSpent: timeSpent
+                    }));
+                });
+            }
+        }
+        
+        // Initialize - try token verification first
+        verifyAccess();
+        
+        // Enter key support
+        document.getElementById('password-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>
+
