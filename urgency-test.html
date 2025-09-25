@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urgency System Test</title>
+    <style>
+        body {
+            background: #1a2f1b;
+            color: #f5f2e8;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ef4444;
+            padding: 20px;
+            border: 2px solid #ef4444;
+            border-radius: 10px;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 30px rgba(239, 68, 68, 0.6);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🚨 URGENCY SYSTEM ACTIVE 🚨</h1>
+
+    <div class="countdown pulse" id="testCountdown">
+        ⏰ Loading countdown...
+    </div>
+
+    <p>Countdown to December 31st, 2025 funding deadline</p>
+
+    <div style="margin-top: 40px;">
+        <h2>✅ Urgency Features Added:</h2>
+        <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
+            <li>🕐 Real-time countdown timers across all pages</li>
+            <li>🚨 Scarcity messaging (7 of 12 positions remaining)</li>
+            <li>💫 Pulse animations on critical action buttons</li>
+            <li>⚡ 24-hour response guarantees</li>
+            <li>🎯 Priority processing for early submissions</li>
+            <li>🔒 December 31st hard deadline messaging</li>
+            <li>📊 Progress bars showing funding status</li>
+            <li>🚀 Urgent call-to-action language</li>
+        </ul>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const deadline = new Date('December 31, 2025 23:59:59').getTime();
+            const now = new Date().getTime();
+            const timeLeft = deadline - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            const countdownElement = document.getElementById('testCountdown');
+            if (timeLeft > 0) {
+                countdownElement.innerHTML = `⏰ ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                countdownElement.innerHTML = '🚨 DEADLINE REACHED';
+            }
+        }
+
+        // Update every second for demo
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+
+</html>

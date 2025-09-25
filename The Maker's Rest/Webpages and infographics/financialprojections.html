@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: Financial Projections</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            height: 50vh;
+            width: 100%;
+        }
+         .variable-slider-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1.5rem;
+            background-color: #f9fafb;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .variable-slider {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-emerald-900 text-gray-800">
+    <main class="p-6 md:p-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-white rounded-lg shadow-xl p-8 mb-12">
+                <a href="the_makers_stay_presentation.html" class="text-green-600 hover:underline mb-8 block">&larr; Back to Presentation</a>
+                <h1 class="text-5xl font-bold mb-6 text-gray-900">Data-Driven Financial Projections</h1>
+                
+                <div class="prose lg:prose-xl max-w-none">
+                    <p>Our financial model is built on a multi-faceted ecosystem of reinforcing revenue streams, providing inherent resilience and a clear path to profitability. The projections are based on conservative market assumptions and demonstrate strong growth potential over a ten-year horizon. We have also conducted a thorough scenario analysis to stress-test our model against potential market fluctuations.</p>
+                </div>
+
+                <div class="mt-12">
+                    <h2 class="text-3xl font-bold mb-4 text-center">10-Year Growth Outlook</h2>
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-inner border border-gray-200">
+                        <div class="chart-container">
+                            <canvas id="growthChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12">
+                     <h2 class="text-3xl font-bold mb-4 text-center">First-Year Scenario Analysis & Interactive Model</h2>
+                     <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-gray-50 p-8 rounded-lg shadow-inner border border-gray-200">
+                            <div class="chart-container" style="height: 60vh;">
+                                <canvas id="scenarioChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="variable-slider-container">
+                            <h3 class="text-2xl font-semibold">Play with the Variables</h3>
+                            <p class="text-sm">Adjust the sliders to see how changes in key variables could impact the first-year net income under different scenarios. This interactive model demonstrates the project's financial resilience and the strength of its diversified revenue streams.</p>
+                            <div class="variable-slider mt-4">
+                                <label for="occupancyRate">Occupancy Rate for "The Maker's Rest": <span id="occupancyRateValue" class="font-bold">46.9</span>%</label>
+                                <input type="range" id="occupancyRate" min="30" max="90" value="46.9" step="0.1" class="w-full">
+                            </div>
+                            <div class="variable-slider mt-4">
+                                <label for="homeSales">Number of Home Sales for "Kuyper Property Solutions": <span id="homeSalesValue" class="font-bold">2</span></label>
+                                <input type="range" id="homeSales" min="0" max="10" value="2" step="1" class="w-full">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Growth Chart
+            const growthCtx = document.getElementById('growthChart')?.getContext('2d');
+            if (growthCtx) {
+                const years = ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6', 'Year 7', 'Year 8', 'Year 9', 'Year 10'];
+                const revenue = [530163, 600000, 675000, 750000, 825000, 900000, 975000, 1050000, 1125000, 1200000];
+                const expenses = [249000, 260000, 270000, 285000, 300000, 315000, 330000, 345000, 360000, 375000];
+                const netIncome = [281163, 340000, 405000, 465000, 525000, 585000, 645000, 705000, 765000, 825000];
+
+                new Chart(growthCtx, {
+                    type: 'line',
+                    data: {
+                        labels: years,
+                        datasets: [{
+                            label: 'Total Annual Revenue',
+                            data: revenue,
+                            borderColor: 'rgba(22, 163, 74, 1)',
+                            backgroundColor: 'rgba(22, 163, 74, 0.2)',
+                            fill: true,
+                        }, {
+                            label: 'Total Annual Expenses',
+                            data: expenses,
+                            borderColor: 'rgba(239, 68, 68, 1)',
+                            backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                            fill: true,
+                        }, {
+                            label: 'Net Income',
+                            data: netIncome,
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                            fill: true,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) { return '$' + (value / 1000) + 'k'; }
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) { label += ': '; }
+                                        if (context.parsed.y !== null) {
+                                            label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Scenario Chart
+            const scenarioCtx = document.getElementById('scenarioChart')?.getContext('2d');
+            if (scenarioCtx) {
+                const scenarioChart = new Chart(scenarioCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Projected Case', 'Worst Case', 'Best Case'],
+                        datasets: [{
+                            label: 'Total Net Income',
+                            data: [304563, 82531, 595145],
+                             backgroundColor: ['rgba(59, 130, 246, 0.7)', 'rgba(239, 68, 68, 0.7)', 'rgba(22, 163, 74, 0.7)'],
+                            borderColor: ['rgba(59, 130, 246, 1)', 'rgba(239, 68, 68, 1)', 'rgba(22, 163, 74, 1)'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) { return '$' + (value / 1000) + 'k'; }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) { label += ': '; }
+                                        if (context.parsed.x !== null) {
+                                            label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.x);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                // Interactive variables
+                const occupancyRateSlider = document.getElementById('occupancyRate');
+                const homeSalesSlider = document.getElementById('homeSales');
+                const occupancyRateValue = document.getElementById('occupancyRateValue');
+                const homeSalesValue = document.getElementById('homeSalesValue');
+
+                function updateScenarioChart() {
+                    const occupancy = parseFloat(occupancyRateSlider.value);
+                    const sales = parseInt(homeSalesSlider.value);
+
+                    occupancyRateValue.textContent = occupancy.toFixed(1);
+                    homeSalesValue.textContent = sales;
+                    
+                    const baseMakerRestIncome = 281163;
+                    const baseKuyperIncome = 23400; 
+
+                    // Projected Case
+                    const projectedMakerRest = baseMakerRestIncome * (occupancy / 46.9);
+                    const projectedKuyper = (baseKuyperIncome / 2) * sales;
+                    const projectedTotal = projectedMakerRest + projectedKuyper;
+
+                    // Worst Case
+                    const worstMakerRest = (baseMakerRestIncome * 0.5) * (occupancy / 46.9) ;
+                    const worstKuyper = (4200 / 1) * sales;
+                    const worstTotal = worstMakerRest + worstKuyper;
+
+                    // Best Case (Corrected Logic)
+                    const bestCaseMakerRestAt60pctOcc = 595145 - 73800; // Derived from initial chart data and docs
+                    const bestMakerRest = (bestCaseMakerRestAt60pctOcc / 60) * occupancy;
+                    const bestKuyper = (73800 / 4) * sales;
+                    const bestTotal = bestMakerRest + bestKuyper;
+
+                    scenarioChart.data.datasets[0].data = [projectedTotal, worstTotal, bestTotal];
+                    scenarioChart.update();
+                }
+
+                occupancyRateSlider.addEventListener('input', updateScenarioChart);
+                homeSalesSlider.addEventListener('input', updateScenarioChart);
+            }
+        });
+    </script>
+</body>
+</html>
+

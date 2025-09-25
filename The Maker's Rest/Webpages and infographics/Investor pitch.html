@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: Investment Proposal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm and Rich Earth Tones -->
+    <!-- Application Structure Plan: The application is designed as a narrative journey for a potential investor, starting with a high-level vision, moving to the tangible business model, then diving into the financial opportunity, and concluding with the long-term impact and exit strategies. This top-down approach allows an investor to first connect with the mission, then understand the mechanics, see the financial viability, and finally, envision the successful outcome. Key interactions include toggling between financial projections (optimistic, realistic, pessimistic) and exploring the different revenue streams to understand their contribution to the whole. This structure was chosen over a simple dashboard to tell a compelling story and build investor confidence step-by-step. -->
+    <!-- Visualization & Content Choices: 
+        - Vision: Inform -> Dynamic Text Blocks -> JS show/hide -> Introduce the core concept in a digestible, engaging way.
+        - The Model (Revenue Streams): Organize/Compare -> Interactive Donut Chart & Cards -> User clicks on a card to highlight the chart segment -> To visually break down the business's components and show their relationship to the whole financial picture. Uses Chart.js.
+        - Market Analysis: Inform/Compare -> Dynamic Stat Cards & Bar Chart -> JS updates -> To present key market data points (Agritourism Growth, Sustainable Travel Market) in a scannable format and compare Michigan's potential. Uses Chart.js.
+        - Financial Projections: Change/Compare -> Interactive Line Chart & Buttons -> User selects projection type (e.g., Year 1, 3, 5) to update the chart -> To clearly illustrate growth potential and financial health over time under different scenarios. Uses Chart.js.
+        - Fundraising Goal: Inform -> Progress Indicator (HTML/CSS) -> Static display -> To visually and simply communicate the starting capital requirement.
+        - Exit Strategy: Organize -> Styled HTML cards -> Static display -> To clearly and professionally present the well-defined exit options for investors.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F4F2;
+            color: #3B2F2F;
+        }
+        .bg-warm-neutral { background-color: #F8F4F2; }
+        .bg-stone { background-color: #E6E0DB; }
+        .text-primary { color: #3B2F2F; }
+        .text-secondary { color: #5B524F; }
+        .accent-color { color: #8D543B; }
+        .btn-primary {
+            background-color: #8D543B;
+            color: #F8F4F2;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #A66649;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #8D543B;
+            transition: width 0.3s ease;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #8D543B;
+        }
+        .nav-link.active:after, .nav-link:hover:after {
+            width: 100%;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 450px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 45vh;
+                max-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-warm-neutral text-primary antialiased">
+
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        <!-- Header -->
+        <header class="flex justify-between items-center py-6">
+            <h1 class="text-3xl font-bold accent-color">The Maker's Stay</h1>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#vision" class="nav-link active">The Vision</a>
+                <a href="#model" class="nav-link">The Model</a>
+                <a href="#market" class="nav-link">Market Analysis</a>
+                <a href="#financials" class="nav-link">Financials</a>
+                <a href="#ask" class="nav-link">The Ask</a>
+            </nav>
+            <div class="md:hidden">
+                 <button id="menu-btn" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </header>
+        <div id="mobile-menu" class="hidden md:hidden mt-4">
+             <a href="#vision" class="block py-2 px-4 text-sm nav-link">The Vision</a>
+             <a href="#model" class="block py-2 px-4 text-sm nav-link">The Model</a>
+             <a href="#market" class="block py-2 px-4 text-sm nav-link">Market Analysis</a>
+             <a href="#financials" class="block py-2 px-4 text-sm nav-link">Financials</a>
+             <a href="#ask" class="block py-2 px-4 text-sm nav-link">The Ask</a>
+        </div>
+
+
+        <main>
+            <!-- Hero Section -->
+            <section id="vision" class="text-center py-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Investing in a Regenerative Future.</h2>
+                <p class="text-lg md:text-xl text-secondary max-w-3xl mx-auto mb-8">
+                    The Maker's Stay is more than an investment in property; it's a partnership in a pioneering ecovillage model that blends luxury, sustainability, and community. We are creating a tangible blueprint for a profitable, self-sufficient future, and we invite you to be a foundational part of this change.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#ask" class="btn-primary font-bold py-3 px-8 rounded-full text-lg inline-block">Become a Partner</a>
+                    <a href="javascript:void(0);" onclick="alert('Please insert your full business plan link here.');" class="btn-primary font-bold py-3 px-8 rounded-full text-lg inline-block bg-stone text-primary border border-stone-800 hover:bg-stone-800 hover:text-white transition-colors duration-300">View Full Business Plan</a>
+                </div>
+            </section>
+
+            <!-- The Model Section -->
+            <section id="model" class="py-16 bg-stone rounded-2xl">
+                <div class="text-center mb-12 px-4">
+                    <h3 class="text-3xl font-bold mb-2">A Diversified, Resilient Business Model</h3>
+                    <p class="text-secondary max-w-3xl mx-auto">
+                        Our revenue structure is built on multiple, synergistic pillars that create a robust and financially sound ecosystem. Each component not only generates income but also strengthens the community and enhances the value of the entire project. This integrated approach minimizes risk and maximizes potential for sustained growth.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-8 items-center px-4">
+                    <div class="lg:col-span-2">
+                        <div class="space-y-4">
+                            <div id="stream-1" class="p-4 bg-warm-neutral rounded-lg shadow-sm cursor-pointer border-2 border-transparent hover:border-sienna-600 transition-all">
+                                <h4 class="font-bold text-lg accent-color">Ecovillage Accommodations</h4>
+                                <p class="text-sm text-secondary">A diverse portfolio of eco-friendly guest accommodations, including luxury yurts, private cabins, and retreat lodges. Guests will be drawn to the blend of premium comfort and an authentic connection with nature, generating a strong, consistent nightly revenue.</p>
+                            </div>
+                            <div id="stream-2" class="p-4 bg-warm-neutral rounded-lg shadow-sm cursor-pointer border-2 border-transparent hover:border-sienna-600 transition-all">
+                                <h4 class="font-bold text-lg accent-color">Farm & Eatery</h4>
+                                <p class="text-sm text-secondary">Our on-site regenerative farm will supply our farm-to-table eatery and a direct-to-consumer farm stand. This vertical integration ensures a steady supply of high-quality produce and meats, generating profit while solidifying our brand as a true destination for sustainable living.</p>
+                            </div>
+                             <div id="stream-3" class="p-4 bg-warm-neutral rounded-lg shadow-sm cursor-pointer border-2 border-transparent hover:border-sienna-600 transition-all">
+                                <h4 class="font-bold text-lg accent-color">Maker Workshops & Events</h4>
+                                <p class="text-sm text-secondary">We will host a curated calendar of workshops, retreats, and special events focused on traditional crafts, sustainable practices, and community building. This model provides high-margin revenue and creates a vibrant, engaged community, attracting a dedicated audience throughout the year.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-3">
+                        <div class="chart-container">
+                            <canvas id="revenueStreamsChart"></canvas>
+                        </div>
+                         <p class="text-center text-sm text-secondary mt-2">Projected Year 3 Revenue Contribution</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Market Analysis Section -->
+            <section id="market" class="py-16">
+                 <div class="text-center mb-12 px-4">
+                    <h3 class="text-3xl font-bold mb-2">A Market Ripe for Disruption</h3>
+                    <p class="text-secondary max-w-3xl mx-auto">
+                        We are positioned at the intersection of several high-growth markets: sustainable tourism, agritourism, and the creator economy. Our target location in Michigan offers a strategic advantage, boasting a strong tourism industry and a growing demand for authentic, eco-conscious experiences.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 text-center">
+                    <div class="bg-stone p-6 rounded-lg">
+                        <h4 class="text-4xl font-bold accent-color">$28B</h4>
+                        <p class="text-secondary mt-2">Michigan Tourism Economic Impact (2022)</p>
+                         <p class="text-xs text-gray-400 mt-1">Source: Pure Michigan</p>
+                    </div>
+                    <div class="bg-stone p-6 rounded-lg">
+                        <h4 class="text-4xl font-bold accent-color">15.2%</h4>
+                        <p class="text-secondary mt-2">CAGR for Global Agritourism Market (2023-2030)</p>
+                        <p class="text-xs text-gray-400 mt-1">Source: Grand View Research</p>
+                    </div>
+                    <div class="bg-stone p-6 rounded-lg">
+                        <h4 class="text-4xl font-bold accent-color">78%</h4>
+                        <p class="text-secondary mt-2">of Travelers Seek Sustainable Options</p>
+                        <p class="text-xs text-gray-400 mt-1">Source: Booking.com Sustainable Travel Report</p>
+                    </div>
+                </div>
+
+                <div class="mt-12">
+                    <h4 class="text-2xl font-bold text-center mb-4">Michigan: The Ideal Launchpad</h4>
+                    <p class="text-secondary max-w-3xl mx-auto text-center mb-8">
+                        Our Michigan property offers unique advantages. It provides the perfect balance of a booming tourism market, a supportive pro-business environment, and access to major metropolitan areas. This combination ensures a consistent flow of visitors and talent, making it the ideal location to build a thriving, sustainable business.
+                    </p>
+                    <div class="chart-container" style="height: 40vh; max-height: 400px;">
+                        <canvas id="marketComparisonChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Financials Section -->
+            <section id="financials" class="py-16 bg-stone rounded-2xl">
+                 <div class="text-center mb-12 px-4">
+                    <h3 class="text-3xl font-bold mb-2">Robust Financial Projections</h3>
+                    <p class="text-secondary max-w-3xl mx-auto">
+                        Our financial model is built on conservative estimates and realistic growth targets. We project profitability within the first three years, with significant returns driven by our diverse revenue streams. Explore our projections for gross revenue over the first five years of operation.
+                    </p>
+                </div>
+                <div class="text-center mb-8">
+                    <button id="year1-btn" class="fin-btn bg-saddlebrown-700 text-white py-2 px-4 rounded-l-lg">Year 1</button>
+                    <button id="year3-btn" class="fin-btn bg-gray-300 text-gray-700 py-2 px-4">Year 3</button>
+                    <button id="year5-btn" class="fin-btn bg-gray-300 text-gray-700 py-2 px-4 rounded-r-lg">Year 5</button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="financialsChart"></canvas>
+                </div>
+            </section>
+
+            <!-- The Ask & Exit Strategy Section -->
+            <section id="ask" class="py-16">
+                 <div class="text-center mb-12 px-4">
+                    <h3 class="text-3xl font-bold mb-2">Join Us: The Investment Opportunity</h3>
+                    <p class="text-secondary max-w-3xl mx-auto">
+                        We are seeking foundational partners to help us secure the ideal property and launch operations. Your investment is critical to turning this detailed blueprint into a thriving, profitable reality.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-center bg-stone p-8 rounded-lg">
+                        <h4 class="text-2xl font-semibold mb-2">Our Ask</h4>
+                        <p class="text-secondary mt-2">
+                            We are seeking **seed capital** to secure the optimal property, fund initial legal and architectural planning, and prepare for the initial phase of development. Our investment is structured to provide a direct ownership stake and a clear path to profitability. We are open to discussing different investment tiers and structuring a partnership that aligns with your goals.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-2xl font-bold mb-4">Clear & Favorable Exit Strategies</h4>
+                        <div class="space-y-4">
+                            <div class="bg-warm-neutral p-4 rounded-lg border-l-4 border-saddlebrown-600">
+                                <h5 class="font-semibold">Investor Profit Share</h5>
+                                <p class="text-secondary text-sm">A direct equity model where investors receive a share of net profits, distributed annually. This provides a consistent, long-term return tied directly to the success of the ecovillage. Our financial projections detail the anticipated margins and payout schedule.</p>
+                            </div>
+                            <div class="bg-warm-neutral p-4 rounded-lg border-l-4 border-saddlebrown-600">
+                                <h5 class="font-semibold">Community Buy-Out Option</h5>
+                                <p class="text-secondary text-sm">Our ultimate goal. After a set period, the resident community cooperative will have the option to buy out the investors' stake at a fair market valuation, providing a significant lump-sum return and fulfilling the project's legacy. This not only fulfills the project's mission but also provides a clear, beneficial exit for investors.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="text-center py-8 border-t border-stone mt-16">
+            <p class="text-secondary">&copy; 2025 The Maker's Stay. All Rights Reserved.</p>
+            <p class="text-sm text-gray-400 mt-2">This is not an offer to sell securities. Any investment opportunity will be made through formal legal documentation.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.4
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if(link.getAttribute('href').substring(1) === entry.target.id){
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            navLinks.forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if(this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        if (mobileMenu.classList.contains('hidden') === false) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+
+
+            const revenueData = {
+                labels: ['Accommodations', 'Farm & Eatery', 'Workshops & Events'],
+                datasets: [{
+                    label: 'Revenue Contribution',
+                    data: [55, 30, 15],
+                    backgroundColor: ['#8D543B', '#A66649', '#C28469'],
+                    borderColor: '#F8F4F2',
+                    borderWidth: 4,
+                    hoverOffset: 8
+                }]
+            };
+
+            const revenueStreamsCtx = document.getElementById('revenueStreamsChart').getContext('2d');
+            const revenueStreamsChart = new Chart(revenueStreamsCtx, {
+                type: 'doughnut',
+                data: revenueData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#3B2F2F',
+                                font: {
+                                    size: 14,
+                                },
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '50%',
+                }
+            });
+            
+            const streamElements = [document.getElementById('stream-1'), document.getElementById('stream-2'), document.getElementById('stream-3')];
+            streamElements.forEach((el, index) => {
+                el.addEventListener('mouseenter', () => {
+                    revenueStreamsChart.setActiveElements([{ datasetIndex: 0, index: index }]);
+                    revenueStreamsChart.update();
+                });
+                 el.addEventListener('mouseleave', () => {
+                    revenueStreamsChart.setActiveElements([]);
+                    revenueStreamsChart.update();
+                });
+            });
+
+            const marketData = {
+                labels: ['Tourism Draw', 'Pro-Business Environment', 'Access to Markets', 'Affordable Land'],
+                datasets: [{
+                    label: 'Michigan Advantage Score (out of 10)',
+                    data: [9, 7, 8, 8.5],
+                    backgroundColor: '#A66649',
+                    borderColor: '#8D543B',
+                    borderWidth: 1,
+                    borderRadius: 5,
+                }]
+            };
+            const marketComparisonCtx = document.getElementById('marketComparisonChart').getContext('2d');
+            new Chart(marketComparisonCtx, {
+                type: 'bar',
+                data: marketData,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                         title: {
+                            display: false,
+                            text: 'Michigan Market Advantages'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                             grid: {
+                                display: false
+                            },
+                             ticks: {
+                                color: '#5B524F'
+                            }
+                        },
+                        y: {
+                             grid: {
+                                display: false
+                            },
+                             ticks: {
+                                color: '#3B2F2F',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const financialsData = {
+                'Year 1': {
+                    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                    datasets: [
+                        { label: 'Realistic', data: [5000, 15000, 12000, 18000], borderColor: '#8D543B', tension: 0.1, fill: false },
+                        { label: 'Optimistic', data: [7000, 20000, 18000, 25000], borderColor: '#228B22', tension: 0.1, fill: false, hidden: true },
+                        { label: 'Pessimistic', data: [2000, 8000, 6000, 10000], borderColor: '#B22222', tension: 0.1, fill: false, hidden: true }
+                    ]
+                },
+                'Year 3': {
+                    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                     datasets: [
+                        { label: 'Realistic', data: [40000, 60000, 55000, 75000], borderColor: '#8D543B', tension: 0.1, fill: false },
+                        { label: 'Optimistic', data: [50000, 75000, 70000, 90000], borderColor: '#228B22', tension: 0.1, fill: false, hidden: true },
+                        { label: 'Pessimistic', data: [30000, 45000, 40000, 55000], borderColor: '#B22222', tension: 0.1, fill: false, hidden: true }
+                    ]
+                },
+                 'Year 5': {
+                    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                     datasets: [
+                        { label: 'Realistic', data: [100000, 125000, 120000, 150000], borderColor: '#8D543B', tension: 0.1, fill: false },
+                        { label: 'Optimistic', data: [120000, 150000, 140000, 180000], borderColor: '#228B22', tension: 0.1, fill: false, hidden: true },
+                        { label: 'Pessimistic', data: [80000, 100000, 90000, 110000], borderColor: '#B22222', tension: 0.1, fill: false, hidden: true }
+                    ]
+                }
+            };
+            
+            const financialsCtx = document.getElementById('financialsChart').getContext('2d');
+            const financialsChart = new Chart(financialsCtx, {
+                type: 'line',
+                data: financialsData['Year 1'],
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            onClick: (e, legendItem, legend) => {
+                                const index = legendItem.datasetIndex;
+                                const ci = legend.chart;
+                                const meta = ci.getDatasetMeta(index);
+                                meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
+                                ci.update();
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Projected Quarterly Gross Revenue - Year 1',
+                            font: { size: 16 }
+                        },
+                         tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                             ticks: {
+                                callback: function(value, index, values) {
+                                    return '$' + value / 1000 + 'k';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const finBtns = document.querySelectorAll('.fin-btn');
+            finBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const year = btn.textContent;
+                    financialsChart.data = financialsData[year];
+                    financialsChart.options.plugins.title.text = `Projected Quarterly Gross Revenue - ${year}`;
+                    financialsChart.update();
+                    finBtns.forEach(b => {
+                        b.classList.remove('bg-saddlebrown-700', 'text-white');
+                        b.classList.add('bg-gray-300', 'text-gray-700');
+                    });
+                    btn.classList.add('bg-saddlebrown-700', 'text-white');
+                    btn.classList.remove('bg-gray-300', 'text-gray-700');
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>

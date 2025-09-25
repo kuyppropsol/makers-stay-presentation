@@ -1,0 +1,236 @@
+<!-- Chosen Palette: Custom Brand Palette (#Dddbbe, #404040, #588f55, #D5cd68). -->
+<!-- Application Structure Plan: The page is designed as a single, vertically scrolling pitch with a fixed top navigation. This structure is linear, guiding the lender through a logical sequence: Financials, Team, and Project Timeline. It is built to provide maximum clarity and minimal distraction, addressing a lender's core concerns directly. -->
+<!-- Visualization & Content Choices: 1. Financial Overview -> Goal: Show financial viability -> Viz: A prominent funding request number and dynamic line chart -> Interaction: Sliders and inputs update charts in real-time -> Justification: Proves financial model resilience and transparency -> Chart.js and Vanilla JS. 2. Team -> Goal: Establish credibility -> Viz: Text list with bolded skills -> Interaction: None -> Justification: Highlights practical, in-house expertise to show reduced risk -> Vanilla JS. 3. Timeline -> Goal: Show a realistic plan -> Viz: A simple, visual timeline with milestones -> Interaction: None -> Justification: Provides a clear, professional overview of the project's schedule -> HTML/CSS. CONFIRMING NO SVG/Mermaid. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: Construction Loan Pitch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F2E8;
+            color: #404040;
+        }
+        .container {
+            max-width: 1440px;
+        }
+        .header-bg {
+            background-color: #Dddbbe;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 40vh;
+            max-height: 400px;
+            margin: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 50vh;
+            }
+        }
+        .step-circle {
+            background-color: #588f55;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-[#F5F2E8] text-[#404040] leading-relaxed">
+    <header class="header-bg text-[#404040] shadow-lg p-6 flex items-center justify-center text-center">
+        <div class="relative z-10 p-4 rounded-xl">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">The Maker's Stay:</h1>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">Construction Loan Pitch</h2>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 lg:py-20">
+        <section id="financials" class="mb-12 lg:mb-20">
+            <h2 class="text-3xl font-bold text-center mb-6">Financial Overview</h2>
+            <div class="max-w-4xl mx-auto text-center mb-8">
+                <p class="text-lg">This section provides a clear, interactive breakdown of our project's financial model, demonstrating a clear path to profitability and a robust capacity for loan repayment.</p>
+                <p class="text-lg font-bold mt-4">Total Funding Needed:</p>
+                <p id="funding-needed" class="text-4xl font-extrabold text-[#588f55]">$4,054,220</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-xl shadow-lg border border-[#D5cd68]">
+                <h3 class="text-2xl font-bold mb-4 text-center">Interactive Financial Projections</h3>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <div>
+                            <label for="units" class="block font-semibold">Number of Units:</label>
+                            <input type="range" id="units" min="1" max="20" value="8" class="w-full">
+                            <span id="units-value" class="block text-center mt-2">8 Units</span>
+                        </div>
+                        <div>
+                            <label for="rate" class="block font-semibold">Average Nightly Rate ($):</label>
+                            <input type="range" id="rate" min="150" max="500" value="300" class="w-full">
+                            <span id="rate-value" class="block text-center mt-2">$300</span>
+                        </div>
+                        <div>
+                            <label for="occupancy" class="block font-semibold">Projected Occupancy Rate (%):</label>
+                            <input type="range" id="occupancy" min="20" max="80" value="40" class="w-full">
+                            <span id="occupancy-value" class="block text-center mt-2">40%</span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="profitChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="mb-12 lg:mb-20">
+            <h2 class="text-3xl font-bold text-center mb-6">The Team & Core Competencies</h2>
+            <div class="bg-white p-8 rounded-xl shadow-lg border border-[#D5cd68] max-w-4xl mx-auto">
+                <p class="text-lg text-center mb-6">Our team brings invaluable in-house expertise, allowing us to execute physical development efficiently and cost-effectively, reducing project risk.</p>
+                <ul class="list-disc list-inside space-y-2 text-lg font-semibold">
+                    <li>**Construction:** Extensive experience in framing, concrete work, and general site management.</li>
+                    <li>**Heavy Equipment Operation:** Certified for all types of heavy machinery, from excavators to skid-steers.</li>
+                    <li>**Welding & Fabrication:** A certified welder for on-site fabrication and repairs.</li>
+                    <li>**Logistics & Transportation:** Expertise in coordinating and managing material delivery.</li>
+                </ul>
+                <p class="text-center mt-6 text-sm italic">We have a plan to hire for specialized roles, including a licensed electrician and a plumber, at the appropriate time in the project's timeline.</p>
+            </div>
+        </section>
+
+        <section id="timeline" class="mb-12 lg:mb-20">
+            <h2 class="text-3xl font-bold text-center mb-6">Project Timeline</h2>
+            <div class="bg-white p-8 rounded-xl shadow-lg border border-[#D5cd68] max-w-6xl mx-auto">
+                <div class="relative flex flex-col items-center">
+                    <div class="h-full w-1 bg-[#404040] absolute left-1/2 transform -translate-x-1/2 z-0"></div>
+                    
+                    <div class="flex items-center w-full my-8">
+                        <div class="w-1/2 pr-8 text-right">
+                            <h3 class="font-bold text-xl">Phase 1: Foundation</h3>
+                            <p class="text-sm">Months 1-6</p>
+                            <p class="mt-2 text-base">Land acquisition, legal structuring, and initial site work.</p>
+                        </div>
+                        <div class="step-circle z-10">1</div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+
+                    <div class="flex items-center w-full my-8">
+                        <div class="w-1/2 pr-8 text-right"></div>
+                        <div class="step-circle z-10">2</div>
+                        <div class="w-1/2 pl-8">
+                            <h3 class="font-bold text-xl">Phase 2: Initial Construction</h3>
+                            <p class="text-sm">Months 7-18</p>
+                            <p class="mt-2 text-base">Construction of regenerative retreats, The Longhouse, and farm infrastructure.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center w-full my-8">
+                        <div class="w-1/2 pr-8 text-right">
+                            <h3 class="font-bold text-xl">Phase 3: Scaling & Expansion</h3>
+                            <p class="text-sm">Year 2 onwards</p>
+                            <p class="mt-2 text-base">Construction of permanent homes and expanded amenities.</p>
+                        </div>
+                        <div class="step-circle z-10">3</div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const unitsSlider = document.getElementById('units');
+        const rateSlider = document.getElementById('rate');
+        const occupancySlider = document.getElementById('occupancy');
+        const unitsValue = document.getElementById('units-value');
+        const rateValue = document.getElementById('rate-value');
+        const occupancyValue = document.getElementById('occupancy-value');
+
+        const profitCtx = document.getElementById('profitChart').getContext('2d');
+        const profitChart = new Chart(profitCtx, {
+            type: 'line',
+            data: {
+                labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                datasets: [{
+                    label: 'Projected Net Income ($)',
+                    data: [0, 0, 0, 0, 0],
+                    borderColor: '#404040',
+                    backgroundColor: '#D5cd68',
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value, index, values) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        function updateChart() {
+            const units = parseInt(unitsSlider.value);
+            const rate = parseInt(rateSlider.value);
+            const occupancy = parseInt(occupancySlider.value) / 100;
+            const revenue = [
+                units * rate * 365 * occupancy,
+                units * rate * 365 * 0.75,
+                units * rate * 365 * 0.8,
+                units * rate * 365 * 0.85,
+                units * rate * 365 * 0.9
+            ];
+            const expenses = [249000, 260000, 270000, 285000, 300000];
+            const netIncome = revenue.map((rev, i) => rev - expenses[i]);
+            profitChart.data.datasets[0].data = netIncome;
+            profitChart.update();
+        }
+
+        unitsSlider.addEventListener('input', () => {
+            unitsValue.textContent = unitsSlider.value + ' Units';
+            updateChart();
+        });
+        rateSlider.addEventListener('input', () => {
+            rateValue.textContent = '$' + rateSlider.value;
+            updateChart();
+        });
+        occupancySlider.addEventListener('input', () => {
+            occupancyValue.textContent = occupancySlider.value + '%';
+            updateChart();
+        });
+
+        updateChart();
+    </script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!-- Chosen Palette: Warm and earthy neutrals with subtle, inviting accents. -->
+<!-- Application Structure Plan: This SPA is designed as a single-page "war room" with a tabbed interface. This allows the user to quickly navigate between core talking points, a Q&A section, and a note-taking/recording area. This structure prevents cognitive overload and provides a centralized tool for a high-stakes meeting. The design prioritizes a clean, minimalist aesthetic to minimize distraction. -->
+<!-- Visualization & Content Choices: The application uses a simple, intuitive tab system to organize information. The talking points are presented in a color-coded, bulleted list for at-a-glance comprehension. A simple, functional form with JavaScript powers the note-taking and recording functionality, allowing the user to capture key information in real-time. No complex charts or graphics are necessary here; the focus is on utility and ease of use. CONFIRMING NO SVG/Mermaid. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: War Room</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F2E8;
+            color: #404040;
+        }
+        .container {
+            max-width: 1000px;
+        }
+        .tab-button {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+        }
+        .tab-button.active {
+            border-bottom-color: #588f55;
+            color: #588f55;
+        }
+    </style>
+</head>
+<body class="bg-[#F5F2E8] text-[#404040] leading-relaxed">
+    <div class="container mx-auto px-4 py-12">
+        <header class="text-center mb-12">
+            <h1 class="text-3xl font-extrabold mb-2">The Maker's Stay: War Room</h1>
+            <p class="text-lg">Your anchor for the construction loan call.</p>
+        </header>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg">
+            <div class="flex border-b border-gray-200">
+                <button class="tab-button active" data-tab="points">Talking Points</button>
+                <button class="tab-button" data-tab="qa">Q&A</button>
+                <button class="tab-button" data-tab="notes">Notes & Transcript</button>
+            </div>
+
+            <div id="tab-content" class="mt-8">
+                <div id="points" class="tab-panel">
+                    <div class="bg-[#Dddbbe] p-4 rounded-lg mb-4">
+                        <h4 class="font-bold text-lg text-[#404040]">1. The Core Pitch (The "Why")</h4>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>**Opening:** "A Blueprint for a Life Less Ordinary." You're building an ecovillage that is both financially viable and regenerative.
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>It's a new model for living—creating a life people don't feel the need to escape from.</li>
+                                    <li>Your vision is both profitable and profoundly fulfilling.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-[#D5cd68] p-4 rounded-lg mb-4">
+                        <h4 class="font-bold text-lg text-[#404040]">2. The Property</h4>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>**Location:** **Ontonagon, Michigan.** A **215-acre** parcel with **1,000+ feet of Lake Superior shoreline**.
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>The property borders the **Ottawa National Forest**, which is a huge, permanent asset.</li>
+                                    <li>It has a **spring-fed trout stream**, which is critical for your regenerative farming plan.</li>
+                                </ul>
+                            </li>
+                            <li>**The Valuation:** The asking price is **$1,900,000**, which is high.
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>You've conducted a **formal property analysis** that shows a defensible market value of around **$1.7M**.</li>
+                                    <li>You're a serious buyer who has done their homework.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-[#588f55] p-4 rounded-lg mb-4 text-white">
+                        <h4 class="font-bold text-lg">3. The Financials</h4>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>**Total Ask:** **$4,054,220.**
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>This amount is for **land acquisition** ($1.9M) and the **full buildout** of Phase 1.</li>
+                                    <li>The budget includes a **10% contingency fund**.</li>
+                                </ul>
+                            </li>
+                            <li>**Key Cost Breakdown:**
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>**Land:** **$1.9M**.</li>
+                                    <li>**Existing House Retrofit:** **$350k.**</li>
+                                    <li>**Phase 1 Construction:** **$1.4M** (retreats, Longhouse, etc.).</li>
+                                </ul>
+                            </li>
+                            <li>**Revenue Streams:** You have a diversified model, reducing risk.
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>**Regenerative Retreats.**</li>
+                                    <li>**Farm-to-Table Dining.**</li>
+                                    <li>**Maker Workshops.**</li>
+                                </ul>
+                            </li>
+                            <li>**Scalability:** The model is scalable.
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>You can start with 8 retreats but can expand.</li>
+                                    <li>You can use the **interactive model** to show how revenues increase as you scale.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-[#404040] p-4 rounded-lg mb-4 text-white">
+                        <h4 class="font-bold text-lg">4. Your Strategic Advantages</h4>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>**Team:** Your team has **in-house expertise**.
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>Construction from the ground up, heavy equipment operation, welding, and logistics.</li>
+                                    <li>This expertise reduces your reliance on expensive external contractors and provides a huge competitive advantage.</li>
+                                </ul>
+                            </li>
+                            <li>**Community Land Trust (CLT):**
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>The CLT **owns the land forever**, protecting it from speculation.</li>
+                                    <li>This guarantees the long-term mission and ensures **affordability** for future residents.</li>
+                                </ul>
+                            </li>
+                            <li>**Silent Accessibility:** It's a key differentiator.
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>It is a core value, not an afterthought.</li>
+                                    <li>It attracts a **wider demographic** and builds **deep brand loyalty**.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="qa" class="tab-panel hidden">
+                    <h4 class="font-bold text-lg mb-4">Anticipated Questions & Answers</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="font-bold">Q: What if your occupancy rates are too low?</p>
+                            <p class="mt-1">A: "Our model is diversified, so we don't rely on just one revenue stream. I can show you in our interactive model how we remain profitable even with conservative assumptions."</p>
+                        </div>
+                        <div>
+                            <p class="font-bold">Q: Why a Community Land Trust? Doesn't that make things complicated?</p>
+                            <p class="mt-1">A: "On the contrary, the CLT simplifies our long-term vision. It's the only way to protect the land from speculation and ensure the project's core mission is fulfilled. It's a strategic decision that guarantees the project's future."</p>
+                        </div>
+                        <div>
+                            <p class="font-bold">Q: How does From Dirt to Dazzle tie in?</p>
+                            <p class="mt-1">A: "From Dirt to Dazzle is a separate, non-profit partner. It strengthens our for-profit business by building goodwill, community engagement, and brand loyalty. The two are symbiotic."</p>
+                        </div>
+                        <div>
+                            <p class="font-bold">Q: What's the value of your team's experience?</p>
+                            <p class="mt-1">A: "Our team's hands-on skills in construction, welding, and logistics directly translate to significant cost savings. We can do much of the physical work ourselves, which reduces our budget and project risk for you."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="notes" class="tab-panel hidden">
+                    <h4 class="font-bold text-lg mb-4">Meeting Notes & Transcript</h4>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
+                        <button id="start-record" class="bg-[#588f55] text-white py-2 px-4 rounded-lg font-semibold flex-1">Start Recording</button>
+                        <button id="stop-record" class="bg-red-500 text-white py-2 px-4 rounded-lg font-semibold flex-1 hidden">Stop Recording</button>
+                    </div>
+                    <textarea id="notes-area" class="w-full h-80 p-4 rounded-lg border border-gray-300 focus:outline-none focus:border-[#588f55]"></textarea>
+                    <p id="transcript-status" class="mt-2 text-sm text-gray-600 italic hidden">Recording...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab-button');
+        const panels = document.querySelectorAll('.tab-panel');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                panels.forEach(panel => {
+                    panel.classList.add('hidden');
+                });
+                document.getElementById(tab.getAttribute('data-tab')).classList.remove('hidden');
+            });
+        });
+
+        const startRecordBtn = document.getElementById('start-record');
+        const stopRecordBtn = document.getElementById('stop-record');
+        const notesArea = document.getElementById('notes-area');
+        const transcriptStatus = document.getElementById('transcript-status');
+        let recognition = null;
+        let isRecording = false;
+
+        if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+            recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.lang = 'en-US';
+
+            recognition.onstart = function() {
+                isRecording = true;
+                transcriptStatus.textContent = 'Recording...';
+                transcriptStatus.classList.remove('hidden');
+                startRecordBtn.classList.add('hidden');
+                stopRecordBtn.classList.remove('hidden');
+            };
+
+            recognition.onend = function() {
+                isRecording = false;
+                transcriptStatus.textContent = 'Recording stopped. You can edit the transcript below.';
+                startRecordBtn.classList.remove('hidden');
+                stopRecordBtn.classList.add('hidden');
+            };
+
+            recognition.onresult = function(event) {
+                let interimTranscript = '';
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    const transcript = event.results[i][0].transcript;
+                    if (event.results[i].isFinal) {
+                        notesArea.value += transcript + '. ';
+                    } else {
+                        interimTranscript = transcript;
+                    }
+                }
+                notesArea.value = notesArea.value.substring(0, notesArea.value.lastIndexOf('. ')) + '. ' + interimTranscript;
+            };
+
+            startRecordBtn.addEventListener('click', () => {
+                notesArea.value = '';
+                recognition.start();
+            });
+
+            stopRecordBtn.addEventListener('click', () => {
+                recognition.stop();
+            });
+        } else {
+            transcriptStatus.textContent = 'Speech recognition is not supported in this browser.';
+            transcriptStatus.classList.remove('hidden');
+            startRecordBtn.disabled = true;
+        }
+    </script>
+</body>
+</html>

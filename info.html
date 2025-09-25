@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: Financial Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+        }
+    </style>
+</head>
+<body class="bg-[#F3F4F6] text-[#1F2937]">
+
+<!-- Energetic & Playful Palette: #FFFFFF, #E0F2FE, #9CA3AF, #6EE7B7, #FDE68A, #FCA5A5, #D9F99D, #A5B4FC, #FDBA74, #A78BFA -->
+<!-- Planned for visualizations: Pie, Bar, Line, Donut charts with Chart.js. Confirmed no SVG or Mermaid JS. -->
+<!-- This single-page application visualizes key financial data from the business plan. It's structured to be a compelling narrative, starting with total funding, breaking down costs, and then visualizing a 10-year growth outlook. -->
+<main class="container mx-auto p-6 lg:p-12">
+    <header class="text-center mb-12">
+        <h1 class="text-4xl lg:text-6xl font-bold text-[#1F2937]">The Maker's Stay: Financial Blueprint</h1>
+        <p class="mt-4 text-lg lg:text-xl text-[#6B7280]">A Data-Driven Path to a Regenerative and Profitable Future</p>
+    </header>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div class="md:col-span-1 bg-[#FFFFFF] rounded-2xl shadow-xl p-8 flex flex-col justify-center items-center">
+            <p class="text-2xl font-semibold text-[#6B7280]">Total Project Funding Needed</p>
+            <p class="text-6xl lg:text-7xl font-extrabold text-[#6EE7B7] mt-4">$4.05M</p>
+            <p class="mt-4 text-base text-center text-[#6B7280]">This figure represents the complete capital required to acquire the land and execute all initial build-out costs for the ecovillage project.</p>
+        </div>
+
+        <div class="md:col-span-2 bg-[#FFFFFF] rounded-2xl shadow-xl p-8">
+            <h2 class="text-2xl font-bold text-[#1F2937] mb-4">Initial Capital Allocation</h2>
+            <p class="text-[#6B7280] mb-6">The pie chart below breaks down how the total project funding of $4,054,220 will be strategically allocated across all core components, from land acquisition to working capital.</p>
+            <div class="chart-container">
+                <canvas id="startupCostsChart"></canvas>
+            </div>
+        </div>
+
+        <div class="md:col-span-3 bg-[#FFFFFF] rounded-2xl shadow-xl p-8">
+            <h2 class="text-2xl font-bold text-[#1F2937] mb-4">First-Year Financial Performance</h2>
+            <p class="text-[#6B7280] mb-6">The bar chart illustrates the project's strong financial position from day one. Projected revenue significantly exceeds annual operating expenses, confirming a profitable start.</p>
+            <div class="chart-container">
+                <canvas id="firstYearChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="md:col-span-2 lg:col-span-1 bg-[#FFFFFF] rounded-2xl shadow-xl p-8 flex flex-col justify-center items-center">
+            <h2 class="text-2xl font-bold text-[#1F2937] mb-4">Margin of Safety: Break-Even Occupancy</h2>
+            <p class="text-[#6B7280] mb-6 text-center">Our break-even occupancy is a highly achievable 46.9%, providing a significant financial buffer from the projected 65% occupancy rate.</p>
+            <div class="chart-container w-full max-w-xs mx-auto">
+                <canvas id="breakevenChart"></canvas>
+            </div>
+        </div>
+
+        <div class="md:col-span-2 lg:col-span-2 bg-[#FFFFFF] rounded-2xl shadow-xl p-8">
+            <h2 class="text-2xl font-bold text-[#1F2937] mb-4">10-Year Growth Outlook</h2>
+            <p class="text-[#6B7280] mb-6">This line chart visualizes the project’s long-term financial health, projecting consistent growth and a continuous increase in net income over a decade.</p>
+            <div class="chart-container">
+                <canvas id="growthChart"></canvas>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const startupCostsCtx = document.getElementById('startupCostsChart').getContext('2d');
+    const firstYearCtx = document.getElementById('firstYearChart').getContext('2d');
+    const breakevenCtx = document.getElementById('breakevenChart').getContext('2d');
+    const growthCtx = document.getElementById('growthChart').getContext('2d');
+
+    const startupCostsData = {
+        labels: [
+            'Land Acquisition',
+            'Construction & Infrastructure',
+            'House Retrofit',
+            'Initial Furniture, Fixtures & Decor',
+            'Fleet Vehicles & Equipment',
+            'Working Capital',
+            'Indoor/Outdoor Dog Park',
+            'Workshop Equipment & Supplies'
+        ],
+        datasets: [{
+            data: [1700000, 1424220, 350000, 200000, 250000, 50000, 50000, 30000],
+            backgroundColor: [
+                '#A5B4FC',
+                '#FDBA74',
+                '#D9F99D',
+                '#FCA5A5',
+                '#6EE7B7',
+                '#FDE68A',
+                '#9CA3AF',
+                '#E0F2FE'
+            ],
+        }]
+    };
+
+    const firstYearData = {
+        labels: ['Total Annual Revenue', 'Total Operating Expenses', 'Net Income'],
+        datasets: [{
+            label: 'Financial Performance (Year 1)',
+            data: [530163, 249000, 281163],
+            backgroundColor: ['#6EE7B7', '#FCA5A5', '#A5B4FC'],
+            borderRadius: 8
+        }]
+    };
+
+    const breakevenData = {
+        labels: ['Achievable Break-Even Occupancy Rate', 'Margin of Safety'],
+        datasets: [{
+            data: [46.9, 100 - 46.9],
+            backgroundColor: ['#A5B4FC', '#6EE7B7'],
+            hoverBackgroundColor: ['#818cf8', '#34d399'],
+            borderWidth: 0,
+            cutout: '70%',
+            borderRadius: 5
+        }]
+    };
+
+    const growthData = {
+        labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6', 'Year 7', 'Year 8', 'Year 9', 'Year 10'],
+        datasets: [
+            {
+                label: 'Revenue',
+                data: [530163, 600000, 675000, 750000, 825000, 900000, 975000, 1050000, 1125000, 1200000],
+                borderColor: '#6EE7B7',
+                backgroundColor: 'rgba(110, 231, 183, 0.2)',
+                fill: true,
+                tension: 0.4
+            },
+            {
+                label: 'Expenses',
+                data: [249000, 260000, 270000, 285000, 300000, 315000, 330000, 345000, 360000, 375000],
+                borderColor: '#FCA5A5',
+                backgroundColor: 'rgba(252, 165, 165, 0.2)',
+                fill: true,
+                tension: 0.4
+            },
+            {
+                label: 'Net Income',
+                data: [281163, 340000, 405000, 465000, 525000, 585000, 645000, 705000, 765000, 825000],
+                borderColor: '#A5B4FC',
+                backgroundColor: 'rgba(165, 180, 252, 0.2)',
+                fill: true,
+                tension: 0.4
+            }
+        ]
+    };
+    
+    function wrapLabels(labels, maxLen) {
+        return labels.map(label => {
+            if (label.length <= maxLen) return label;
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLen && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                } else {
+                    currentLine += word + ' ';
+                }
+            });
+            if (currentLine.length > 0) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        });
+    }
+
+    const wrappedStartupLabels = wrapLabels(startupCostsData.labels, 16);
+    startupCostsData.labels = wrappedStartupLabels;
+
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                          return label.join(' ');
+                        } else {
+                          return label;
+                        }
+                    }
+                }
+            },
+            legend: {
+                position: 'right',
+                labels: {
+                    boxWidth: 20,
+                    padding: 20
+                }
+            }
+        }
+    };
+    
+    new Chart(startupCostsCtx, {
+        type: 'pie',
+        data: startupCostsData,
+        options: chartOptions
+    });
+    
+    new Chart(firstYearCtx, {
+        type: 'bar',
+        data: firstYearData,
+        options: {
+            ...chartOptions,
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+
+    new Chart(breakevenCtx, {
+        type: 'doughnut',
+        data: breakevenData,
+        options: {
+            ...chartOptions,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            return `${label}: ${value}%`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    new Chart(growthCtx, {
+        type: 'line',
+        data: growthData,
+        options: {
+            ...chartOptions,
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+});
+</script>
+
+</body>
+</html>
