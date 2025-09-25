@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay: A Vision for Regenerative Living</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #1e293b;
+        }
+
+        .bg-cover-image {
+            background-image: url('https://placehold.co/1920x1080/6b7280/ffffff?text=Regenerative+Ecovillage');
+            background-position: center;
+            background-size: cover;
+        }
+
+        .glass-bg {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 z-50 w-full bg-white bg-opacity-70 backdrop-blur-md shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-800" onclick="showPage('home')">The Maker's Stay</a>
+            <div class="flex space-x-6">
+                <a href="#" class="text-gray-600 hover:text-gray-900 transition-colors"
+                    onclick="showPage('makers-rest')">The Maker's Rest</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 transition-colors"
+                    onclick="showPage('from-dirt-to-dazzle')">From Dirt to Dazzle</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 transition-colors"
+                    onclick="showPage('kuyper-property-solutions')">Kuyper Property Solutions</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 transition-colors"
+                    onclick="showPage('financials')">Financials</a>
+                <a href="investment-portal.html"
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors font-medium">💼
+                    Investment Portal</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="pt-20">
+        <!-- Home Page Content -->
+        <div id="home" class="page-content active">
+            <header class="bg-cover-image text-white flex items-center justify-center min-h-screen">
+                <div class="text-center p-8 bg-gray-900 bg-opacity-60 rounded-xl">
+                    <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-4">A Vision for Regenerative Living</h1>
+                    <p class="text-xl md:text-2xl font-medium mb-8">Redefining sustainable living through creativity and
+                        community.</p>
+                    <div class="space-y-4">
+                        <a href="investment-portal.html"
+                            class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition-colors inline-block mr-4">🔍
+                            Explore Investment Opportunity</a>
+                        <a href="#"
+                            class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-full transition-colors inline-block"
+                            onclick="showPage('makers-rest')">📖 Learn About Our Vision</a>
+                    </div>
+                </div>
+            </header>
+            <main class="container mx-auto px-6 py-16">
+                <section class="mb-16">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="text-4xl font-bold mb-4">A Living Model for a Regenerative Future</h2>
+                            <p class="text-gray-700 leading-relaxed mb-4">The Maker's Stay is a pioneering ecovillage in
+                                Michigan's Upper Peninsula, designed to be a sanctuary of creativity and a tangible
+                                model for regenerative development. Our core mission is to create a vibrant community
+                                that thrives in harmony with nature, demonstrating that sustainable living can be both
+                                beautiful and abundant.</p>
+                            <p class="text-gray-700 leading-relaxed">Through our unique blend of hospitality, education,
+                                and sustainable housing, we are cultivating a new paradigm for conscious living. It's a
+                                dual-pronged approach that ensures both profitability and a lasting, positive impact on
+                                our world.</p>
+                        </div>
+                        <div class="rounded-xl overflow-hidden shadow-lg">
+                            <img src="https://placehold.co/600x400/374151/ffffff?text=Ecovillage+Aerial+View"
+                                alt="Ecovillage aerial view" class="w-full h-auto">
+                        </div>
+                    </div>
+                </section>
+                <section class="mb-16 text-center">
+                    <h2 class="text-4xl font-bold mb-8">The Three Pillars of Our Mission</h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="p-8 bg-white rounded-xl shadow-lg transform transition-transform hover:scale-105">
+                            <h3 class="text-2xl font-bold mb-2">The Maker's Rest</h3>
+                            <p class="text-gray-600">Our visionary agrotourism venture, offering high-value
+                                accommodations and unique amenities like our year-round grotto pool.</p>
+                        </div>
+                        <div class="p-8 bg-white rounded-xl shadow-lg transform transition-transform hover:scale-105">
+                            <h3 class="text-2xl font-bold mb-2">From Dirt to Dazzle</h3>
+                            <p class="text-gray-600">The non-profit heart of our community, focused on advocacy,
+                                education, and empowering a regenerative lifestyle for all.</p>
+                        </div>
+                        <div class="p-8 bg-white rounded-xl shadow-lg transform transition-transform hover:scale-105">
+                            <h3 class="text-2xl font-bold mb-2">Kuyper Property Solutions</h3>
+                            <p class="text-gray-600">Our real estate arm, leveraging the ecovillage as a showroom to
+                                sell our sustainable homes to a wider market, making regenerative living accessible.</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- The Maker's Rest Page Content -->
+        <div id="makers-rest" class="page-content">
+            <main class="container mx-auto px-6 py-16">
+                <h1 class="text-5xl font-bold text-center mb-12">The Maker's Rest</h1>
+                <section class="mb-16">
+                    <h2 class="text-4xl font-bold mb-4 text-center">A Vision for Experiential Travel</h2>
+                    <p class="text-gray-700 text-center leading-relaxed max-w-3xl mx-auto">The Maker's Rest is a
+                        visionary agrotourism venture designed to provide a premium, immersive experience for guests.
+                        Through our unique "Wonderful Structures" earth homes and stunning amenities, we are cultivating
+                        a new paradigm for conscious tourism that is both luxurious and environmentally responsible.</p>
+                </section>
+
+                <section class="mb-16">
+                    <h2 class="text-3xl font-bold mb-8 text-center">Our Unique Accommodations</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white p-6 rounded-xl shadow-lg transform transition-transform hover:scale-105">
+                            <img src="https://placehold.co/400x300/e2e8f0/1e293b?text=Royal+Cabin"
+                                alt="Royal Cabin model" class="rounded-lg mb-4">
+                            <h3 class="text-xl font-bold mb-2">Royal Cabins</h3>
+                            <p class="text-gray-600 mb-4">Our most popular unit, providing a cozy and immersive
+                                experience for guests.</p>
+                            <span
+                                class="inline-block bg-indigo-100 text-indigo-800 text-sm px-3 py-1 rounded-full font-semibold">$125
+                                / Night</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg transform transition-transform hover:scale-105">
+                            <img src="https://placehold.co/400x300/e2e8f0/1e293b?text=Two-Bedroom+Cabin"
+                                alt="Two-Bedroom Cabin model" class="rounded-lg mb-4">
+                            <h3 class="text-xl font-bold mb-2">Two-Bedroom Cabin</h3>
+                            <p class="text-gray-600 mb-4">A spacious unit ideal for families or small groups seeking
+                                comfort and community.</p>
+                            <span
+                                class="inline-block bg-indigo-100 text-indigo-800 text-sm px-3 py-1 rounded-full font-semibold">$300
+                                / Night</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg transform transition-transform hover:scale-105">
+                            <img src="https://placehold.co/400x300/e2e8f0/1e293b?text=Three-Bedroom+Cabin"
+                                alt="Three-Bedroom Cabin model" class="rounded-lg mb-4">
+                            <h3 class="text-xl font-bold mb-2">Three-Bedroom Cabin</h3>
+                            <p class="text-gray-600 mb-4">Our premium offering, designed for larger groups or long-term
+                                stays with maximum comfort.</p>
+                            <span
+                                class="inline-block bg-indigo-100 text-indigo-800 text-sm px-3 py-1 rounded-full font-semibold">$400
+                                / Night</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mb-16">
+                    <h2 class="text-3xl font-bold mb-8 text-center">Amenities that Inspire</h2>
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="rounded-xl overflow-hidden shadow-lg">
+                            <img src="https://placehold.co/600x400/94a3b8/1e293b?text=The+Sunken+Garden+Image"
+                                alt="The Sunken Garden" class="w-full h-auto">
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">The Sunken Garden & Grotto Pool</h3>
+                            <p class="text-gray-700 leading-relaxed mb-4">The heart of our community is The Longhouse,
+                                which houses a magnificent greenhouse called The Sunken Garden. This space features a
+                                natural, chemical-free grotto pool with a waterfall, ensuring The Maker's Rest remains a
+                                compelling, all-season destination. The greenhouse also cultivates edible tropical
+                                plants, providing a unique on-site amenity and an educational experience.</p>
+                            <p class="text-gray-700 leading-relaxed">This magnificent amenity, kept warm year-round,
+                                ensures the property remains a compelling destination throughout the off-season and
+                                serves as a living demonstration of regenerative food production.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mb-16">
+                    <h2 class="text-3xl font-bold mb-8 text-center">Workshops & Creative Spaces</h2>
+                    <p class="text-gray-700 text-center leading-relaxed max-w-3xl mx-auto">We believe in fostering an
+                        environment of creativity and learning. The Maker's Rest provides dedicated spaces for our
+                        guests to explore new skills and connect with their inner artist. All workshop participation
+                        requires a signed liability waiver to ensure a safe and secure experience for everyone.</p>
+                    <div class="grid md:grid-cols-3 gap-8 mt-8">
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-2">Art & Craft Studio</h3>
+                            <p class="text-gray-600 mb-4">A dedicated studio for painting, sketching, pottery, and other
+                                hands-on crafts. Our curated art kits provide all the materials needed to get started.
+                            </p>
+                        </div>
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-2">Wood & Metal Workshop</h3>
+                            <p class="text-gray-600 mb-4">A fully equipped workshop for woodworking and metal crafting,
+                                where guests can learn to create custom pieces under the guidance of our expert
+                                instructors.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-2">Culinary Kitchen</h3>
+                            <p class="text-gray-600 mb-4">Our communal kitchen hosts farm-to-table culinary workshops,
+                                teaching guests how to prepare meals using fresh, on-site ingredients from our
+                                greenhouse and aquafarming system.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mb-16">
+                    <h2 class="text-3xl font-bold mb-8 text-center">Rockhounding & Lapidary Arts</h2>
+                    <p class="text-gray-700 text-center leading-relaxed max-w-3xl mx-auto">The Upper Peninsula is a rock
+                        collector's paradise, home to some of the most unique geological formations and minerals in the
+                        world. We offer guided rockhounding excursions for guests to explore our property and the
+                        surrounding area in search of Agates, Chlorastrolite (the state gem), and other treasures. Back
+                        at the ecovillage, our dedicated lapidary workshop allows guests to cut, shape, and polish their
+                        finds into beautiful, one-of-a-kind pieces of jewelry or art.</p>
+                    <div class="grid md:grid-cols-2 gap-8 mt-8">
+                        <div class="p-8 bg-white rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-2">Guided Rockhounding Excursions</h3>
+                            <p class="text-gray-600">Explore the rugged landscape with our expert guides to find unique
+                                minerals and gems. All tools and safety equipment are provided.</p>
+                        </div>
+                        <div class="p-8 bg-white rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-2">Lapidary Workshop</h3>
+                            <p class="text-gray-600">Turn your discoveries into polished works of art. Our workshop is
+                                equipped with saws, grinders, and polishers for all skill levels. Liability waivers are
+                                required for all workshop participation.</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- From Dirt to Dazzle Page Content -->
+        <div id="from-dirt-to-dazzle" class="page-content">
+            <main class="container mx-auto px-6 py-16">
+                <h1 class="text-5xl font-bold text-center mb-12">From Dirt to Dazzle</h1>
+                <section class="mb-16">
+                    <h2 class="text-4xl font-bold mb-4 text-center">The Non-Profit Heart of Our Community</h2>
+                    <p class="text-gray-700 text-center leading-relaxed max-w-3xl mx-auto">From Dirt to Dazzle is the
+                        non-profit arm of The Maker's Trust. We believe in a regenerative ecovillage model that goes
+                        beyond sustainability to actively renew the environment. Our mission is to inspire American
+                        communities by demonstrating how stunning, sustainable homes and shared infrastructure can make
+                        a creative, nature-connected lifestyle both affordable and accessible for all.</p>
+                </section>
+
+                <section class="mb-16">
+                    <h2 class="text-3xl font-bold mb-8 text-center">Our Core Programs</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-2">Regenerative Education</h3>
+                            <p class="text-gray-600 mb-4">We offer hands-on workshops on a wide range of regenerative
+                                practices, including:</p>
+                            <ul class="list-disc list-inside text-gray-600">
+                                <li>Sustainable construction and Earthship design</li>
+                                <li>Aquaculture and advanced food production systems</li>
+                                <li>Permaculture, foraging, and biodynamic agriculture</li>
+                                <li>Artistic and creative skills like painting, pottery, and metalworking</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-2">Community Advocacy & Outreach</h3>
+                            <p class="text-gray-600 mb-4">We serve as a leader in advocating for regenerative
+                                development. Our work includes:</p>
+                            <ul class="list-disc list-inside text-gray-600">
+                                <li>Securing grants to fund innovative, eco-friendly projects</li>
+                                <li>Documenting and sharing our building practices with other communities</li>
+                                <li>Fostering strong community bonds through shared purpose and a collaborative spirit
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="text-center mb-16">
+                    <h2 class="text-3xl font-bold mb-4">Support Our Mission</h2>
+                    <p class="text-gray-700 leading-relaxed max-w-3xl mx-auto">From Dirt to Dazzle is financially
+                        supported through a multi-faceted approach, ensuring our mission is self-sustaining and not
+                        solely dependent on a single revenue stream. We invite you to join us in building a more
+                        regenerative future.</p>
+                    <div class="grid md:grid-cols-3 gap-8 mt-8">
+                        <div class="p-6 bg-white rounded-xl shadow-lg">
+                            <h3 class="text-xl font-bold mb-2">Grant Funding</h3>
+                            <p class="text-gray-600">Securing grants from organizations focused on rural revitalization,
+                                environmental education, and sustainable development.</p>
+                        </div>
+                        <div class="p-6 bg-white rounded-xl shadow-lg">
+                            <h3 class="text-xl font-bold mb-2">Community Support</h3>
+                            <p class="text-gray-600">Generating revenue from workshops, events, and a long-term
+                                endowment funded by community members and supporters.</p>
+                        </div>
+                        <div class="p-6 bg-white rounded-xl shadow-lg">
+                            <h3 class="text-xl font-bold mb-2">Donations</h3>
+                            <p class="text-gray-600">Accepting donations from individuals and corporate sponsors aligned
+                                with our vision.</p>
+                        </div>
+                    </div>
+                    <a href="#"
+                        class="mt-8 inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition-colors">Support
+                        Our Mission</a>
+                </section>
+            </main>
+        </div>
+
+        <!-- Kuyper Property Solutions Page Content -->
+        <div id="kuyper-property-solutions" class="page-content">
+            <main class="container mx-auto px-6 py-16">
+                <h1 class="text-5xl font-bold text-center mb-12">Kuyper Property Solutions</h1>
+                <section class="mb-16">
+                    <h2 class="text-4xl font-bold mb-4 text-center">Redefining Sustainable Homeownership</h2>
+                    <p class="text-gray-700 text-center leading-relaxed max-w-3xl mx-auto">Kuyper Property Solutions is
+                        the licensed sales and marketing arm for "Wonderful Structures," a collection of innovative,
+                        regenerative homes. We leverage The Maker's Stay as a living showroom, showcasing our unique
+                        homes' long-term viability and aesthetic appeal to a global market.</p>
+                </section>
+
+                <section class="mb-16">
+                    <h2 class="text-3xl font-bold mb-8 text-center">Our Services</h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="p-8 bg-white rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-2">Expert Sales & Marketing</h3>
+                            <p class="text-gray-600">We serve as the exclusive, licensed sales agent for Wonderful
+                                Structures, focusing on bringing these regenerative homes to a global market, with a
+                                heavy initial focus on the United States.</p>
+                        </div>
+                        <div class="p-8 bg-white rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-2">Consulting & Project Guidance</h3>
+                            <p class="text-gray-600">We provide high-value consulting to clients, guiding them through
+                                the complex process of building a sustainable home, from permitting and engineering to
+                                working with distributors.</p>
+                        </div>
+                        <div class="p-8 bg-white rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-2">In-House Financing</h3>
+                            <p class="text-gray-600">For residents of The Maker's Stay, we offer flexible, in-house
+                                financing for the structures, creating a stable revenue stream for The Maker's Trust
+                                while making homeownership more accessible.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mb-16 text-center">
+                    <h2 class="text-3xl font-bold mb-4">Become a Resident</h2>
+                    <p class="text-gray-700 leading-relaxed max-w-3xl mx-auto">Our sales strategy is built on the power
+                        of experience. The Maker's Stay ecovillage is not just a community; it's a living model that
+                        showcases our homes in a real-world, regenerative environment. We invite potential buyers to
+                        become guests at The Maker's Rest to truly understand the value and vision of a sustainable
+                        lifestyle.</p>
+                    <div class="grid md:grid-cols-2 gap-8 mt-8">
+                        <div class="p-8 bg-white rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-2">Experience the Lifestyle</h3>
+                            <p class="text-gray-600">Explore our unique homes as a guest of The Maker's Rest, and
+                                discover what it's like to live in a community dedicated to creativity and regenerative
+                                practices.</p>
+                        </div>
+                        <div class="p-8 bg-white rounded-xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-2">Flexible In-House Financing</h3>
+                            <p class="text-gray-600">We make homeownership accessible with our flexible, in-house
+                                financing options for all structures, allowing you to focus on building a life, not just
+                                paying a mortgage.</p>
+                        </div>
+                    </div>
+                    <a href="#"
+                        class="mt-8 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-colors">Learn
+                        More About Residency</a>
+                </section>
+            </main>
+        </div>
+
+        <!-- Financials Page Content -->
+        <div id="financials" class="page-content">
+            <main class="container mx-auto px-6 py-16">
+                <h1 class="text-5xl font-bold text-center mb-12">Financial Projections</h1>
+                <section class="mb-16">
+                    <h2 class="text-4xl font-bold mb-4">Key Projections for The Maker's Rest</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">These projections provide a data-driven outlook for
+                        the financial health of our agrotourism venture, demonstrating a clear path to profitability and
+                        long-term sustainability.</p>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <div class="grid md:grid-cols-3 gap-8 text-center mb-8">
+                            <div>
+                                <h3 class="text-2xl font-bold text-indigo-600">$451,445</h3>
+                                <p class="text-gray-600">Projected Annual Revenue</p>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-green-600">$243,445</h3>
+                                <p class="text-gray-600">Projected Net Income (Year 1)</p>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-red-600">60.8%</h3>
+                                <p class="text-gray-600">Break-Even Occupancy Rate</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed text-center">Our break-even occupancy rate is well below
+                            our conservative projection of 65%, demonstrating a strong and secure path to profitability
+                            from the very beginning.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-4xl font-bold mb-4">10-Year Growth Outlook</h2>
+                    <p class="text-gray-700 leading-relaxed mb-8">Our phased expansion plan ensures long-term growth and
+                        scalability, with a clear trajectory for increasing revenue and profitability over the next
+                        decade.</p>
+                    <div class="overflow-x-auto bg-white rounded-xl shadow-lg">
+                        <table class="min-w-full leading-normal">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Year</th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Total Revenue</th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Total Expenses</th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Net Income</th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Break-Even Occupancy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white">
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">Year 1</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$451,445</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$208,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$243,445</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">60.8%</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">Year 2</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$500,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$215,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$285,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">58.0%</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">Year 3</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$550,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$223,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$327,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">55.4%</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">Year 4</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$600,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$230,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$370,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">51.1%</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">Year 5</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$650,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$238,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$412,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">48.2%</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">Year 6</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$700,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$246,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$454,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">45.4%</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">Year 7</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$750,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$254,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$496,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">42.9%</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">Year 8</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$800,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$262,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$538,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">40.7%</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">Year 9</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$850,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$270,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$580,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">38.8%</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">Year 10</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$900,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$278,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">$622,000</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">36.9%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle page navigation -->
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0); // Scroll to the top of the page
+        }
+    </script>
+</body>
+
+</html>
