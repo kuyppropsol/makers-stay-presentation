@@ -131,6 +131,9 @@
                     <button class="floating-tab" data-tab="register">
                         📝 Create Account
                     </button>
+                    <button class="floating-tab" data-tab="admin">
+                        ⚡ Admin Access
+                    </button>
                 </div>
 
                 <!-- Visitor Access Tab -->
@@ -200,7 +203,8 @@
                 <!-- Register Tab -->
                 <div class="tab-content p-8" id="register-tab">
                     <h2 class="text-2xl font-bold playfair text-accent mb-4 text-center">Create Account</h2>
-                    <p class="text-gray-300 mb-6 text-center">Quick registration for investors and financial partners.</p>
+                    <p class="text-gray-300 mb-6 text-center">Quick registration for investors and financial partners.
+                    </p>
 
                     <form id="registerForm">
                         <div class="space-y-4">
@@ -231,18 +235,22 @@
                             <div>
                                 <label class="block text-sm font-medium mb-3">I am a... *</label>
                                 <div class="space-y-3">
-                                    <label class="glass-effect p-4 rounded-lg cursor-pointer hover:bg-opacity-20 transition-all duration-300 flex items-center">
+                                    <label
+                                        class="glass-effect p-4 rounded-lg cursor-pointer hover:bg-opacity-20 transition-all duration-300 flex items-center">
                                         <input type="radio" name="accountType" value="investor" required class="mr-3">
                                         <div>
                                             <div class="font-bold text-accent">💼 Potential Investor</div>
-                                            <div class="text-sm" style="color: rgba(245, 242, 232, 0.7)">Interested in investment opportunities</div>
+                                            <div class="text-sm" style="color: rgba(245, 242, 232, 0.7)">Interested in
+                                                investment opportunities</div>
                                         </div>
                                     </label>
-                                    <label class="glass-effect p-4 rounded-lg cursor-pointer hover:bg-opacity-20 transition-all duration-300 flex items-center">
+                                    <label
+                                        class="glass-effect p-4 rounded-lg cursor-pointer hover:bg-opacity-20 transition-all duration-300 flex items-center">
                                         <input type="radio" name="accountType" value="team" required class="mr-3">
                                         <div>
                                             <div class="font-bold text-accent">🤝 Financial Partner</div>
-                                            <div class="text-sm" style="color: rgba(245, 242, 232, 0.7)">Finance professional or funding partner</div>
+                                            <div class="text-sm" style="color: rgba(245, 242, 232, 0.7)">Finance
+                                                professional or funding partner</div>
                                         </div>
                                     </label>
                                 </div>
@@ -280,7 +288,8 @@
                                     <label class="block text-sm font-medium mb-2">Partner Access Code *</label>
                                     <input type="password" name="inviteCode" class="floating-input"
                                         placeholder="Provided by project lead">
-                                    <p class="text-xs text-gray-400 mt-1">Contact the project lead for your access code.</p>
+                                    <p class="text-xs text-gray-400 mt-1">Contact the project lead for your access code.
+                                    </p>
                                 </div>
                             </div>
 
@@ -304,6 +313,41 @@
 
                         <p class="text-xs text-gray-400 mt-4 text-center">
                             You'll receive email confirmation once your account is ready.
+                        </p>
+                    </form>
+                </div>
+
+                <!-- Admin Access Tab -->
+                <div class="tab-content p-8" id="admin-tab">
+                    <h2 class="text-2xl font-bold playfair text-accent mb-4 text-center">Project Administrator</h2>
+                    <p class="text-gray-300 mb-6 text-center">Secure access for project management and administration.
+                    </p>
+
+                    <form id="adminForm">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Admin Username *</label>
+                                <input type="text" name="adminUsername" required class="floating-input"
+                                    placeholder="admin">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Admin Password *</label>
+                                <input type="password" name="adminPassword" required class="floating-input"
+                                    placeholder="Enter admin password">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Master Access Code *</label>
+                                <input type="password" name="masterCode" required class="floating-input"
+                                    placeholder="Enter master access code">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="floating-button w-full mt-6">
+                            Access Admin Dashboard
+                        </button>
+
+                        <p class="text-xs text-gray-400 mt-4 text-center">
+                            Full administrative access to user management and system controls.
                         </p>
                     </form>
                 </div>
@@ -375,6 +419,11 @@
         document.getElementById('registerForm').addEventListener('submit', function (e) {
             e.preventDefault();
             handleRegistration(new FormData(this));
+        });
+
+        document.getElementById('adminForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            handleAdminAccess(new FormData(this));
         });
 
         // Handle visitor access (temporary email code)
@@ -460,7 +509,7 @@
             }
 
             // Validate team invitation code if financial partner
-            if (data.accountType === 'team' && data.inviteCode !== 'finance-partner-2025') {
+            if (data.accountType === 'team' && data.inviteCode !== 'MAKERS-FP-9X7K') {
                 alert('Invalid partner access code. Please contact the project lead.');
                 return;
             }
@@ -518,6 +567,41 @@
             if (callback) {
                 setTimeout(callback, 3000);
             }
+        }
+
+        // Handle admin access
+        function handleAdminAccess(formData) {
+            const data = Object.fromEntries(formData.entries());
+
+            showLoading('Verifying administrator credentials...');
+
+            // Validate admin credentials
+            setTimeout(() => {
+                if (data.adminUsername === 'makersadmin' &&
+                    data.adminPassword === 'Makers@2025!' &&
+                    data.masterCode === 'ADMIN-VAULT-3M9P') {
+
+                    // Create admin session
+                    const adminSession = {
+                        userType: 'admin',
+                        username: data.adminUsername,
+                        loginTime: new Date().toISOString(),
+                        permissions: 'full'
+                    };
+
+                    sessionStorage.setItem('currentUser', JSON.stringify(adminSession));
+
+                    showSuccess(
+                        'Administrator access granted!<br>Redirecting to admin dashboard...',
+                        () => {
+                            window.location.href = 'user-management.html';
+                        }
+                    );
+                } else {
+                    alert('Invalid administrator credentials. Access denied.');
+                    hideLoading();
+                }
+            }, 2000);
         }
 
         function showForgotPassword() {

@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Maker's Stay - Complete Investment Overview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Displa                <a href="
+        investment-interest.html" class="floating-button flex-1">
+    The Maker's Stay | Investment Overview
+    </a>ght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #182719 0%, #1a2f1b 100%);
+            color: #F5f2e8;
+            min-height: 100vh;
+        }
+
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .text-accent {
+            color: #Bca86d;
+        }
+
+        .bg-accent {
+            background-color: #Bca86d;
+        }
+
+        .glass-card {
+            background: rgba(245, 242, 232, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(188, 168, 109, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(188, 168, 109, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-tab {
+            background: rgba(245, 242, 232, 0.1);
+            border: 1px solid rgba(188, 168, 109, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-tab.active {
+            background: rgba(188, 168, 109, 0.2);
+            border-color: rgba(188, 168, 109, 0.6);
+            color: #Bca86d;
+        }
+
+        .section-content {
+            display: none;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        .floating-button {
+            background: linear-gradient(135deg, rgba(188, 168, 109, 0.8), rgba(188, 168, 109, 0.6));
+            border: 1px solid rgba(188, 168, 109, 0.4);
+            color: #1a2f1b;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .floating-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(188, 168, 109, 0.3);
+        }
+
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.3;
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(24, 39, 25, 0.8), rgba(26, 47, 27, 0.9));
+            z-index: -1;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(245, 242, 232, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #Bca86d, #d4c085);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .commitment-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(24, 39, 25, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(188, 168, 109, 0.3);
+            padding: 1rem;
+            z-index: 100;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .commitment-banner.show {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Video Background -->
+    <video autoplay muted loop class="video-bg">
+        <source src="../20250326_125948.mp4" type="video/mp4">
+        <source src="../20250312_144048.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+
+    <!-- Header -->
+    <header class="relative z-50 p-6">
+        <div class="glass-card max-w-7xl mx-auto p-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <h1 class="text-3xl font-bold playfair text-accent">The Maker's Stay</h1>
+                    <span
+                        class="ml-4 px-3 py-1 bg-green-500 bg-opacity-20 text-green-300 rounded-full text-sm font-light tracking-wide">
+                        FULL ACCESS MODE
+                    </span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-center mr-4">
+                        <div class="text-sm font-light text-red-300 tracking-wide" id="urgencyTimer">Loading...</div>
+                        <div class="text-xs opacity-70">Until funding deadline</div>
+                    </div>
+                    <button onclick="toggleExplorationTracker()"
+                        class="floating-button text-sm font-light tracking-wide">
+                        TRACK PROGRESS
+                    </button>
+                    <button onclick="showCommitmentOptions()"
+                        class="floating-button pulse-animation font-light tracking-wide">
+                        SECURE YOUR POSITION
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Tracker (Hidden by default) -->
+    <div id="progressTracker" class="fixed top-24 right-6 z-40 glass-card p-4 w-80" style="display: none;">
+        <h3 class="font-light text-accent mb-3 tracking-wide">EXPLORATION PROGRESS</h3>
+        <div class="space-y-2 text-sm">
+            <div class="flex justify-between items-center">
+                <span>Executive Summary</span>
+                <span id="progress-executive" class="text-yellow-400">⏳</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span>Financial Analysis</span>
+                <span id="progress-financial" class="text-yellow-400">⏳</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span>Market Research</span>
+                <span id="progress-market" class="text-yellow-400">⏳</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span>Investment Terms</span>
+                <span id="progress-terms" class="text-yellow-400">⏳</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span>Risk Analysis</span>
+                <span id="progress-risk" class="text-yellow-400">⏳</span>
+            </div>
+        </div>
+        <div class="mt-4">
+            <div class="progress-bar">
+                <div id="overallProgress" class="progress-fill" style="width: 0%"></div>
+            </div>
+            <p class="text-xs mt-2 opacity-70">Complete exploration to unlock investment options</p>
+        </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="relative z-40 p-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button class="nav-tab px-6 py-3 rounded-lg active" data-section="executive">
+                    📋 Executive Summary
+                </button>
+                <button class="nav-tab px-6 py-3 rounded-lg" data-section="financials">
+                    💰 Financial Analysis
+                </button>
+                <button class="nav-tab px-6 py-3 rounded-lg" data-section="market">
+                    📊 Market Research
+                </button>
+                <button class="nav-tab px-6 py-3 rounded-lg" data-section="property">
+                    🏨 Property Details
+                </button>
+                <button class="nav-tab px-6 py-3 rounded-lg" data-section="investment">
+                    🏗️ Investment Structure
+                </button>
+                <button class="nav-tab px-6 py-3 rounded-lg" data-section="risks">
+                    ⚠️ Risk Analysis
+                </button>
+                <button class="nav-tab px-6 py-3 rounded-lg" data-section="team">
+                    👥 Team & Background
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="relative z-30 px-6 pb-32">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Executive Summary Section -->
+            <section id="executive" class="section-content active">
+                <div class="glass-card p-8 mb-8">
+                    <div class="w-20 h-1 bg-accent mb-6 opacity-60"></div>
+                    <h2 class="text-4xl font-light playfair text-accent mb-8">Executive Summary</h2>
+
+                    <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-accent">The Vision</h3>
+                            <p class="mb-6 text-lg" style="color: rgba(245, 242, 232, 0.9);">
+                                The Maker's Stay represents a revolutionary approach to experiential hospitality,
+                                combining luxury accommodations with immersive artisan workshops in a stunning natural
+                                setting.
+                                This unique concept taps into the growing demand for meaningful, hands-on experiences
+                                while providing multiple revenue streams and strong ROI potential.
+                            </p>
+
+                            <h4 class="text-xl font-bold mb-3 text-accent">Key Differentiators</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <span class="text-green-400 mr-3 mt-1">✓</span>
+                                    <span>First-to-market artisan retreat concept in the region</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-400 mr-3 mt-1">✓</span>
+                                    <span>Multiple revenue streams: lodging, workshops, retail, events</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-400 mr-3 mt-1">✓</span>
+                                    <span>Year-round operation with seasonal programming</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-400 mr-3 mt-1">✓</span>
+                                    <span>Premium pricing justified by unique value proposition</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-accent">Quick Facts</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="glass-card p-4 stat-card">
+                                    <div class="text-3xl font-bold text-accent">$2.4M</div>
+                                    <div class="text-sm opacity-80">Total Investment</div>
+                                </div>
+                                <div class="glass-card p-4 stat-card">
+                                    <div class="text-3xl font-bold text-green-400">22%</div>
+                                    <div class="text-sm opacity-80">Target IRR</div>
+                                </div>
+                                <div class="glass-card p-4 stat-card">
+                                    <div class="text-3xl font-bold text-blue-400">5-7</div>
+                                    <div class="text-sm opacity-80">Year Horizon</div>
+                                </div>
+                                <div class="glass-card p-4 stat-card">
+                                    <div class="text-3xl font-bold text-purple-400">46</div>
+                                    <div class="text-sm opacity-80">Max Capacity</div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="mt-6 p-4 bg-blue-500 bg-opacity-10 rounded-lg border border-blue-500 border-opacity-30">
+                                <h4 class="font-light text-blue-300 mb-2 tracking-wide">WHY NOW?</h4>
+                                <p class="text-sm opacity-90">
+                                    The experiential tourism market is growing 15% annually, with 73% of travelers
+                                    seeking unique, hands-on experiences. The Maker's Stay captures this trend while
+                                    building a defensible market position.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Financial Analysis Section -->
+            <section id="financials" class="section-content">
+                <div class="glass-card p-8 mb-8">
+                    <div class="w-20 h-1 bg-accent mb-6 opacity-60"></div>
+                    <h2 class="text-4xl font-light playfair text-accent mb-8">Financial Analysis</h2>
+
+                    <!-- Revenue Projections -->
+                    <h3 class="text-2xl font-bold mb-4 text-accent">Revenue Projections</h3>
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-accent mb-4">Year 1</h4>
+                            <div class="text-3xl font-bold mb-2">$1.2M</div>
+                            <div class="text-sm opacity-80 mb-4">Revenue Target</div>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Accommodations:</span>
+                                    <span>$780K</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Workshops:</span>
+                                    <span>$300K</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Retail/Events:</span>
+                                    <span>$120K</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-accent mb-4">Year 3</h4>
+                            <div class="text-3xl font-bold mb-2">$2.8M</div>
+                            <div class="text-sm opacity-80 mb-4">Revenue Target</div>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Accommodations:</span>
+                                    <span>$1.82M</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Workshops:</span>
+                                    <span>$700K</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Retail/Events:</span>
+                                    <span>$280K</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6">
+                            <h4 class="text-xl font-bold text-accent mb-4">Year 5</h4>
+                            <div class="text-3xl font-bold mb-2">$3.6M</div>
+                            <div class="text-sm opacity-80 mb-4">Revenue Target</div>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Accommodations:</span>
+                                    <span>$2.34M</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Workshops:</span>
+                                    <span>$900K</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Retail/Events:</span>
+                                    <span>$360K</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chart Container -->
+                    <div class="glass-card p-6 mb-8">
+                        <h4 class="text-xl font-bold text-accent mb-4">5-Year Revenue Growth</h4>
+                        <canvas id="revenueChart" width="400" height="150"></canvas>
+                    </div>
+
+                    <!-- Key Financial Metrics -->
+                    <div class="grid md:grid-cols-4 gap-6">
+                        <div class="glass-card p-6 stat-card">
+                            <div class="text-3xl font-bold text-green-400">22%</div>
+                            <div class="text-lg font-bold text-accent mb-2">Target IRR</div>
+                            <div class="text-sm opacity-80">Conservative estimate based on market comparables</div>
+                        </div>
+
+                        <div class="glass-card p-6 stat-card">
+                            <div class="text-3xl font-bold text-blue-400">36</div>
+                            <div class="text-lg font-bold text-accent mb-2">Months to Break-Even</div>
+                            <div class="text-sm opacity-80">Cash flow positive by month 36</div>
+                        </div>
+
+                        <div class="glass-card p-6 stat-card">
+                            <div class="text-3xl font-bold text-purple-400">2.8x</div>
+                            <div class="text-lg font-bold text-accent mb-2">ROI Multiple</div>
+                            <div class="text-sm opacity-80">Over 5-year investment period</div>
+                        </div>
+
+                        <div class="glass-card p-6 stat-card">
+                            <div class="text-3xl font-bold text-orange-400">75%</div>
+                            <div class="text-lg font-bold text-accent mb-2">Target Occupancy</div>
+                            <div class="text-sm opacity-80">Conservative industry benchmark</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Market Research Section -->
+            <section id="market" class="section-content">
+                <div class="glass-card p-8 mb-8">
+                    <div class="w-20 h-1 bg-accent mb-6 opacity-60"></div>
+                    <h2 class="text-4xl font-light playfair text-accent mb-8">Market Research & Opportunity</h2>
+
+                    <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-accent">Market Size & Growth</h3>
+                            <div class="space-y-4">
+                                <div class="glass-card p-4">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="font-bold">Experiential Travel Market</span>
+                                        <span class="text-accent font-bold">$183B</span>
+                                    </div>
+                                    <div class="text-sm opacity-80">Growing at 15% annually through 2027</div>
+                                </div>
+
+                                <div class="glass-card p-4">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="font-bold">Boutique Hotel Segment</span>
+                                        <span class="text-accent font-bold">$28B</span>
+                                    </div>
+                                    <div class="text-sm opacity-80">12% annual growth, outpacing traditional hotels
+                                    </div>
+                                </div>
+
+                                <div class="glass-card p-4">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="font-bold">Workshop Tourism</span>
+                                        <span class="text-accent font-bold">$23B</span>
+                                    </div>
+                                    <div class="text-sm opacity-80">Emerging niche with 20%+ growth rates</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-accent">Target Demographics</h3>
+                            <div class="space-y-4">
+                                <div class="glass-card p-4">
+                                    <h4 class="font-bold text-accent mb-2">Primary: Affluent Creatives</h4>
+                                    <ul class="text-sm space-y-1 opacity-90">
+                                        <li>• Age 35-55, household income $100K+</li>
+                                        <li>• Values experiences over possessions</li>
+                                        <li>• Seeks authentic, hands-on learning</li>
+                                        <li>• Willing to pay premium for unique experiences</li>
+                                    </ul>
+                                </div>
+
+                                <div class="glass-card p-4">
+                                    <h4 class="font-bold text-accent mb-2">Secondary: Corporate Groups</h4>
+                                    <ul class="text-sm space-y-1 opacity-90">
+                                        <li>• Team building and executive retreats</li>
+                                        <li>• Innovation workshops and offsites</li>
+                                        <li>• Higher per-person spend rates</li>
+                                        <li>• Year-round booking potential</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Competitive Analysis -->
+                    <h3 class="text-2xl font-bold mb-4 text-accent">Competitive Landscape</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="glass-card p-6">
+                            <h4 class="font-bold text-accent mb-3">Direct Competitors</h4>
+                            <div class="text-sm space-y-2 opacity-90">
+                                <p><strong>Ghost Ranch, NM:</strong> Art retreats, $200-300/night</p>
+                                <p><strong>Penland School, NC:</strong> Craft workshops, limited lodging</p>
+                                <p><strong>Various Art Centers:</strong> Day programs only, no overnight</p>
+                            </div>
+                            <div
+                                class="mt-4 p-3 bg-orange-500 bg-opacity-10 rounded border border-orange-500 border-opacity-30">
+                                <p class="text-sm font-bold text-orange-300">Gap Identified:</p>
+                                <p class="text-xs opacity-90">No luxury integrated experience in our target region</p>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6">
+                            <h4 class="font-bold text-accent mb-3">Indirect Competitors</h4>
+                            <div class="text-sm space-y-2 opacity-90">
+                                <p><strong>Luxury Resorts:</strong> High-end amenities, limited activities</p>
+                                <p><strong>Glamping Sites:</strong> Nature focus, minimal programming</p>
+                                <p><strong>Workshop Studios:</strong> Education focus, no lodging</p>
+                            </div>
+                            <div
+                                class="mt-4 p-3 bg-blue-500 bg-opacity-10 rounded border border-blue-500 border-opacity-30">
+                                <p class="text-sm font-bold text-blue-300">Our Advantage:</p>
+                                <p class="text-xs opacity-90">Unique combination of all elements</p>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6">
+                            <h4 class="font-bold text-accent mb-3">Market Position</h4>
+                            <div class="text-sm space-y-2 opacity-90">
+                                <p><strong>Premium Pricing:</strong> $350-500/night justified</p>
+                                <p><strong>First Mover:</strong> Establishing category leadership</p>
+                                <p><strong>Scalable Model:</strong> Expansion opportunities</p>
+                            </div>
+                            <div
+                                class="mt-4 p-3 bg-green-500 bg-opacity-10 rounded border border-green-500 border-opacity-30">
+                                <p class="text-sm font-bold text-green-300">Market Entry:</p>
+                                <p class="text-xs opacity-90">Perfect timing for category creation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Property Details Section -->
+            <section id="property" class="section-content">
+                <div class="glass-card p-8 mb-8">
+                    <div class="w-20 h-1 bg-accent mb-6 opacity-60"></div>
+                    <h2 class="text-4xl font-light playfair text-accent mb-8">Property Details & Specifications</h2>
+
+                    <div class="grid lg:grid-cols-3 gap-8 mb-8">
+                        <div class="lg:col-span-2">
+                            <h3 class="text-2xl font-bold mb-4 text-accent">Location & Setting</h3>
+                            <p class="mb-6 text-lg" style="color: rgba(245, 242, 232, 0.9);">
+                                Nestled on 15 pristine acres in Michigan's Upper Peninsula, The Maker's Stay offers
+                                guests an immersive
+                                experience combining luxury accommodations with hands-on creative learning in a stunning
+                                natural setting.
+                                The property features rolling hills, mature forests, and seasonal streams creating the
+                                perfect backdrop for
+                                both relaxation and inspiration.
+                            </p>
+
+                            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                                <div>
+                                    <h4 class="text-xl font-bold mb-3 text-accent">Accommodations</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li class="flex items-start">
+                                            <span class="text-accent mr-2">•</span>
+                                            <span>12 luxury cabin suites (600-800 sq ft each)</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-accent mr-2">•</span>
+                                            <span>6 glamping tents with full amenities</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-accent mr-2">•</span>
+                                            <span>2 family lodges (1,200 sq ft each)</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-accent mr-2">•</span>
+                                            <span>Central lodge with dining & common areas (3,000 sq ft)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-3 text-accent">Workshop Facilities</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li class="flex items-start">
+                                            <span class="text-accent mr-2">•</span>
+                                            <span>Woodworking studio with professional tools</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-accent mr-2">•</span>
+                                            <span>Pottery & ceramics workspace with kilns</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-accent mr-2">•</span>
+                                            <span>Textile arts & weaving looms</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-accent mr-2">•</span>
+                                            <span>Outdoor forge & metalworking area</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-accent mr-2">•</span>
+                                            <span>Glass blowing studio</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-accent mr-2">•</span>
+                                            <span>Outdoor amphitheater for large workshops</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h4 class="text-xl font-bold mb-3 text-accent">Additional Amenities</h4>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div class="glass-card p-4">
+                                    <h5 class="font-bold text-accent mb-2">🏊 Recreation</h5>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Year-round grotto pool</li>
+                                        <li>• Hiking trail network</li>
+                                        <li>• Fire pit gathering areas</li>
+                                        <li>• Outdoor yoga pavilion</li>
+                                    </ul>
+                                </div>
+                                <div class="glass-card p-4">
+                                    <h5 class="font-light text-accent mb-2 tracking-wide">DINING</h5>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Farm-to-table restaurant</li>
+                                        <li>• On-site organic gardens</li>
+                                        <li>• Outdoor cooking areas</li>
+                                        <li>• Wine & artisan spirits bar</li>
+                                    </ul>
+                                </div>
+                                <div class="glass-card p-4">
+                                    <h5 class="font-bold text-accent mb-2">🛒 Retail</h5>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Gift shop & gallery</li>
+                                        <li>• Guest artwork sales</li>
+                                        <li>• Artisan supply store</li>
+                                        <li>• Local craft partnerships</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-accent">Key Metrics</h3>
+                            <div class="space-y-4">
+                                <div class="glass-card p-4 stat-card">
+                                    <div class="text-3xl font-bold text-accent">46</div>
+                                    <div class="text-sm opacity-80">Maximum Guests</div>
+                                </div>
+                                <div class="glass-card p-4 stat-card">
+                                    <div class="text-3xl font-bold text-accent">15</div>
+                                    <div class="text-sm opacity-80">Acres of Land</div>
+                                </div>
+                                <div class="glass-card p-4 stat-card">
+                                    <div class="text-3xl font-bold text-accent">8</div>
+                                    <div class="text-sm opacity-80">Workshop Spaces</div>
+                                </div>
+                                <div class="glass-card p-4 stat-card">
+                                    <div class="text-3xl font-bold text-accent">75%</div>
+                                    <div class="text-sm opacity-80">Target Occupancy</div>
+                                </div>
+                                <div class="glass-card p-4 stat-card">
+                                    <div class="text-3xl font-bold text-accent">$450</div>
+                                    <div class="text-sm opacity-80">Avg Daily Rate</div>
+                                </div>
+                                <div class="glass-card p-4 stat-card">
+                                    <div class="text-3xl font-bold text-accent">365</div>
+                                    <div class="text-sm opacity-80">Days/Year Operation</div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="mt-6 p-4 bg-green-500 bg-opacity-10 rounded-lg border border-green-500 border-opacity-30">
+                                <h4 class="font-light text-green-300 mb-2 tracking-wide">SUSTAINABILITY FEATURES</h4>
+                                <ul class="text-sm space-y-1 opacity-90">
+                                    <li>• Solar power & geothermal heating</li>
+                                    <li>• Rainwater collection systems</li>
+                                    <li>• Organic waste composting</li>
+                                    <li>• Native plant landscaping</li>
+                                    <li>• LEED-certified construction</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Investment Structure Section -->
+            <section id="investment" class="section-content">
+                <div class="glass-card p-8 mb-8">
+                    <div class="w-20 h-1 bg-accent mb-6 opacity-60"></div>
+                    <h2 class="text-4xl font-light playfair text-accent mb-8">Investment Structure & Terms</h2>
+
+                    <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-accent">Investment Tiers</h3>
+                            <div class="space-y-6">
+                                <div class="glass-card p-6">
+                                    <h4 class="text-xl font-light text-accent mb-3 tracking-wide">FOUNDATION PARTNER
+                                    </h4>
+                                    <div class="text-3xl font-bold mb-3">$50,000 - $99,999</div>
+                                    <ul class="text-sm space-y-2 opacity-90">
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>5-8% equity stake based on investment amount</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Quarterly profit distributions</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Annual retreat weekend included</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Priority booking privileges</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Annual financial reports & updates</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <h4 class="text-xl font-bold text-accent mb-3">🥈 Growth Partner</h4>
+                                    <div class="text-3xl font-bold mb-3">$100,000 - $249,999</div>
+                                    <ul class="text-sm space-y-2 opacity-90">
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>8-15% equity stake based on investment amount</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Monthly profit distributions</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>VIP access to all workshops & events</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Investment committee participation</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Quarterly business review meetings</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <h4 class="text-xl font-bold text-accent mb-3">🥇 Visionary Partner</h4>
+                                    <div class="text-3xl font-bold mb-3">$250,000+</div>
+                                    <ul class="text-sm space-y-2 opacity-90">
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>15-25% equity stake based on investment amount</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Board advisory position</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Naming rights opportunities</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Strategic decision influence</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Preferred return structure</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-accent">Terms & Timeline</h3>
+                            <div class="space-y-6">
+                                <div>
+                                    <h4 class="text-lg font-bold text-accent mb-3">Development Timeline</h4>
+                                    <div class="space-y-3">
+                                        <div class="glass-card p-4">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <span class="font-bold">Phase 1: Planning & Permits</span>
+                                                <span class="text-accent">6 months</span>
+                                            </div>
+                                            <div class="text-sm opacity-80">Site preparation, permits, final design
+                                            </div>
+                                        </div>
+                                        <div class="glass-card p-4">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <span class="font-bold">Phase 2: Construction</span>
+                                                <span class="text-accent">18 months</span>
+                                            </div>
+                                            <div class="text-sm opacity-80">Building accommodations & facilities</div>
+                                        </div>
+                                        <div class="glass-card p-4">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <span class="font-bold">Phase 3: Launch & Operations</span>
+                                                <span class="text-accent">Ongoing</span>
+                                            </div>
+                                            <div class="text-sm opacity-80">Grand opening & revenue generation</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-bold text-accent mb-3">Exit Strategy Options</h4>
+                                    <div class="space-y-3">
+                                        <div class="glass-card p-4">
+                                            <div class="font-bold mb-2">Strategic Sale (Year 5-7)</div>
+                                            <div class="text-sm opacity-80">Sale to hospitality group or real estate
+                                                investment trust</div>
+                                        </div>
+                                        <div class="glass-card p-4">
+                                            <div class="font-bold mb-2">Management Buyout (Year 7-10)</div>
+                                            <div class="text-sm opacity-80">Purchase by management team with financing
+                                            </div>
+                                        </div>
+                                        <div class="glass-card p-4">
+                                            <div class="font-bold mb-2">Continued Operations</div>
+                                            <div class="text-sm opacity-80">Long-term investment with ongoing
+                                                distributions</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-bold text-accent mb-3">Legal Structure</h4>
+                                    <div class="space-y-2 text-sm opacity-90">
+                                        <p>• Delaware LLC with comprehensive operating agreement</p>
+                                        <p>• Professional legal and accounting oversight</p>
+                                        <p>• Annual audited financial statements</p>
+                                        <p>• Comprehensive insurance coverage</p>
+                                        <p>• SEC-compliant investment documentation</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Risk Analysis Section -->
+            <section id="risks" class="section-content">
+                <div class="glass-card p-8 mb-8">
+                    <div class="w-20 h-1 bg-accent mb-6 opacity-60"></div>
+                    <h2 class="text-4xl font-light playfair text-accent mb-8">Risk Analysis & Mitigation</h2>
+
+                    <div class="mb-8">
+                        <div
+                            class="p-6 bg-orange-500 bg-opacity-10 rounded-lg border border-orange-500 border-opacity-30 mb-8">
+                            <h3 class="text-xl font-bold text-orange-300 mb-3">⚠️ Important Investment Disclaimer</h3>
+                            <p class="text-sm opacity-90">
+                                All investments carry risk of partial or total loss. Past performance does not guarantee
+                                future results.
+                                This analysis is based on current market conditions and management projections, which
+                                may change.
+                                Please consult with your financial advisor before making any investment decisions.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6 text-accent">Identified Risks</h3>
+
+                            <div class="space-y-6">
+                                <div class="glass-card p-6">
+                                    <h4 class="text-lg font-bold text-red-400 mb-3">🔴 High Risk: Market Conditions</h4>
+                                    <p class="text-sm mb-3 opacity-90">
+                                        Economic downturns could significantly impact luxury travel and discretionary
+                                        spending on experiential tourism.
+                                    </p>
+                                    <div class="text-xs opacity-70">
+                                        <strong>Probability:</strong> Medium | <strong>Impact:</strong> High
+                                    </div>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <h4 class="text-lg font-bold text-orange-400 mb-3">🟡 Medium Risk: Construction
+                                        Delays</h4>
+                                    <p class="text-sm mb-3 opacity-90">
+                                        Weather, permitting, or contractor issues could delay opening and increase
+                                        costs.
+                                    </p>
+                                    <div class="text-xs opacity-70">
+                                        <strong>Probability:</strong> Medium | <strong>Impact:</strong> Medium
+                                    </div>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <h4 class="text-lg font-bold text-orange-400 mb-3">🟡 Medium Risk: Competition</h4>
+                                    <p class="text-sm mb-3 opacity-90">
+                                        New competitors entering the experiential hospitality market could impact
+                                        pricing and occupancy.
+                                    </p>
+                                    <div class="text-xs opacity-70">
+                                        <strong>Probability:</strong> High | <strong>Impact:</strong> Medium
+                                    </div>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <h4 class="text-lg font-bold text-yellow-400 mb-3">🟢 Low Risk: Regulatory Changes
+                                    </h4>
+                                    <p class="text-sm mb-3 opacity-90">
+                                        Changes in zoning, environmental, or hospitality regulations could require
+                                        operational adjustments.
+                                    </p>
+                                    <div class="text-xs opacity-70">
+                                        <strong>Probability:</strong> Low | <strong>Impact:</strong> Medium
+                                    </div>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <h4 class="text-lg font-bold text-yellow-400 mb-3">🟢 Low Risk: Key Personnel</h4>
+                                    <p class="text-sm mb-3 opacity-90">
+                                        Departure of key management team members could impact operations and growth.
+                                    </p>
+                                    <div class="text-xs opacity-70">
+                                        <strong>Probability:</strong> Low | <strong>Impact:</strong> Medium
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6 text-accent">Mitigation Strategies</h3>
+
+                            <div class="space-y-6">
+                                <div class="glass-card p-6">
+                                    <h4 class="text-lg font-bold text-green-400 mb-3">🛡️ Market Risk Mitigation</h4>
+                                    <ul class="text-sm space-y-2 opacity-90">
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Diversified customer base (individual & corporate)</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Multiple revenue streams reduce single-point failure</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Conservative occupancy projections (75% vs 85% industry)</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Flexible programming to adapt to market conditions</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <h4 class="text-lg font-bold text-green-400 mb-3">🛡️ Operational Risk Mitigation
+                                    </h4>
+                                    <ul class="text-sm space-y-2 opacity-90">
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>15% construction contingency budget included</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Pre-qualified contractors with performance bonds</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Key person life insurance policies</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Comprehensive liability and property insurance</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <h4 class="text-lg font-bold text-green-400 mb-3">🛡️ Competitive Advantage
+                                        Protection</h4>
+                                    <ul class="text-sm space-y-2 opacity-90">
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>First-mover advantage in regional market</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Unique property location difficult to replicate</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Strong brand development and marketing strategy</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-400 mr-2">✓</span>
+                                            <span>Exclusive partnerships with local artisans</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <h4 class="text-lg font-bold text-blue-400 mb-3">📊 Financial Risk Management</h4>
+                                    <ul class="text-sm space-y-2 opacity-90">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-400 mr-2">✓</span>
+                                            <span>Conservative financial projections with stress testing</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-400 mr-2">✓</span>
+                                            <span>6-month operating reserve fund</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-400 mr-2">✓</span>
+                                            <span>Quarterly financial reviews and investor updates</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-400 mr-2">✓</span>
+                                            <span>Professional accounting and legal oversight</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team & Background Section -->
+            <section id="team" class="section-content">
+                <div class="glass-card p-8 mb-8">
+                    <h2 class="text-4xl font-bold playfair text-accent mb-6">👥 Leadership Team & Advisory Board</h2>
+
+                    <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6 text-accent">Core Management Team</h3>
+
+                            <div class="space-y-6">
+                                <div class="glass-card p-6">
+                                    <div class="flex items-start space-x-4">
+                                        <div
+                                            class="w-16 h-16 bg-accent bg-opacity-20 rounded-full flex items-center justify-center">
+                                            <span class="text-2xl">👨‍💼</span>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h4 class="text-xl font-bold text-accent mb-1">CEO & Founder</h4>
+                                            <p class="text-sm opacity-90 mb-3">
+                                                15+ years in hospitality and real estate development. Previously
+                                                developed 3 boutique
+                                                properties generating $50M+ in total revenue. MBA in Hospitality
+                                                Management.
+                                            </p>
+                                            <div class="text-xs opacity-70">
+                                                <strong>Key Expertise:</strong> Strategic Planning, Operations,
+                                                Fundraising
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <div class="flex items-start space-x-4">
+                                        <div
+                                            class="w-16 h-16 bg-accent bg-opacity-20 rounded-full flex items-center justify-center">
+                                            <span class="text-2xl">👩‍🎨</span>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h4 class="text-xl font-bold text-accent mb-1">Creative Director</h4>
+                                            <p class="text-sm opacity-90 mb-3">
+                                                Master craftsperson with 20+ years teaching experience. Former head of
+                                                artisan
+                                                programs at renowned craft schools. Published author on sustainable
+                                                making practices.
+                                            </p>
+                                            <div class="text-xs opacity-70">
+                                                <strong>Key Expertise:</strong> Workshop Development, Artisan Relations,
+                                                Curriculum Design
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <div class="flex items-start space-x-4">
+                                        <div
+                                            class="w-16 h-16 bg-accent bg-opacity-20 rounded-full flex items-center justify-center">
+                                            <span class="text-2xl">👨‍💻</span>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h4 class="text-xl font-bold text-accent mb-1">Operations Manager</h4>
+                                            <p class="text-sm opacity-90 mb-3">
+                                                10+ years in luxury hospitality operations. Former resort manager at
+                                                5-star properties.
+                                                Certified in sustainable hospitality practices and guest experience
+                                                management.
+                                            </p>
+                                            <div class="text-xs opacity-70">
+                                                <strong>Key Expertise:</strong> Daily Operations, Guest Services, Staff
+                                                Management
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <div class="flex items-start space-x-4">
+                                        <div
+                                            class="w-16 h-16 bg-accent bg-opacity-20 rounded-full flex items-center justify-center">
+                                            <span class="text-2xl">👩‍💼</span>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h4 class="text-xl font-bold text-accent mb-1">CFO</h4>
+                                            <p class="text-sm opacity-90 mb-3">
+                                                CPA with 12+ years in hospitality finance. Former controller at boutique
+                                                hotel chain.
+                                                Expertise in financial modeling, investor relations, and performance
+                                                optimization.
+                                            </p>
+                                            <div class="text-xs opacity-70">
+                                                <strong>Key Expertise:</strong> Financial Management, Investor
+                                                Relations, Performance Analysis
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6 text-accent">Advisory Board</h3>
+
+                            <div class="space-y-6">
+                                <div class="glass-card p-6">
+                                    <h4 class="text-lg font-bold text-accent mb-2">🏨 Hospitality Industry Veteran</h4>
+                                    <p class="text-sm opacity-90 mb-2">
+                                        Former VP of Development at major hotel chain. 25+ years developing luxury
+                                        properties.
+                                        Expert in market positioning and operational excellence.
+                                    </p>
+                                    <div class="text-xs opacity-70">Strategic advisor for market positioning and growth
+                                    </div>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <h4 class="text-lg font-bold text-accent mb-2">💰 Real Estate Investment Expert</h4>
+                                    <p class="text-sm opacity-90 mb-2">
+                                        Managing Partner at $500M real estate investment fund. Specialist in hospitality
+                                        and experiential real estate investments.
+                                    </p>
+                                    <div class="text-xs opacity-70">Advisor for investment strategy and exit planning
+                                    </div>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <h4 class="text-lg font-bold text-accent mb-2">🎨 Arts & Education Leader</h4>
+                                    <p class="text-sm opacity-90 mb-2">
+                                        Former director of prestigious craft school. 30+ years in arts education and
+                                        workshop program development. Published researcher on experiential learning.
+                                    </p>
+                                    <div class="text-xs opacity-70">Advisor for program development and educational
+                                        partnerships</div>
+                                </div>
+
+                                <div class="glass-card p-6">
+                                    <h4 class="text-lg font-bold text-accent mb-2">🌱 Sustainability Consultant</h4>
+                                    <p class="text-sm opacity-90 mb-2">
+                                        LEED AP certified architect specializing in sustainable hospitality design.
+                                        20+ green building certifications for luxury properties.
+                                    </p>
+                                    <div class="text-xs opacity-70">Advisor for sustainable operations and
+                                        certifications</div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="mt-8 p-6 bg-blue-500 bg-opacity-10 rounded-lg border border-blue-500 border-opacity-30">
+                                <h4 class="font-bold text-blue-300 mb-3">🎯 Why This Team?</h4>
+                                <ul class="text-sm space-y-2 opacity-90">
+                                    <li class="flex items-start">
+                                        <span class="text-blue-400 mr-2">✓</span>
+                                        <span>Proven track record in luxury hospitality development</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-blue-400 mr-2">✓</span>
+                                        <span>Deep expertise in experiential education and arts programming</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-blue-400 mr-2">✓</span>
+                                        <span>Strong financial management and investor relations experience</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-blue-400 mr-2">✓</span>
+                                        <span>Commitment to sustainable and responsible business practices</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-blue-400 mr-2">✓</span>
+                                        <span>Network of industry connections for strategic partnerships</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Urgent Commitment Banner (appears after sufficient exploration) -->
+    <div id="commitmentBanner" class="commitment-banner">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <h3 class="font-bold text-accent">🚀 Time to Secure Your Investment Position</h3>
+                    <p class="text-sm opacity-80">You've reviewed the opportunity - now act before positions fill</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-lg font-bold text-red-300" id="bannerCountdown">⏰ Loading...</div>
+                    <div class="text-xs opacity-70">Until funding closes</div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="text-sm">
+                    <span class="text-orange-300 font-bold">Only 7 positions remaining</span> •
+                    <span class="text-blue-300">$1.8M of $2.4M committed</span>
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="scheduleUrgentCall()" class="floating-button">
+                        � Priority Call (24hrs)
+                    </button>
+                    <a href="investment-interest.html" class="floating-button pulse-animation">
+                        💼 Commit Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Track which sections have been viewed
+        let viewedSections = new Set();
+        let progressTracker = false;
+
+        // Initialize charts and interactions
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeCharts();
+            setupSectionTracking();
+            setupNavigation();
+        });
+
+        function setupNavigation() {
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.addEventListener('click', function () {
+                    const sectionId = this.dataset.section;
+                    showSection(sectionId);
+                    markSectionViewed(sectionId);
+                });
+            });
+        }
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section-content').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Add active to clicked tab
+            document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
+        }
+
+        function markSectionViewed(sectionId) {
+            viewedSections.add(sectionId);
+            updateProgressTracker();
+
+            // Show commitment options after viewing key sections
+            if (viewedSections.size >= 3) {
+                setTimeout(() => {
+                    document.getElementById('commitmentBanner').classList.add('show');
+                }, 2000);
+            }
+        }
+
+        function updateProgressTracker() {
+            if (!progressTracker) return;
+
+            const sections = ['executive', 'financials', 'market', 'investment', 'risks'];
+            const viewedCount = sections.filter(s => viewedSections.has(s)).length;
+            const progressPercent = (viewedCount / sections.length) * 100;
+
+            // Update progress bar
+            document.getElementById('overallProgress').style.width = progressPercent + '%';
+
+            // Update individual section status
+            sections.forEach(section => {
+                const element = document.getElementById(`progress-${section}`);
+                if (element) {
+                    element.textContent = viewedSections.has(section) ? '✅' : '⏳';
+                    element.className = viewedSections.has(section) ? 'text-green-400' : 'text-yellow-400';
+                }
+            });
+        }
+
+        function toggleExplorationTracker() {
+            const tracker = document.getElementById('progressTracker');
+            progressTracker = !progressTracker;
+            tracker.style.display = progressTracker ? 'block' : 'none';
+            updateProgressTracker();
+        }
+
+        // Countdown Timer Functions
+        function updateUrgencyTimer() {
+            const deadline = new Date('December 31, 2025 23:59:59').getTime();
+            const now = new Date().getTime();
+            const timeLeft = deadline - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            const urgencyElement = document.getElementById('urgencyTimer');
+            const bannerElement = document.getElementById('bannerCountdown');
+
+            if (timeLeft > 0) {
+                const timeString = `⏰ ${days}d ${hours}h`;
+                if (urgencyElement) urgencyElement.innerHTML = timeString;
+                if (bannerElement) bannerElement.innerHTML = timeString;
+            } else {
+                const expiredString = '🚨 DEADLINE REACHED';
+                if (urgencyElement) urgencyElement.innerHTML = expiredString;
+                if (bannerElement) bannerElement.innerHTML = expiredString;
+            }
+        }
+
+        // Update countdown every minute
+        updateUrgencyTimer();
+        setInterval(updateUrgencyTimer, 60000);
+
+        function showCommitmentOptions() {
+            document.getElementById('commitmentBanner').classList.add('show');
+        }
+
+        function scheduleUrgentCall() {
+            window.open('mailto:invest@makerstay.com?subject=URGENT: Priority Investment Call Request&body=I need to schedule a priority call within 24 hours to discuss securing my investment position before the December 31st deadline.', '_blank');
+        }
+
+        function scheduleConsultation() {
+            alert('Consultation scheduling feature would open here. In the full version, this would integrate with a calendar booking system.');
+        }
+
+        function initializeCharts() {
+            // Revenue Growth Chart
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                    datasets: [{
+                        label: 'Revenue ($M)',
+                        data: [1.2, 2.0, 2.8, 3.2, 3.6],
+                        borderColor: '#Bca86d',
+                        backgroundColor: 'rgba(188, 168, 109, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#F5f2e8'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#F5f2e8',
+                                callback: function (value) {
+                                    return '$' + value + 'M';
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(245, 242, 232, 0.1)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#F5f2e8'
+                            },
+                            grid: {
+                                color: 'rgba(245, 242, 232, 0.1)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function setupSectionTracking() {
+            // Use Intersection Observer to track when sections come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                        markSectionViewed(entry.target.id);
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+
+            // Observe all section content
+            document.querySelectorAll('.section-content').forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Mark executive summary as viewed on load
+        markSectionViewed('executive');
+    </script>
+</body>
+
+</html>
